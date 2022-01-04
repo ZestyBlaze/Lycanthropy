@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public class LycanthropyDamageSource {
-    @Inject(at = @At("HEAD"), method = "damage")
+    @Inject(at = @At("HEAD"), method = "damage", cancellable = true)
     private void lycanthropeBlockDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         LycanthropyComponentInit.WEREWOLF.maybeGet(this).ifPresent(werewolfComponent -> {
             if(werewolfComponent.isWerewolf) {
