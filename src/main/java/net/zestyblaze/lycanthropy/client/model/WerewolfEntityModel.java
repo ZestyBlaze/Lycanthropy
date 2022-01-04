@@ -9,6 +9,12 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 public class WerewolfEntityModel extends AnimatedGeoModel<WerewolfEntity> {
+    private Identifier currentTexture = new Identifier(Lycanthropy.MODID, "textures/entity/werewolf/werewolf.png");
+
+    public void setCurrentTexture(Identifier currentTexture) {
+        this.currentTexture = currentTexture;
+    }
+
     @Override
     public Identifier getModelLocation(WerewolfEntity object) {
         return new Identifier(Lycanthropy.MODID, "geo/werewolf.geo.json");
@@ -16,7 +22,7 @@ public class WerewolfEntityModel extends AnimatedGeoModel<WerewolfEntity> {
 
     @Override
     public Identifier getTextureLocation(WerewolfEntity object) {
-        return new Identifier(Lycanthropy.MODID, "textures/entity/werewolf/werewolf.png");
+        return currentTexture;
     }
 
     @Override
@@ -29,9 +35,6 @@ public class WerewolfEntityModel extends AnimatedGeoModel<WerewolfEntity> {
     public void setLivingAnimations(WerewolfEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
         IBone head = this.getAnimationProcessor().getBone("skull");
-        IBone leftLeg = this.getAnimationProcessor().getBone("leftLeg");
-        IBone rightLeg = this.getAnimationProcessor().getBone("rightLeg");
-
         EntityModelData extraData = (EntityModelData) customPredicate.getExtraDataOfType(EntityModelData.class).get(0);
         if (head != null) {
             head.setRotationX(extraData.headPitch * ((float) Math.PI / 180F));

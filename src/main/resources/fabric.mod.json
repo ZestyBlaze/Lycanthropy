@@ -47,5 +47,6 @@
     "cardinal-components": [
       "lycanthropy:werewolf"
     ]
-  }
+  },
+  "accessWidener": "lycanthropy.accesswiderner"
 }
