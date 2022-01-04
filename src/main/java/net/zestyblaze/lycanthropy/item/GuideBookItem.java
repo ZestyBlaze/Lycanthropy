@@ -27,8 +27,8 @@ public class GuideBookItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        if(FabricLoader.getInstance().isModLoaded("patchouli")) {
-            tooltip.add(new TranslatableText("text.lycanthropy.tooltip").formatted(Formatting.GRAY, Formatting.ITALIC));
+        if(!FabricLoader.getInstance().isModLoaded("patchouli")) {
+            tooltip.add(new TranslatableText("text.lycanthropy.guide_book.fail").formatted(Formatting.GRAY, Formatting.ITALIC));
         }
     }
 

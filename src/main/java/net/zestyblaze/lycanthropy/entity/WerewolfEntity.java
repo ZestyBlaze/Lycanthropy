@@ -32,7 +32,6 @@ public class WerewolfEntity extends WerewolfBaseEntity implements IAnimatable {
         .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4);
     }
 
-
     private <E extends IAnimatable> PlayState basicMovement(AnimationEvent<E> event) {
         if(event.isMoving()){
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.werewolf.walking", true));

@@ -10,6 +10,8 @@ public class LycanthropyModConfig implements ConfigData {
 
     public boolean debugMode = false;
 
+    public boolean werewolfStart = false;
+
     public static LycanthropyModConfig get() {
         return AutoConfig.getConfigHolder(LycanthropyModConfig.class).getConfig();
     }

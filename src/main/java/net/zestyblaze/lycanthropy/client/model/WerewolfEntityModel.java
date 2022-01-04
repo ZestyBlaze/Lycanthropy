@@ -1,10 +1,8 @@
 package net.zestyblaze.lycanthropy.client.model;
 
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Identifier;
 import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.entity.WerewolfEntity;
-import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
@@ -26,7 +24,7 @@ public class WerewolfEntityModel extends AnimatedGeoModel<WerewolfEntity> {
         return new Identifier(Lycanthropy.MODID, "animations/werewolf.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings("unchecked")
     @Override
     public void setLivingAnimations(WerewolfEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);

@@ -18,15 +18,14 @@ import java.util.Map;
 import static net.zestyblaze.lycanthropy.utils.LycanthropyUtils.gen;
 
 public class LycanthropyBlockInit {
-    public static final Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
-    public static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
+    private static final Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
+    private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
 
     public static final Block BONE_PILE = register("bone_pile", new BonePileBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.BONE)), true);
 
-
-    public static <T extends Block> T register(String name, T block, boolean createItem) {
+    private static <T extends Block> T register(String name, T block, boolean createItem) {
         BLOCKS.put(block, new Identifier(Lycanthropy.MODID, name));
-        if (createItem) {
+        if(createItem) {
             ITEMS.put(new BlockItem(block, gen()), BLOCKS.get(block));
         }
         return block;

@@ -9,7 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.zestyblaze.lycanthropy.registry.LycanthropyComponentInit;
 
-public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTickingComponent, ILycantropy {
+public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTickingComponent, ILycanthropy {
     private final PlayerEntity player;
     public boolean isWerewolf = false;
     public boolean hasWerewolfForm = false;
