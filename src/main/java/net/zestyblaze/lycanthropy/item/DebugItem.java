@@ -36,9 +36,11 @@ public class DebugItem extends Item {
         LycanthropyComponentInit.WEREWOLF.maybeGet(user).ifPresent(werewolfComponent -> {
             if(!werewolfComponent.isWerewolf) {
                 werewolfComponent.setWerewolf(true);
+                werewolfComponent.activateWerewolfForm(true);
                 user.sendMessage(new TranslatableText("text.lycanthropy.debug_item.success_add"), true);
             } else if(user.isSneaking() && werewolfComponent.isWerewolf) {
                 werewolfComponent.setWerewolf(false);
+                werewolfComponent.activateWerewolfForm(false);
                 user.sendMessage(new TranslatableText("text.lycanthropy.debug_item.success_remove"), true);
             } else {
                 user.sendMessage(new TranslatableText("text.lycanthropy.debug_item.fail"), true);
