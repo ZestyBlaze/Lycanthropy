@@ -11,11 +11,24 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-	maven { url "https://maven.shedaniel.me/" }
-	maven { url "https://maven.terraformersmc.com/" }
-	maven { url "https://ladysnake.jfrog.io/artifactory/mods" }
+	maven {
+		name "REI, Cloth Config"
+		url "https://maven.shedaniel.me/" }
+
+	maven {
+		name "Modmenu"
+		url "https://maven.terraformersmc.com/" }
+
+	maven {
+		name ""
+		url "https://ladysnake.jfrog.io/artifactory/mods" }
 	maven { url "https://jitpack.io" }
 	maven { url "https://maven.blamejared.com" }
+
+	maven {
+		name = 'GeckoLib'
+		url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+	}
 }
 
 dependencies {
@@ -23,13 +36,29 @@ dependencies {
 	mappings("net.fabricmc:yarn:${project.yarn_mappings}:v2")
 	modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
-	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") { exclude (group: "net.fabricmc.fabric-api") }
-	modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}") { exclude group: "net.fabricmc.fabric-api" }
+
+	//Cloth Config
+	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+		exclude (group: "net.fabricmc.fabric-api") }
+
+	//Modmenu
+	modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}") {
+		exclude group: "net.fabricmc.fabric-api" }
+
+	//Cardinal Components
 	modApi "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${project.cc_version}"
 	modImplementation("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${project.cc_version}")
+
+	//Pehkui
 	modApi("com.github.Virtuoel:Pehkui:${project.pehkui_version}")
+
+	//Pathouli
 	modImplementation("vazkii.patchouli:Patchouli:${project.patchouli_version}") { transitive = false }
+
 	runtimeOnly("me.zeroeightsix:fiber:0.23.0-2")
+
+	//Geckolib
+	modImplementation "software.bernie.geckolib:geckolib-fabric-${gecko_version}"
 }
 
 processResources {

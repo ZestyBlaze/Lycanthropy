@@ -6,6 +6,9 @@
   "mixins": [
     "LycanthropyDamageSource"
   ],
+  "client": [
+    "PlayerEntityRendererMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

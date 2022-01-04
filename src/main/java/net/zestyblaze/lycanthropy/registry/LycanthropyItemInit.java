@@ -1,29 +1,39 @@
 package net.zestyblaze.lycanthropy.registry;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.config.LycanthropyModConfig;
 import net.zestyblaze.lycanthropy.item.DebugItem;
-import net.zestyblaze.lycanthropy.item.GuideBookItem;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import static net.zestyblaze.lycanthropy.utils.LycanthropyUtils.gen;
 
 public class LycanthropyItemInit {
-    public static final Item DEBUG_ITEM = new DebugItem(new FabricItemSettings().group(ItemGroup.MISC));
+    //We put all Items and their respective identifiers in a list so we can register them all at once.
+    public static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
+
+    public static final Item DEBUG_ITEM = register("debug_stick", new DebugItem(gen()));
 
     ///TODO: Remains unused until Patchouli updates
     ///public static final Item GUIDE_BOOK = new GuideBookItem(new FabricItemSettings().group(ItemGroup.MISC));
 
+    public static <T extends Item> T register(String name, T item) {
+        ITEMS.put(item, new Identifier(Lycanthropy.MODID, name));
+        return item;
+    }
+
+
     public static void registerItems() {
-        Registry.register(Registry.ITEM, new Identifier(Lycanthropy.MODID, "debug_item"), DEBUG_ITEM);
+        //This registers all items we put in the LinkedHashMap ITEMS.
+        ITEMS.keySet().forEach(item -> Registry.register(Registry.ITEM, ITEMS.get(item), item));
 
         ///TODO: Remains unused until Patchouli updates
         ///Registry.register(Registry.ITEM, new Identifier(Lycanthropy.MODID, "guide_book"), GUIDE_BOOK);
-
-        Registry.register(Registry.ITEM, new Identifier(Lycanthropy.MODID, "bone_pile"), new BlockItem(LycanthropyBlockInit.BONE_PILE, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+        //Registry.register(Registry.ITEM, new Identifier(Lycanthropy.MODID, "bone_pile"), new BlockItem(LycanthropyBlockInit.BONE_PILE, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
 
         if(LycanthropyModConfig.get().debugMode) {
             Lycanthropy.LOGGER.info("Lycanthropy: Registry - Items Registered");
