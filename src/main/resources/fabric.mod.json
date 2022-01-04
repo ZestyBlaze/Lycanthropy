@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "lycanthropy",
+  "version": "${version}",
+
+  "name": "Lycanthropy",
+  "description": "Channel your inner beast and unleash the Werewolf",
+  "authors": [
+    "ZestyBlaze"
+  ],
+
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/ZestyBlaze/Lycanthropy",
+    "issues": "https://github.com/ZestyBlaze/Lycanthropy/issues"
+  },
+
+  "license": "MIT License",
+  "icon": "assets/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.zestyblaze.lycanthropy.Lycanthropy"
+    ],
+    "client": [
+      "net.zestyblaze.lycanthropy.client.LycanthropyClient"
+    ],
+    "cardinal-components-entity": [
+      "net.zestyblaze.lycanthropy.registry.LycanthropyComponentInit"
+    ],
+    "modmenu": [
+      "net.zestyblaze.lycanthropy.integration.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "lycanthropy.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  },
+  "custom": {
+    "cardinal-components": [
+      "lycanthropy:werewolf"
+    ]
+  }
+}

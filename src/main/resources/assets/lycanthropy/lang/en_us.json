@@ -1,0 +1,15 @@
+{
+  "item.lycanthropy.debug_item": "Debug Item",
+  "item.lycanthropy.guide_book": "Grimoire of Lycanthropy",
+
+  "block.lycanthropy.bone_pile": "Bone Pile",
+
+  "text.lycanthropy.hold_shift": "Hold [SHIFT] for more info",
+
+  "text.lycanthropy.tooltip": "Install Patchouli",
+
+  "text.lycanthropy.debug_item.tooltip": "Developer Item for Testing",
+  "text.lycanthropy.debug_item.success_add": "Turned User into a Werewolf",
+  "text.lycanthropy.debug_item.success_remove": "Removed Werewolf from User",
+  "text.lycanthropy.debug_item.fail": "User is already a Werewolf"
+}

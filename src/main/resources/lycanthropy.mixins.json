@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.zestyblaze.lycanthropy.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "LycanthropyDamageSource"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
