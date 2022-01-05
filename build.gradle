@@ -70,8 +70,10 @@ dependencies {
 		exclude group: "net.fabricmc.fabric-api" }
 
 	//Cardinal Components
-	modApi "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${project.cc_version}"
-	modImplementation("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${project.cc_version}")
+	modApi "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${cc_version}"
+	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${cc_version}"
+	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cc_version}"
+	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cc_version}"
 
 	//Pehkui
 	modApi("com.github.Virtuoel:Pehkui:${project.pehkui_version}")

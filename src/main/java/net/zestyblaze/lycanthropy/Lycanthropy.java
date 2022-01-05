@@ -18,8 +18,6 @@ public class Lycanthropy implements ModInitializer {
 
 	public static final Logger LOGGER = LogManager.getLogger(MODNAME);
 
-	public static boolean isHaemaLoaded = false;
-	public static boolean isBewitchmentLoaded = false;
 	@Override
 	public void onInitialize() {
 		LOGGER.info(MODNAME + " is installed correctly, loading now! Thanks for installing! <3");
@@ -28,13 +26,8 @@ public class Lycanthropy implements ModInitializer {
 		LycanthropyBlockInit.registerBlocks();
 		LycanthropyEntityTypeInit.initEntityTypes();
 		LycanthropyEventInit.registerEvents();
+		LycanthropyStatusEffectsInit.registerStatusEffetcs();
 
-		if (FabricLoader.getInstance().isModLoaded("haema")) {
-			isHaemaLoaded = true;
-		}
-		if (FabricLoader.getInstance().isModLoaded("bewitchment")) {
-			isBewitchmentLoaded = true;
-		}
 
 		if(LycanthropyModConfig.get().debugMode) {
 			LOGGER.info("Lycanthropy: Registry - Mod Fully Loaded!");

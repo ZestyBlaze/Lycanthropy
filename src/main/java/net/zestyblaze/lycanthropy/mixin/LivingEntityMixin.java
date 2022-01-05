@@ -5,13 +5,15 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
+import net.zestyblaze.lycanthropy.common.registry.LycanthropyStatusEffectsInit;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @SuppressWarnings("ConstantConditions")
@@ -33,5 +35,16 @@ public abstract class LivingEntityMixin extends Entity {
         if ((Object) this instanceof PlayerEntity player && LycanthropyComponentInit.WEREWOLF.get(player).isWerewolf()) {
             callbackInfo.setReturnValue(callbackInfo.getReturnValue() * 1.2f);
         }
+    }
+
+    @ModifyVariable(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getHealth()F"), ordinal = 0)
+    private float modifyDamage0(float amount, DamageSource source) {
+        if (!world.isClient) {
+            LivingEntity livingEntity = (LivingEntity) (Object) this;
+            if(livingEntity.hasStatusEffect(LycanthropyStatusEffectsInit.BLEEDING)){
+                amount = amount*1.5F;
+            }
+        }
+        return amount;
     }
 }
