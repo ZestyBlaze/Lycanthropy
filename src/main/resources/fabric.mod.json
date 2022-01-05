@@ -6,7 +6,7 @@
   "name": "Lycanthropy",
   "description": "Channel your inner beast and unleash the Werewolf",
   "authors": [
-    "ZestyBlaze"
+    "ZestyBlaze, MrSterner"
   ],
 
   "contact": {
@@ -27,10 +27,10 @@
       "net.zestyblaze.lycanthropy.client.LycanthropyClient"
     ],
     "cardinal-components-entity": [
-      "net.zestyblaze.lycanthropy.registry.LycanthropyComponentInit"
+      "net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit"
     ],
     "modmenu": [
-      "net.zestyblaze.lycanthropy.integration.ModMenuIntegration"
+      "net.zestyblaze.lycanthropy.client.integration.ModMenuIntegration"
     ]
   },
   "mixins": [
