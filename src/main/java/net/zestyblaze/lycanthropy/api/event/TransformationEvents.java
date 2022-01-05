@@ -7,9 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import static net.fabricmc.fabric.api.event.EventFactory.createArrayBacked;
 
 public final class TransformationEvents {
-    private TransformationEvents(){
-
-    }
+    private TransformationEvents(){}
 
     /**
      * Called when the player transforms

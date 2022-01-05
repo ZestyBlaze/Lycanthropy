@@ -21,7 +21,6 @@ public class LycanthropyItemInit {
     public static final Item GUIDE_BOOK = register("guide_book", new GuideBookItem(gen()));
     public static final Item GUIDE_BOOK_DEV = register("guide_book_dev", new GuideBookDevItem(gen()));
 
-
     private static <T extends Item> T register(String name, T item) {
         ITEMS.put(item, new Identifier(Lycanthropy.MODID, name));
         return item;

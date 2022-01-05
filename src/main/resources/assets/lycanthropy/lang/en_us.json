@@ -1,8 +1,13 @@
 {
+  "itemGroup.lycanthropy.lycanthropy": "Lycanthropy",
+
   "item.lycanthropy.debug_item": "Debug Item",
   "item.lycanthropy.guide_book": "Moonlight Chronicles",
+  "item.lycanthropy.guide_book_dev": "Moonlight Chronicles",
 
   "block.lycanthropy.bone_pile": "Bone Pile",
+
+  "entity.lycanthropy.werewolf": "Werewolf",
 
   "text.lycanthropy.hold_shift": "Hold [SHIFT] for more info",
 

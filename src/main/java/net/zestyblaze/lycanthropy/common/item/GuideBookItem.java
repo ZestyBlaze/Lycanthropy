@@ -2,7 +2,6 @@ package net.zestyblaze.lycanthropy.common.item;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,17 +13,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.zestyblaze.lycanthropy.common.registry.LycanthropyItemInit;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.network.GeckoLibNetwork;
-import software.bernie.geckolib3.network.ISyncable;
 import vazkii.patchouli.api.PatchouliAPI;
 import vazkii.patchouli.common.base.PatchouliSounds;
 import vazkii.patchouli.common.book.Book;
@@ -34,7 +23,6 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public class GuideBookItem extends Item {
-
     public GuideBookItem(Settings settings) {
         super(settings);
     }
@@ -45,7 +33,6 @@ public class GuideBookItem extends Item {
             tooltip.add(new TranslatableText("text.lycanthropy.guide_book.fail").formatted(Formatting.GRAY, Formatting.ITALIC));
         }
     }
-
 
     @Nonnull
     @Override

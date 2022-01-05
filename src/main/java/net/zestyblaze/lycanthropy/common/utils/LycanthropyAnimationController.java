@@ -9,7 +9,8 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import java.util.HashMap;
 import java.util.List;
 
-public class LycanthropyAnimationController extends AnimationController{
+@SuppressWarnings("ALL")
+public class LycanthropyAnimationController extends AnimationController {
     public LycanthropyAnimationController(IAnimatable animatable, String name, int transitionLength, AnimationController.IAnimationPredicate<WerewolfEntity> predicate) {
         super(animatable, name, transitionLength, predicate);
     }

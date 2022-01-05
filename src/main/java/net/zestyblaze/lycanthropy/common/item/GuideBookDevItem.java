@@ -33,6 +33,7 @@ import vazkii.patchouli.common.book.BookRegistry;
 import javax.annotation.Nonnull;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class GuideBookDevItem extends Item implements IAnimatable, ISyncable {
     public final AnimationFactory factory = new AnimationFactory(this);
     public boolean holdsItem = false;
@@ -61,7 +62,6 @@ public class GuideBookDevItem extends Item implements IAnimatable, ISyncable {
         }
     }
 
-
     @Nonnull
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -78,7 +78,6 @@ public class GuideBookDevItem extends Item implements IAnimatable, ISyncable {
         animationData.addAnimationController(new AnimationController<>(this, "controllerName", 0, this::predicate));
     }
 
-
     private <E extends Item & IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         AnimationBuilder builder = new AnimationBuilder();
         if(holdsItem){
@@ -93,9 +92,7 @@ public class GuideBookDevItem extends Item implements IAnimatable, ISyncable {
     }
 
     @Override
-    public void onAnimationSync(int id, int state) {
-
-    }
+    public void onAnimationSync(int id, int state) {}
 
     @Override
     public AnimationFactory getFactory() {

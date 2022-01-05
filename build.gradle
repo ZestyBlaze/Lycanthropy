@@ -17,21 +17,32 @@ loom {
 repositories {
 	maven {
 		name "REI, Cloth Config"
-		url "https://maven.shedaniel.me/" }
+		url "https://maven.shedaniel.me/"
+	}
 
 	maven {
 		name "Modmenu"
-		url "https://maven.terraformersmc.com/" }
+		url "https://maven.terraformersmc.com/"
+	}
 
 	maven {
-		name ""
-		url "https://ladysnake.jfrog.io/artifactory/mods" }
-	maven { url "https://jitpack.io" }
-	maven { url "https://maven.blamejared.com" }
+		name "Ladysnake"
+		url "https://ladysnake.jfrog.io/artifactory/mods"
+	}
 
 	maven {
-		name = 'GeckoLib'
-		url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+		name "GeckoLib"
+		url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+	}
+
+	maven {
+		name "Jitpack"
+		url "https://jitpack.io"
+	}
+
+	maven {
+		name "Patchouli"
+		url "https://maven.blamejared.com"
 	}
 }
 
@@ -58,7 +69,6 @@ dependencies {
 
 	//Pathouli
 	modImplementation("vazkii.patchouli:Patchouli:${project.patchouli_version}") { transitive = false }
-
 	runtimeOnly("me.zeroeightsix:fiber:0.23.0-2")
 
 	//Geckolib

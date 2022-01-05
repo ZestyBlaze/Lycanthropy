@@ -12,9 +12,7 @@ import static net.fabricmc.fabric.api.event.EventFactory.createArrayBacked;
 
 @Environment(EnvType.CLIENT)
 public final class RenderEvents {
-    private RenderEvents(){
-
-    }
+    private RenderEvents(){}
 
     /**
      * Called when the player is rendering.

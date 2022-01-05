@@ -59,7 +59,7 @@ public interface ILycanthropy extends ComponentV3, ServerTickingComponent {
     //void setWerewolfLevel(int level);
 
     /**
-     * get the level of teh werewolf
+     * get the level of the werewolf
      * @return level
      */
     int getWerewolfLevel();
