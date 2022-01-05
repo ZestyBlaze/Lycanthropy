@@ -5,11 +5,8 @@ import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import net.zestyblaze.lycanthropy.config.LycanthropyModConfig;
-import net.zestyblaze.lycanthropy.registry.LycanthropyBlockInit;
-import net.zestyblaze.lycanthropy.registry.LycanthropyConfigInit;
-import net.zestyblaze.lycanthropy.registry.LycanthropyEntityTypeInit;
-import net.zestyblaze.lycanthropy.registry.LycanthropyItemInit;
+import net.zestyblaze.lycanthropy.common.config.LycanthropyModConfig;
+import net.zestyblaze.lycanthropy.common.registry.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

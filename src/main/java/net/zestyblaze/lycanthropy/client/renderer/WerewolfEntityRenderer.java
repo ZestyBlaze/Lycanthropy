@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3f;
 import net.zestyblaze.lycanthropy.client.model.WerewolfEntityModel;
-import net.zestyblaze.lycanthropy.entity.WerewolfEntity;
+import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import software.bernie.geckolib3.geo.render.built.GeoBone;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
