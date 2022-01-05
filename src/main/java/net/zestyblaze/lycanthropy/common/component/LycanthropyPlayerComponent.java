@@ -35,26 +35,25 @@ public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTi
     }
 
     @Override
-    public WerewolfEntity hasWerewolfEntity(){
+    public WerewolfEntity getRenderedWerewolfEntity(){
         return werewolfEntity;
     }
 
     @Override
-    public void setWerewolfEntity(WerewolfEntity werewolf){
+    public void setRenderedWerewolfEntity(WerewolfEntity werewolf){
         this.werewolfEntity = werewolf;
         LycanthropyComponentInit.WEREWOLF.sync(player);
     }
 
     @Override
     public void setCanBecomeWerewolf(boolean canBecomeWerewolf) {
-        TransformationEvents.ON_CAN_TRANSFORM_EVENT.invoker().onCanTransform(player);
         this.canBecomeWerewolf = canBecomeWerewolf;
         LycanthropyComponentInit.WEREWOLF.sync(player);
+        TransformationEvents.ON_CAN_TRANSFORM_EVENT.invoker().onCanTransform(player);
     }
 
     @Override
     public void tryActivateWerewolfForm(boolean active, boolean force){
-        TransformationEvents.ON_TRANSFORMATION_EVENT.invoker().onTransformation(player);
         if(force && active){
             setCanBecomeWerewolf(true);
             this.isWerewolf = true;
@@ -67,6 +66,7 @@ public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTi
             setCanBecomeWerewolf(false);
         }
         LycanthropyComponentInit.WEREWOLF.sync(player);
+        TransformationEvents.ON_TRANSFORMATION_EVENT.invoker().onTransformation(player);
     }
 
     private void setWerewolfLevel(int level) {

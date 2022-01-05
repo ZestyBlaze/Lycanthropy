@@ -4,10 +4,14 @@
   "package": "net.zestyblaze.lycanthropy.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "LycanthropyDamageSource"
+    "LycanthropyDamageSource",
+    "LivingEntityMixin",
+    "PlayerEntityMixin",
+    "HungerManagerMixin"
   ],
   "client": [
-    "PlayerEntityRendererMixin"
+    "PlayerEntityRendererMixin",
+    "InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

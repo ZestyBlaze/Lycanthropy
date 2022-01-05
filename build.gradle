@@ -31,8 +31,8 @@ repositories {
 	}
 
 	maven {
-		name "GeckoLib"
-		url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+		name "Cardinal Components"
+		url "https://ladysnake.jfrog.io/artifactory/mods"
 	}
 
 	maven {
@@ -41,8 +41,17 @@ repositories {
 	}
 
 	maven {
+		name "GeckoLib"
+		url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+	}
+
+	maven {
 		name "Patchouli"
 		url "https://maven.blamejared.com"
+	}
+	maven {
+		name "Appleskin"
+		url "https://maven.ryanliptak.com/"
 	}
 }
 
@@ -69,6 +78,7 @@ dependencies {
 
 	//Pathouli
 	modImplementation("vazkii.patchouli:Patchouli:${project.patchouli_version}") { transitive = false }
+
 	runtimeOnly("me.zeroeightsix:fiber:0.23.0-2")
 
 	//Geckolib

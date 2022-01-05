@@ -2,6 +2,7 @@ package net.zestyblaze.lycanthropy;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -17,6 +18,8 @@ public class Lycanthropy implements ModInitializer {
 
 	public static final Logger LOGGER = LogManager.getLogger(MODNAME);
 
+	public static boolean isHaemaLoaded = false;
+	public static boolean isBewitchmentLoaded = false;
 	@Override
 	public void onInitialize() {
 		LOGGER.info(MODNAME + " is installed correctly, loading now! Thanks for installing! <3");
@@ -25,6 +28,13 @@ public class Lycanthropy implements ModInitializer {
 		LycanthropyBlockInit.registerBlocks();
 		LycanthropyEntityTypeInit.initEntityTypes();
 		LycanthropyEventInit.registerEvents();
+
+		if (FabricLoader.getInstance().isModLoaded("haema")) {
+			isHaemaLoaded = true;
+		}
+		if (FabricLoader.getInstance().isModLoaded("bewitchment")) {
+			isBewitchmentLoaded = true;
+		}
 
 		if(LycanthropyModConfig.get().debugMode) {
 			LOGGER.info("Lycanthropy: Registry - Mod Fully Loaded!");

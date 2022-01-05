@@ -46,6 +46,12 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
         }
     }
 
+    /**
+     * When the player is holding the 3d model of the guide book, we use the Block pose
+     * @param abstractClientPlayerEntity
+     * @param hand
+     * @param cir
+     */
     @Inject(at = @At("HEAD"), method = "getArmPose", cancellable = true)
     @Environment(EnvType.CLIENT)
     private static void getArmPose(AbstractClientPlayerEntity abstractClientPlayerEntity, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {

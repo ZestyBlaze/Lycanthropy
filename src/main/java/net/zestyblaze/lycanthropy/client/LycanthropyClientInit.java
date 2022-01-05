@@ -1,4 +1,4 @@
-package net.zestyblaze.lycanthropy.common.registry;
+package net.zestyblaze.lycanthropy.client;
 
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -13,6 +13,10 @@ import net.zestyblaze.lycanthropy.client.renderer.WerewolfEntityRenderer;
 import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
 import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import net.zestyblaze.lycanthropy.api.event.RenderEvents;
+import net.zestyblaze.lycanthropy.common.registry.LycanthropyBlockInit;
+import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
+import net.zestyblaze.lycanthropy.common.registry.LycanthropyEntityTypeInit;
+import net.zestyblaze.lycanthropy.common.registry.LycanthropyItemInit;
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
 public class LycanthropyClientInit {
@@ -36,14 +40,14 @@ public class LycanthropyClientInit {
          */
         RenderEvents.PLAYER.register((player, tickDelta, matrixStack, vertexConsumerProvider, light) -> {
             MinecraftClient minecraftClient = MinecraftClient.getInstance();
-            if(!LycanthropyComponentInit.WEREWOLF.get(player).canBecomeWerewolf)return;
-            if (LycanthropyComponentInit.WEREWOLF.get(player).hasWerewolfEntity() == null){
+            if(!LycanthropyComponentInit.WEREWOLF.get(player).isWerewolf)return;
+            if (LycanthropyComponentInit.WEREWOLF.get(player).getRenderedWerewolfEntity() == null){
                 WerewolfEntity werewolfEntity = LycanthropyEntityTypeInit.WEREWOLF.create(player.world);
-                LycanthropyComponentInit.WEREWOLF.get(player).setWerewolfEntity(werewolfEntity);
+                LycanthropyComponentInit.WEREWOLF.get(player).setRenderedWerewolfEntity(werewolfEntity);
             }
             try {
                 matrixStack.push();
-                WerewolfEntity werewolfEntity = LycanthropyComponentInit.WEREWOLF.get(player).hasWerewolfEntity();
+                WerewolfEntity werewolfEntity = LycanthropyComponentInit.WEREWOLF.get(player).getRenderedWerewolfEntity();
                 EntityRenderer<? super WerewolfEntity> werewolfRenderer = minecraftClient.getEntityRenderDispatcher().getRenderer(werewolfEntity);
                 if(player != minecraftClient.player || !MinecraftClient.getInstance().options.getPerspective().isFirstPerson()){
                     werewolfEntity.age = player.age;

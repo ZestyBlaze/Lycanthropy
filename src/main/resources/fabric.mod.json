@@ -31,6 +31,9 @@
     ],
     "modmenu": [
       "net.zestyblaze.lycanthropy.client.integration.ModMenuIntegration"
+    ],
+    "appleskin": [
+      "net.zestyblaze.lycanthropy.client.integration.AppleskinIntegration"
     ]
   },
   "mixins": [
@@ -45,7 +48,8 @@
   },
   "custom": {
     "cardinal-components": [
-      "lycanthropy:werewolf"
+      "lycanthropy:werewolf",
+      "lycanthropy:werewolf_hunger"
     ]
   },
   "accessWidener": "lycanthropy.accesswiderner"
