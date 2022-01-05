@@ -11,12 +11,14 @@ import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.client.renderer.GuideBookItemRenderer;
 import net.zestyblaze.lycanthropy.client.renderer.WerewolfEntityRenderer;
 import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
+import net.zestyblaze.lycanthropy.client.renderer.WolfpeltArmorRenderer;
 import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import net.zestyblaze.lycanthropy.api.event.RenderEvents;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyBlockInit;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyEntityTypeInit;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyItemInit;
+import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
 public class LycanthropyClientInit {
@@ -26,6 +28,10 @@ public class LycanthropyClientInit {
             GeoItemRenderer.registerItemRenderer(LycanthropyItemInit.GUIDE_BOOK, new GuideBookItemRenderer());
         }
         BlockRenderLayerMap.INSTANCE.putBlock(LycanthropyBlockInit.BONE_PILE, RenderLayer.getCutout());
+        GeoArmorRenderer.registerArmorRenderer(new WolfpeltArmorRenderer(), LycanthropyItemInit.WOLFPELT_HEAD,
+        LycanthropyItemInit.WOLFPELT_CHEST, LycanthropyItemInit.WOLFPELT_LEGGINGS, LycanthropyItemInit.WOLFPELT_BOOTS);
+
+
 
         if(LycanthropyModConfig.get().debugMode) {
             Lycanthropy.LOGGER.info("Lycanthropy: Registry - Client Registered");
