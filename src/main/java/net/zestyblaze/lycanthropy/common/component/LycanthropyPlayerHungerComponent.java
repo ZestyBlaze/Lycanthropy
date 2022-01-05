@@ -46,7 +46,7 @@ public class LycanthropyPlayerHungerComponent implements AutoSyncedComponent, Se
 
     @Override
     public void serverTick() {
-        //updateHunger();
+        //updateHunger(); TODO: implement
         if(player.isSneaking()){
             decreaseHunger(2);
         }else{
@@ -55,7 +55,7 @@ public class LycanthropyPlayerHungerComponent implements AutoSyncedComponent, Se
     }
 
     /**
-     * vanilla copy but with gutted exhaustion and saturation TODO: implement
+     * vanilla copy but with gutted exhaustion and saturation
      */
     public void updateHunger(){
         Difficulty difficulty = player.world.getDifficulty();

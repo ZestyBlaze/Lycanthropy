@@ -18,6 +18,15 @@ public final class TransformationEvents {
         }
     });
 
+    public static final Event<CancelTransformation> CANCEL_TRANSFORMATION_EVENT = createArrayBacked(CancelTransformation.class, listeners -> (player) -> {
+        for (CancelTransformation listener : listeners) {
+            if (listener.shouldCancel(player)) {
+                return true;
+            }
+        }
+        return false;
+    });
+
     /**
      * Called when the player gains the ability to transform
      */
@@ -30,6 +39,11 @@ public final class TransformationEvents {
     @FunctionalInterface
     public interface OnTransformation {
         void onTransformation(PlayerEntity player);
+    }
+
+    @FunctionalInterface
+    public interface CancelTransformation {
+        boolean shouldCancel(PlayerEntity player);
     }
 
     @FunctionalInterface

@@ -13,10 +13,10 @@ import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
 public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTickingComponent, ILycanthropy {
     private final PlayerEntity player;
     private WerewolfEntity werewolfEntity = null;
-    public boolean isWerewolf = false;
-    public boolean canBecomeWerewolf = false;
-    public int werewolfLevel = 0;
-    public int werewolfMaxLevel = 10; //TODO, make config or adjust the value to something appropriate
+    private boolean isWerewolf = false;
+    private boolean canBecomeWerewolf = false;
+    private int werewolfLevel = 0;
+    private final int werewolfMaxLevel = 10; //TODO, make config or adjust the value to something appropriate
 
     public LycanthropyPlayerComponent(PlayerEntity player) {
         this.player = player;
@@ -47,26 +47,30 @@ public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTi
 
     @Override
     public void setCanBecomeWerewolf(boolean canBecomeWerewolf) {
-        this.canBecomeWerewolf = canBecomeWerewolf;
-        LycanthropyComponentInit.WEREWOLF.sync(player);
-        TransformationEvents.ON_CAN_TRANSFORM_EVENT.invoker().onCanTransform(player);
+        if(!TransformationEvents.CANCEL_TRANSFORMATION_EVENT.invoker().shouldCancel(player)){
+            this.canBecomeWerewolf = canBecomeWerewolf;
+            LycanthropyComponentInit.WEREWOLF.sync(player);
+            TransformationEvents.ON_CAN_TRANSFORM_EVENT.invoker().onCanTransform(player);
+        }
     }
 
     @Override
     public void tryActivateWerewolfForm(boolean active, boolean force){
-        if(force && active){
-            setCanBecomeWerewolf(true);
-            this.isWerewolf = true;
-        }else if(!force){
-            if(canBecomeWerewolf){
-                this.isWerewolf = active;
+        if(!TransformationEvents.CANCEL_TRANSFORMATION_EVENT.invoker().shouldCancel(player)){
+            if(force && active){
+                setCanBecomeWerewolf(true);
+                this.isWerewolf = true;
+            }else if(!force){
+                if(canBecomeWerewolf){
+                    this.isWerewolf = active;
+                }
+            }else{
+                this.isWerewolf = false;
+                setCanBecomeWerewolf(false);
             }
-        }else{
-            this.isWerewolf = false;
-            setCanBecomeWerewolf(false);
+            LycanthropyComponentInit.WEREWOLF.sync(player);
+            TransformationEvents.ON_TRANSFORMATION_EVENT.invoker().onTransformation(player);
         }
-        LycanthropyComponentInit.WEREWOLF.sync(player);
-        TransformationEvents.ON_TRANSFORMATION_EVENT.invoker().onTransformation(player);
     }
 
     private void setWerewolfLevel(int level) {
