@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.common.block.BonePileBlock;
-import net.zestyblaze.lycanthropy.common.config.LycanthropyModConfig;
+import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

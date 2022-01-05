@@ -10,7 +10,7 @@ import net.minecraft.util.Hand;
 import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.client.renderer.GuideBookItemRenderer;
 import net.zestyblaze.lycanthropy.client.renderer.WerewolfEntityRenderer;
-import net.zestyblaze.lycanthropy.common.config.LycanthropyModConfig;
+import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
 import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import net.zestyblaze.lycanthropy.api.event.RenderEvents;
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;

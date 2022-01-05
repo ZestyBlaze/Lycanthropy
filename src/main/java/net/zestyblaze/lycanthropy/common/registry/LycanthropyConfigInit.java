@@ -3,7 +3,7 @@ package net.zestyblaze.lycanthropy.common.registry;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.zestyblaze.lycanthropy.Lycanthropy;
-import net.zestyblaze.lycanthropy.common.config.LycanthropyModConfig;
+import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
 
 public class LycanthropyConfigInit {
     public static void registerConfig() {

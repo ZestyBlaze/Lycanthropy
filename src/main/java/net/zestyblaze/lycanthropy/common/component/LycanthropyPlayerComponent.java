@@ -104,7 +104,6 @@ public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTi
         return this.canBecomeWerewolf && this.isWerewolf;
     }
 
-
     @Override
     public void readFromNbt(NbtCompound tag) {
         setCanBecomeWerewolf(tag.getBoolean("CanBecomeWerewolf"));

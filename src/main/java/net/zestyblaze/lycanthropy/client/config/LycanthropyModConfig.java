@@ -1,4 +1,4 @@
-package net.zestyblaze.lycanthropy.common.config;
+package net.zestyblaze.lycanthropy.client.config;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
@@ -15,7 +15,6 @@ public class LycanthropyModConfig implements ConfigData {
     @ConfigEntry.Gui.RequiresRestart
     public boolean modelBook3D = true;
 
-    @ConfigEntry.Gui.RequiresRestart
     public boolean werewolfStart = false;
 
     public static LycanthropyModConfig get() {

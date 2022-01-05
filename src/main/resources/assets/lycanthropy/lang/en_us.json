@@ -20,5 +20,6 @@
 
   "text.autoconfig.lycanthropy.title": "Lycanthropy",
   "text.autoconfig.lycanthropy.option.debugMode": "Debug Mode",
+  "text.autoconfig.lycanthropy.option.modelBook3D": "3D Book Model",
   "text.autoconfig.lycanthropy.option.werewolfStart": "Start as a Werewolf"
 }

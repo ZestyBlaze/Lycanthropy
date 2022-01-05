@@ -8,7 +8,7 @@ import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
 import net.minecraft.util.Identifier;
 import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.common.component.LycanthropyPlayerComponent;
-import net.zestyblaze.lycanthropy.common.config.LycanthropyModConfig;
+import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
 
 public class LycanthropyComponentInit implements EntityComponentInitializer {
     public static final ComponentKey<LycanthropyPlayerComponent> WEREWOLF = ComponentRegistry.getOrCreate(new Identifier(Lycanthropy.MODID, "werewolf"), LycanthropyPlayerComponent.class);
