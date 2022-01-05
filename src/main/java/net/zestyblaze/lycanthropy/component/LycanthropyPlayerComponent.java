@@ -7,13 +7,16 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.zestyblaze.lycanthropy.entity.WerewolfEntity;
 import net.zestyblaze.lycanthropy.registry.LycanthropyComponentInit;
 
 public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTickingComponent, ILycanthropy {
     private final PlayerEntity player;
+    private WerewolfEntity werewolfEntity = null;
     public boolean isWerewolf = false;
     public boolean hasWerewolfForm = false;
     public int werewolfLevel = 0;
+    public int werewolfMaxLevel = 10; //TODO
 
     public LycanthropyPlayerComponent(PlayerEntity player) {
         this.player = player;
@@ -22,6 +25,17 @@ public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTi
     @Override
     public void serverTick() {
 
+    }
+
+    @Override
+    public WerewolfEntity hasWerewolfEntity(){
+        return werewolfEntity;
+    }
+
+    @Override
+    public void setWerewolfEntity(WerewolfEntity werewolf){
+        this.werewolfEntity = werewolf;
+        LycanthropyComponentInit.WEREWOLF.sync(player);
     }
 
     @Override
@@ -37,9 +51,29 @@ public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTi
     }
 
     @Override
+    public void setWerewolfLevel(int level) {
+        this.werewolfLevel = level;
+    }
+
+    @Override
+    public int getWerewolfLevel() {
+        return this.werewolfLevel;
+    }
+
+    @Override
     public void increaseWerewolfLevel() {
-        this.werewolfLevel += 1;
-        LycanthropyComponentInit.WEREWOLF.sync(player);
+        if(getWerewolfLevel() < werewolfMaxLevel){
+            this.werewolfLevel += 1;
+            LycanthropyComponentInit.WEREWOLF.sync(player);
+        }
+    }
+
+    @Override
+    public void decreaseWerewolfLevel() {
+        if(getWerewolfLevel() > 0){
+            this.werewolfLevel -= 1;
+            LycanthropyComponentInit.WEREWOLF.sync(player);
+        }
     }
 
     @Override
