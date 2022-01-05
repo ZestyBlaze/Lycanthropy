@@ -8,14 +8,14 @@
   "display": {
     "thirdperson_righthand": {
       "rotation": [
-        0,
-        -90,
+        20,
+        -17,
         0
       ],
       "translation": [
-        0,
-        -5.5,
-        0
+        -2.5,
+        -2.25,
+        0.5
       ],
       "scale": [
         0.33,
