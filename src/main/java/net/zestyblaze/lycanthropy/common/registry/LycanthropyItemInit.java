@@ -18,8 +18,7 @@ public class LycanthropyItemInit {
     private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
 
     public static final Item DEBUG_ITEM = register("debug_item", new DebugItem(gen()));
-    public static final Item GUIDE_BOOK = register("guide_book", new GuideBookItem(gen()));
-    public static final Item GUIDE_BOOK_DEV = register("guide_book_dev", new GuideBookDevItem(gen()));
+    public static final Item GUIDE_BOOK = register(LycanthropyModConfig.get().modelBook3D ? "guide_book_dev" : "guide_book", LycanthropyModConfig.get().modelBook3D ? new GuideBookDevItem(gen()) : new GuideBookItem(gen()));
 
 
     private static <T extends Item> T register(String name, T item) {

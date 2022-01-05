@@ -27,18 +27,12 @@ public class BonePileBlock extends Block {
     }
 
     @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
-    }
-
-    @Override
     public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
         return switch (type) {
             case LAND -> state.get(LAYERS) < 5;
             case WATER, AIR -> false;
         };
     }
-
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
