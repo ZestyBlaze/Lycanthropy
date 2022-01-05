@@ -40,7 +40,7 @@ public class LycanthropyClientInit {
          */
         RenderEvents.PLAYER.register((player, tickDelta, matrixStack, vertexConsumerProvider, light) -> {
             MinecraftClient minecraftClient = MinecraftClient.getInstance();
-            if(!LycanthropyComponentInit.WEREWOLF.get(player).isWerewolf)return;
+            if(!LycanthropyComponentInit.WEREWOLF.get(player).isWerewolf())return;
             if (LycanthropyComponentInit.WEREWOLF.get(player).getRenderedWerewolfEntity() == null){
                 WerewolfEntity werewolfEntity = LycanthropyEntityTypeInit.WEREWOLF.create(player.world);
                 LycanthropyComponentInit.WEREWOLF.get(player).setRenderedWerewolfEntity(werewolfEntity);
