@@ -18,7 +18,9 @@ import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 public class LycanthropyClientInit {
     public static void registerRenderer() {
         EntityRendererRegistry.register(LycanthropyEntityTypeInit.WEREWOLF, WerewolfEntityRenderer::new);
-        GeoItemRenderer.registerItemRenderer(LycanthropyItemInit.GUIDE_BOOK_DEV, new GuideBookItemRenderer());
+        if(LycanthropyModConfig.get().modelBook3D){
+            GeoItemRenderer.registerItemRenderer(LycanthropyItemInit.GUIDE_BOOK, new GuideBookItemRenderer());
+        }
         BlockRenderLayerMap.INSTANCE.putBlock(LycanthropyBlockInit.BONE_PILE, RenderLayer.getCutout());
 
         if(LycanthropyModConfig.get().debugMode) {
