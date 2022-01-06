@@ -38,7 +38,7 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     @ModifyVariable(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getHealth()F"), ordinal = 0)
-    private float modifyDamage0(float amount, DamageSource source) {
+    private float modifyDamage(float amount, DamageSource source) {
         if (!world.isClient) {
             LivingEntity livingEntity = (LivingEntity) (Object) this;
             if(livingEntity.hasStatusEffect(LycanthropyStatusEffectsInit.BLEEDING)){

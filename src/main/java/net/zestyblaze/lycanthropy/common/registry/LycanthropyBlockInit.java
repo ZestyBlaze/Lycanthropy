@@ -3,6 +3,7 @@ package net.zestyblaze.lycanthropy.common.registry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
+import net.minecraft.block.OreBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.sound.BlockSoundGroup;
@@ -22,6 +23,9 @@ public class LycanthropyBlockInit {
     private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
 
     public static final Block BONE_PILE = register("bone_pile", new BonePileBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.BONE)), true);
+    public static final Block SILVER_ORE = register("silver_ore", new OreBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE)), true);
+    public static final Block DEEPSLATE_SILVER_ORE = register("deepslate_silver_ore", new OreBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE)), true);
+    public static final Block SILVER_BLOCK = register("silver_block", new Block(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE)), true);
 
     private static <T extends Block> T register(String name, T block, boolean createItem) {
         BLOCKS.put(block, new Identifier(Lycanthropy.MODID, name));
