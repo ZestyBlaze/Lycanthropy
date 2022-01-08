@@ -2,7 +2,6 @@ package net.zestyblaze.lycanthropy;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -24,6 +23,7 @@ public class Lycanthropy implements ModInitializer {
 		LycanthropyConfigInit.registerConfig();
 		LycanthropyItemInit.registerItems();
 		LycanthropyBlockInit.registerBlocks();
+		LycanthropyBlockEntityInit.registerBlockEntities();
 		LycanthropyEntityTypeInit.initEntityTypes();
 		LycanthropyEventInit.registerEvents();
 		LycanthropyStatusEffectsInit.registerStatusEffetcs();

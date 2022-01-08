@@ -30,6 +30,7 @@ public class LycanthropyItemInit {
 
     public static final SwordItem SILVER_SWORD = register("silver_sword", new SwordItem(ToolMaterials.IRON, 2, 2, gen()));//TODO change stats
     public static final LycanthropyAxeItem SILVER_AXE = register("silver_axe", new LycanthropyAxeItem(ToolMaterials.IRON, 2, 2, gen())); //TODO change stats
+    public static final FlintlockItem FLINTLOCK_RIFLE = register("flinklock_rifle", new FlintlockItem(gen()));
 
 
     private static <T extends Item> T register(String name, T item) {

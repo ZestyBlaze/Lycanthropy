@@ -2,22 +2,20 @@ package net.zestyblaze.lycanthropy.client;
 
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.util.Hand;
 import net.zestyblaze.lycanthropy.Lycanthropy;
-import net.zestyblaze.lycanthropy.client.renderer.GuideBookItemRenderer;
-import net.zestyblaze.lycanthropy.client.renderer.WerewolfEntityRenderer;
+import net.zestyblaze.lycanthropy.client.renderer.*;
 import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
-import net.zestyblaze.lycanthropy.client.renderer.WolfpeltArmorRenderer;
 import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import net.zestyblaze.lycanthropy.api.event.RenderEvents;
-import net.zestyblaze.lycanthropy.common.registry.LycanthropyBlockInit;
-import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
-import net.zestyblaze.lycanthropy.common.registry.LycanthropyEntityTypeInit;
-import net.zestyblaze.lycanthropy.common.registry.LycanthropyItemInit;
+import net.zestyblaze.lycanthropy.common.registry.*;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
@@ -30,6 +28,10 @@ public class LycanthropyClientInit {
         BlockRenderLayerMap.INSTANCE.putBlock(LycanthropyBlockInit.BONE_PILE, RenderLayer.getCutout());
         GeoArmorRenderer.registerArmorRenderer(new WolfpeltArmorRenderer(), LycanthropyItemInit.WOLFPELT_HEAD,
         LycanthropyItemInit.WOLFPELT_CHEST, LycanthropyItemInit.WOLFPELT_LEGGINGS, LycanthropyItemInit.WOLFPELT_BOOTS);
+        GeoItemRenderer.registerItemRenderer(LycanthropyItemInit.FLINTLOCK_RIFLE, new FlintlockItemRenderer());
+        BlockEntityRendererRegistry.register(LycanthropyBlockEntityInit.CAGE_BLOCK_ENTITY,
+        (BlockEntityRendererFactory.Context rendererDispatcherIn) -> new CageBlockRenderer());
+        BlockRenderLayerMapImpl.INSTANCE.putBlock(LycanthropyBlockInit.CAGE_BLOCK, RenderLayer.getCutout());
 
 
 

@@ -24,4 +24,6 @@ public class LycanthropyComponentInit implements EntityComponentInitializer {
             Lycanthropy.LOGGER.info("Lycanthropy: Registry - Components Registered");
         }
     }
+
+
 }

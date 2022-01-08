@@ -1,7 +1,6 @@
 package net.zestyblaze.lycanthropy.api.event;
 
 import net.fabricmc.fabric.api.event.Event;
-import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
 import static net.fabricmc.fabric.api.event.EventFactory.createArrayBacked;

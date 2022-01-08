@@ -13,4 +13,6 @@ public class LycanthropyUtils {
         return new FabricItemSettings().group(Lycanthropy.LYCANTHROPY_GROUP);
     }
 
+
+
 }

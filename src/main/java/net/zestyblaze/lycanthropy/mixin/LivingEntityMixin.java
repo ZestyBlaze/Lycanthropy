@@ -9,11 +9,9 @@ import net.minecraft.world.World;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyStatusEffectsInit;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @SuppressWarnings("ConstantConditions")

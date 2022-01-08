@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=south": {
+      "model": "lycanthropy:block/cage_block"
+    },
+    "facing=west": {
+      "model": "lycanthropy:block/cage_block",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "lycanthropy:block/cage_block",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "lycanthropy:block/cage_block",
+      "y": 270
+    }
+  }
+}
