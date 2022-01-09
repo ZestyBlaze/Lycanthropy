@@ -13,6 +13,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.zestyblaze.lycanthropy.api.event.RenderEvents;
+import net.zestyblaze.lycanthropy.common.item.FlintlockItem;
 import net.zestyblaze.lycanthropy.common.item.GuideBookDevItem;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
 import org.spongepowered.asm.mixin.Mixin;
@@ -58,6 +59,9 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
         ItemStack itemStack = abstractClientPlayerEntity.getStackInHand(hand);
         if (itemStack.getItem() instanceof GuideBookDevItem) {
             cir.setReturnValue(BipedEntityModel.ArmPose.BLOCK);
+        }
+        if (itemStack.getItem() instanceof FlintlockItem) {
+            cir.setReturnValue(BipedEntityModel.ArmPose.BOW_AND_ARROW);
         }
     }
 

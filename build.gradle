@@ -31,8 +31,20 @@ repositories {
 	}
 
 	maven {
-		name "Cardinal Components"
+		name "Cardinal Components, Player Ability Lib"
 		url "https://ladysnake.jfrog.io/artifactory/mods"
+		content {
+			includeGroup 'io.github.ladysnake'
+			includeGroupByRegex 'io\\.github\\.onyxstudios.*'
+		}
+	}
+
+	maven {
+		name "Reach Entity Attributes"
+		url "https://maven.jamieswhiteshirt.com/libs-release"
+		content {
+			includeGroup "com.jamieswhiteshirt"
+		}
 	}
 
 	maven {
@@ -93,6 +105,18 @@ dependencies {
 
 	//REI
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rei_version}"
+
+	//PlayerAbilityLib
+	modImplementation "io.github.ladysnake:PlayerAbilityLib:${playerabilitylib_version}"
+	include "io.github.ladysnake:PlayerAbilityLib:${playerabilitylib_version}"
+
+	//Reach Entity Attributes
+	modImplementation "com.jamieswhiteshirt:reach-entity-attributes:${reach_entity_attributes_version}"
+	include "com.jamieswhiteshirt:reach-entity-attributes:${reach_entity_attributes_version}"
+
+	//Step Height
+	modImplementation "com.github.emilyploszaj:step-height-entity-attribute:${step_height_version}"
+	include "com.github.emilyploszaj:step-height-entity-attribute:${step_height_version}"
 }
 
 processResources {

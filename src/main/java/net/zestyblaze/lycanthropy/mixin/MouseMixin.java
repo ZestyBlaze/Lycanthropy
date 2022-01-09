@@ -4,6 +4,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.Mouse;
+import net.minecraft.item.ItemStack;
+import net.zestyblaze.lycanthropy.common.item.FlintlockItem;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyItemInit;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,16 +29,14 @@ public class MouseMixin   {
 
     @Inject(method = "updateMouse", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/SmoothUtil;clear()V", ordinal = 3))
     private void recoilHead(CallbackInfo ci){
-        if(client.player.getMainHandStack().isOf(LycanthropyItemInit.FLINTLOCK_RIFLE) && client.player.getMainHandStack().getNbt().getBoolean("Fired")){
-            //timer++; //TODO fix recoil
-            System.out.println(timer);
-            if(timer >= 100){
-                timer = 0;
-                client.player.getMainHandStack().getOrCreateNbt().putBoolean("Fired", false);
+
+        if(client.player.getMainHandStack().isOf(LycanthropyItemInit.FLINTLOCK_RIFLE)){
+            ItemStack itemStack = client.player.getMainHandStack();
+            if(itemStack.getItem() instanceof FlintlockItem flintlockItem){
+                if((itemStack.getNbt() != null && itemStack.getNbt().getBoolean("Fired"))){
+                    //this.cursorDeltaY -=10;
+                }
             }
-            //System.out.println("Nbt Accepted");
-            //access();
-            this.cursorDeltaY -=1;
         }
     }
 

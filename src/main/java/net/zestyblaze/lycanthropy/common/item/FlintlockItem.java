@@ -1,11 +1,15 @@
 package net.zestyblaze.lycanthropy.common.item;
 
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -34,12 +38,25 @@ public class FlintlockItem extends Item implements IAnimatable, ISyncable {
     public AnimationFactory factory = new AnimationFactory(this);
     public String controllerName = "controller";
     public static final int ANIM_OPEN = 0;
+    public int clientUseTicks = 0;
     public FlintlockItem(Settings settings) {
-        super(settings.maxCount(1).maxDamage(201));
+        super(settings.maxCount(1).maxDamage(2));
         GeckoLibNetwork.registerSyncable(this);
     }
 
-
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+        super.inventoryTick(stack, world, entity, slot, selected);
+        if(selected && stack.getOrCreateNbt().getBoolean("Fired")){
+            clientUseTicks++;
+        }
+        if(selected && clientUseTicks >= 5){
+            clientUseTicks = 0;
+            NbtCompound nbtCompound = new NbtCompound();
+            nbtCompound.putBoolean("Fired", false);
+            stack.setNbt(nbtCompound);
+        }
+    }
 
     @Override
     public void onStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int remainingUseTicks) {
@@ -78,12 +95,6 @@ public class FlintlockItem extends Item implements IAnimatable, ISyncable {
 
 
 
-    @Override
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.BOW;
-    }
-
-
     public <P extends Item & IAnimatable> PlayState predicate(AnimationEvent<P> event) {
         return PlayState.CONTINUE;
     }
@@ -91,7 +102,7 @@ public class FlintlockItem extends Item implements IAnimatable, ISyncable {
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, controllerName, 1, this::predicate));
+        data.addAnimationController(new AnimationController(this, controllerName, 0, this::predicate));
     }
 
     @Override
@@ -112,22 +123,11 @@ public class FlintlockItem extends Item implements IAnimatable, ISyncable {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        System.out.println(Objects.requireNonNull(user.getStackInHand(hand).getNbt()).get("Fired"));
         ItemStack itemStack = user.getStackInHand(hand);
         user.setCurrentHand(hand);
         return TypedActionResult.consume(itemStack);
     }
 
-
-    @Override
-    public boolean hasGlint(ItemStack stack) {
-        return false;
-    }
-
-    @Override
-    public int getMaxUseTime(ItemStack stack) {
-        return 72000;
-    }
 
     @Override
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {

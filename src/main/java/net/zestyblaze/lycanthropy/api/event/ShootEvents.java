@@ -12,8 +12,8 @@ public final class ShootEvents {
     private ShootEvents(){}
 
     /**
-     * Called when the player is rendering.
-     * Use this event instead of injecting to the HEAD of {@link PlayerEntityRenderer#render}
+     * Called when flintlock is fired.
+     *
      */
     public static final Event<OnShot> ON_SHOT_EVENT = createArrayBacked(OnShot.class, listeners -> () -> {
         for (OnShot listener : listeners) {

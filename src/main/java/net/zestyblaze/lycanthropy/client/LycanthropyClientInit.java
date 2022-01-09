@@ -10,6 +10,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.Vec3d;
 import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.client.renderer.*;
 import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
@@ -79,7 +80,9 @@ public class LycanthropyClientInit {
                     werewolfEntity.setStackInHand(Hand.OFF_HAND, player.getOffHandStack());
                     werewolfEntity.setCurrentHand(player.getActiveHand() == null ? Hand.MAIN_HAND : player.getActiveHand());
                     werewolfEntity.setSneaking(player.isSneaking());
+                    werewolfEntity.motionCalc = new Vec3d(player.getX()-player.prevX, player.getY()-player.prevY,player.getZ()-player.prevZ);
                     werewolfEntity.isSneaking();
+                    werewolfEntity.forwardSpeed=player.forwardSpeed;
                     werewolfEntity.setPose(player.getPose());
                     werewolfEntity.setSprinting(player.isSprinting());
                     werewolfRenderer.render(werewolfEntity, player.bodyYaw, tickDelta, matrixStack, vertexConsumerProvider, light);

@@ -1,7 +1,12 @@
 package net.zestyblaze.lycanthropy.common.component;
 
+import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+import dev.emi.stepheightentityattribute.StepHeightEntityAttributeMain;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
+import net.minecraft.entity.attribute.EntityAttributeInstance;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.WorldAccess;
@@ -9,7 +14,15 @@ import net.zestyblaze.lycanthropy.api.event.TransformationEvents;
 import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
 
+import java.util.UUID;
+
 public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTickingComponent, ILycanthropy {
+
+    private static final EntityAttributeModifier WEREWOLF_MOVEMENT_SPEED_MODIFIER = new EntityAttributeModifier(UUID.fromString("718104a6-aa19-4b53-bad9-1f9edd46d38a"), "Transformation modifier", 0.16, EntityAttributeModifier.Operation.ADDITION);
+    private static final EntityAttributeModifier WEREWOLF_STEP_HEIGHT_MODIFIER = new EntityAttributeModifier(UUID.fromString("af386c1c-b4fc-429d-97b6-b2559826fa9d"), "Transformation modifier", 0.4, EntityAttributeModifier.Operation.ADDITION);
+    private static final EntityAttributeModifier WEREWOLF_REACH_MODIFIER = new EntityAttributeModifier(UUID.fromString("4c6d90ab-41ad-4d8a-b77a-7329361d3a7b"), "Transformation modifier", 1.4, EntityAttributeModifier.Operation.ADDITION);
+
+
     private final PlayerEntity player;
     private WerewolfEntity werewolfEntity = null;
     private boolean isWerewolf = false;
@@ -21,15 +34,38 @@ public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTi
         this.player = player;
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void serverTick() {
         WorldAccess worldAccess = player.world;
+        EntityAttributeInstance movementSpeedAttribute = player.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+        EntityAttributeInstance stepHeight = player.getAttributeInstance(StepHeightEntityAttributeMain.STEP_HEIGHT);
+        EntityAttributeInstance reach = player.getAttributeInstance(ReachEntityAttributes.REACH);
         if(canBecomeWerewolf){
-            if(isWerewolf && worldAccess.getDimension().getMoonPhase(worldAccess.getLunarTime()) != 0){
+
+            if(isWerewolf()){
+                if(!stepHeight.hasModifier(WEREWOLF_STEP_HEIGHT_MODIFIER)){
+                   stepHeight.addPersistentModifier(WEREWOLF_STEP_HEIGHT_MODIFIER);
+                }
+                if(!reach.hasModifier(WEREWOLF_REACH_MODIFIER)){
+                    reach.addPersistentModifier(WEREWOLF_REACH_MODIFIER);
+                }
+                if(player.isSprinting() && !movementSpeedAttribute.hasModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER)){
+                    movementSpeedAttribute.addPersistentModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER);
+                }else if(!player.isSprinting() && movementSpeedAttribute.hasModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER)){
+                    movementSpeedAttribute.removeModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER);
+                }
+            }
+            if(isWerewolf() && worldAccess.getDimension().getMoonPhase(worldAccess.getLunarTime()) != 0){
                 tryActivateWerewolfForm(false, false);
             }else if(!isWerewolf && worldAccess.getDimension().getMoonPhase(worldAccess.getLunarTime()) == 0){
                 tryActivateWerewolfForm(true, false);
             }
+        }
+        if (!isWerewolf && (stepHeight.hasModifier(WEREWOLF_STEP_HEIGHT_MODIFIER) || reach.hasModifier(WEREWOLF_REACH_MODIFIER) || movementSpeedAttribute.hasModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER))){
+            movementSpeedAttribute.removeModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER);
+            stepHeight.removeModifier(WEREWOLF_STEP_HEIGHT_MODIFIER);
+            reach.removeModifier(WEREWOLF_REACH_MODIFIER);
         }
     }
 

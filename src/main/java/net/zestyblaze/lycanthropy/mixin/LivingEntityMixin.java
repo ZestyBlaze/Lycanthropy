@@ -31,6 +31,9 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "getJumpVelocity", at = @At("RETURN"), cancellable = true)
     private void getJumpVelocity(CallbackInfoReturnable<Float> callbackInfo) {
         if ((Object) this instanceof PlayerEntity player && LycanthropyComponentInit.WEREWOLF.get(player).isWerewolf()) {
+            if(player.isSprinting()){
+                callbackInfo.setReturnValue(callbackInfo.getReturnValue() * 2f);
+            }
             callbackInfo.setReturnValue(callbackInfo.getReturnValue() * 1.2f);
         }
     }

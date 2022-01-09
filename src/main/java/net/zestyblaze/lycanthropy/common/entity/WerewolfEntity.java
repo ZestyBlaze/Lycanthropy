@@ -9,6 +9,7 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -23,8 +24,8 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class WerewolfEntity extends WerewolfBaseEntity implements IAnimatable {
     AnimationFactory factory = new AnimationFactory(this);
-    private ItemStack mainHand = ItemStack.EMPTY;
-    private ItemStack offHand = ItemStack.EMPTY;
+    public Vec3d motionCalc = new Vec3d(0,0,0);
+    public boolean isAttacking = false;
 
     public WerewolfEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -39,10 +40,6 @@ public class WerewolfEntity extends WerewolfBaseEntity implements IAnimatable {
         .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4);
     }
 
-    public void setItemStackHands(ItemStack itemStack, ItemStack itemStack2){
-        this.mainHand = itemStack;
-        this.offHand = itemStack2;
-    }
 
     private <E extends IAnimatable> PlayState devMovement(AnimationEvent<E> animationEvent) {
         final AnimationController animationController = animationEvent.getController();
@@ -50,41 +47,42 @@ public class WerewolfEntity extends WerewolfBaseEntity implements IAnimatable {
         AnimationBuilder builder = new AnimationBuilder();
 
         //Normal Speed
-        lycanthropyAnimationController.speed = 1;
-
-
         WerewolfEntity entity = this;
-        Vec3d motion = new Vec3d(entity.getX() - entity.prevX, entity.getY() - entity.prevY, entity.getZ() - entity.prevZ);
-        boolean isMovingHorizontal = Math.sqrt(Math.pow(motion.x, 2) + Math.pow(motion.z, 2)) > 0.005;
+        boolean isMovingHorizontal = Math.sqrt(Math.pow(motionCalc.x, 2) + Math.pow(motionCalc.z, 2)) > 0.005;
 
         if (entity.isSleeping()) { //TODO maybe add special "resting" condition/ability
-            builder.addAnimation("animation.werewolf.sleep", true);
+            builder.addAnimation("animation.werewolf.quad.sleep", true);
         }else if (entity.getPose() == EntityPose.SWIMMING) {
             builder.addAnimation("animation.werewolf.swim", true);
-        }else if (!entity.isOnGround() && motion.getY() < 0) {
+        }else if (!entity.isOnGround() && motionCalc.getY() < 0) {
             if ((entity.fallDistance <= 4) && !entity.isClimbing()) {
-                builder.addAnimation("animation.werewolf.fall", false);
+                builder.addAnimation("animation.werewolf.standing.fall", false);
             }
         }else if (entity.isSneaking()) {
             if (isMovingHorizontal) {
-                builder.addAnimation("animation.werewolf.sneak_walk", true);
+                builder.addAnimation("animation.werewolf.standing.sneakDev", true);
 
             } else {
-                builder.addAnimation("animation.werewolf.sneak", true);
+                builder.addAnimation("animation.werewolf.standing.sneak_idle", true);
             }
         }else {
-            var v = motion.x * motion.x + motion.z * motion.z;
             if (entity.isSprinting()) {
-                lycanthropyAnimationController.speed = 1 + ((double)MathHelper.sqrt((float) v) / 10);
-                builder.addAnimation("animation.werewolf.run", true);
+                builder.addAnimation("animation.werewolf.quad.runningDev", true);
+                if(entity.handSwinging){
+                    builder.addAnimation("animation.werewolf.quad.attack", false);
+                }
+            }else if(entity.forwardSpeed < 0){
+                builder.addAnimation("animation.werewolf.standing.walk_back", true);
 
-            }else if (isMovingHorizontal || animationEvent.isMoving()) {
-                lycanthropyAnimationController.speed = 1 + ((double)MathHelper.sqrt((float) v) / 10);
-                builder.addAnimation("animation.werewolf.walk", true);
+            } else if (isMovingHorizontal || animationEvent.isMoving()) {
+                builder.addAnimation("animation.werewolf.standing.walk", true);
+            }else if(isAttacking || entity.handSwinging){//TODO fix this not working as intended
+                builder.addAnimation("animation.werewolf.standing.attack", false);
             }
+
         }
         if(animationEvent.getController().getCurrentAnimation() == null || builder.getRawAnimationList().size() <= 0){
-            builder.addAnimation( "animation.werewolf.idle", true);
+            builder.addAnimation( "animation.werewolf.standing.idle", true);
         }
         animationController.setAnimation(builder);
         return PlayState.CONTINUE;
@@ -93,9 +91,8 @@ public class WerewolfEntity extends WerewolfBaseEntity implements IAnimatable {
 
     @Override
     public void registerControllers(AnimationData animationData) {
-        animationData.addAnimationController(lycanthropyAnimationController);
+        animationData.addAnimationController(new AnimationController(this, "DevMovement", 2, this::devMovement));
     }
-    LycanthropyAnimationController lycanthropyAnimationController = new LycanthropyAnimationController(this, "DevMovement", 2, this::devMovement);
 
     @Override
     public AnimationFactory getFactory() {
