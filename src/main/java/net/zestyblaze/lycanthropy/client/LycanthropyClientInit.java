@@ -27,8 +27,8 @@ public class LycanthropyClientInit {
             GeoItemRenderer.registerItemRenderer(LycanthropyItemInit.GUIDE_BOOK, new GuideBookItemRenderer());
         }
         BlockRenderLayerMap.INSTANCE.putBlock(LycanthropyBlockInit.BONE_PILE, RenderLayer.getCutout());
-        GeoArmorRenderer.registerArmorRenderer(new WolfpeltArmorRenderer(), LycanthropyItemInit.WOLFPELT_HEAD,
-        LycanthropyItemInit.WOLFPELT_CHEST, LycanthropyItemInit.WOLFPELT_LEGGINGS, LycanthropyItemInit.WOLFPELT_BOOTS);
+        GeoArmorRenderer.registerArmorRenderer(new WolfpeltArmorRenderer(), LycanthropyItemInit.WOLF_PELT_HEAD,
+        LycanthropyItemInit.WOLF_PELT_CHEST, LycanthropyItemInit.WOLF_PELT_LEGGINGS, LycanthropyItemInit.WOLF_PELT_BOOTS);
         GeoItemRenderer.registerItemRenderer(LycanthropyItemInit.FLINTLOCK_RIFLE, new FlintlockItemRenderer());
         BlockEntityRendererRegistry.register(LycanthropyBlockEntityInit.CAGE_BLOCK_ENTITY,
         (BlockEntityRendererFactory.Context rendererDispatcherIn) -> new CageBlockRenderer());

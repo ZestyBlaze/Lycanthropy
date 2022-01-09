@@ -8,16 +8,16 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 public class WolfpeltArmorModel extends AnimatedGeoModel<WolfpeltArmorItem> {
     @Override
     public Identifier getModelLocation(WolfpeltArmorItem object) {
-        return new Identifier(Lycanthropy.MODID, "geo/wolfpelt_armor.geo.json");
+        return new Identifier(Lycanthropy.MODID, "geo/wolf_pelt_armor.geo.json");
     }
 
     @Override
     public Identifier getTextureLocation(WolfpeltArmorItem object) {
-        return new Identifier(Lycanthropy.MODID, "textures/item/wolfpelt_armor.png");
+        return new Identifier(Lycanthropy.MODID, "textures/entity/armor/wolf_pelt_armor.png");
     }
 
     @Override
     public Identifier getAnimationFileLocation(WolfpeltArmorItem animatable) {
-        return new Identifier(Lycanthropy.MODID, "animations/wolfpelt_armor.animation.json");
+        return new Identifier(Lycanthropy.MODID, "animations/wolf_pelt_armor.animation.json");
     }
 }

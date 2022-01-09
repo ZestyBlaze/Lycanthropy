@@ -19,14 +19,16 @@ public class LycanthropyItemInit {
     public static final Item DEBUG_ITEM = register("debug_item", new DebugItem(gen()));
     public static final Item GUIDE_BOOK = register(LycanthropyModConfig.get().modelBook3D ? "guide_book_dev" : "guide_book", LycanthropyModConfig.get().modelBook3D ? new GuideBookDevItem(gen()) : new GuideBookItem(gen()));
 
-    public static final WolfpeltArmorItem WOLFPELT_HEAD = register("wolfpelt_head", new WolfpeltArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.HEAD, gen()));
-    public static final WolfpeltArmorItem WOLFPELT_CHEST = register("wolfpelt_chest", new WolfpeltArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.CHEST, gen()));
-    public static final WolfpeltArmorItem WOLFPELT_LEGGINGS = register("wolfpelt_leggings", new WolfpeltArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.LEGS, gen()));
-    public static final WolfpeltArmorItem WOLFPELT_BOOTS = register("wolfpelt_boots", new WolfpeltArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.FEET, gen()));
+    public static final WolfpeltArmorItem WOLF_PELT_HEAD = register("wolf_pelt_head", new WolfpeltArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.HEAD, gen()));
+    public static final WolfpeltArmorItem WOLF_PELT_CHEST = register("wolf_pelt_chest", new WolfpeltArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.CHEST, gen()));
+    public static final WolfpeltArmorItem WOLF_PELT_LEGGINGS = register("wolf_pelt_leggings", new WolfpeltArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.LEGS, gen()));
+    public static final WolfpeltArmorItem WOLF_PELT_BOOTS = register("wolf_pelt_boots", new WolfpeltArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.FEET, gen()));
 
     public static final Item SILVER_INGOT = register("silver_ingot", new Item(gen()));
     public static final Item SILVER_CHUNK = register("silver_chunk", new Item(gen()));
     public static final Item SILVER_NUGGET = register("silver_nugget", new Item(gen()));
+
+    public static final Item WEREWOLF_TOOTH = register("werewolf_tooth", new WerewolfToothItem(gen()));
 
     public static final SwordItem SILVER_SWORD = register("silver_sword", new SwordItem(ToolMaterials.IRON, 2, 2, gen()));//TODO change stats
     public static final LycanthropyAxeItem SILVER_AXE = register("silver_axe", new LycanthropyAxeItem(ToolMaterials.IRON, 2, 2, gen())); //TODO change stats

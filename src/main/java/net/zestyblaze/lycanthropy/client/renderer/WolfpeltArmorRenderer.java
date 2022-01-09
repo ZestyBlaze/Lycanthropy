@@ -12,13 +12,13 @@ public class WolfpeltArmorRenderer extends GeoArmorRenderer<WolfpeltArmorItem> {
         // is named "bone545", make sure to do this.headBone = "bone545";
         // The default values are the ones that come with the default armor template in
         // the geckolib blockbench plugin.
-        this.headBone = "helmet";
-        this.bodyBone = "chestplate";
-        this.rightArmBone = "rightArm";
-        this.leftArmBone = "leftArm";
-        this.rightLegBone = "rightLeg";
-        this.leftLegBone = "leftLeg";
-        this.rightBootBone = "rightBoot";
-        this.leftBootBone = "leftBoot";
+        this.headBone = "Head";
+        this.bodyBone = "Body";
+        this.rightArmBone = "RightArm";
+        this.leftArmBone = "LeftArm";
+        this.rightLegBone = "RightLeg";
+        this.leftLegBone = "LeftLeg";
+        this.rightBootBone = "RightBoot";
+        this.leftBootBone = "LeftBoot";
     }
 }
