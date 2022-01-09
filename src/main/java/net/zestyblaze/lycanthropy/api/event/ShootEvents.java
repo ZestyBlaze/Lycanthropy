@@ -3,7 +3,6 @@ package net.zestyblaze.lycanthropy.api.event;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.event.Event;
-import net.minecraft.client.render.entity.PlayerEntityRenderer;
 
 import static net.fabricmc.fabric.api.event.EventFactory.createArrayBacked;
 

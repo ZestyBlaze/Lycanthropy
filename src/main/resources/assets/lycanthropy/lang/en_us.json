@@ -1,22 +1,47 @@
 {
   "itemGroup.lycanthropy.lycanthropy": "Lycanthropy",
 
+  "category.lycanthropy.keybind": "Lycanthropy Keybinds",
+  "key.lycanthropy.openSkillTree": "Open Skill Tree",
+  "key.lycanthropy.openSkillTree.fail": "You need to be a Werewolf to access the Skill Tree",
+
   "item.lycanthropy.debug_item": "Debug Item",
   "item.lycanthropy.guide_book": "Moonlight Chronicles",
   "item.lycanthropy.guide_book_dev": "Moonlight Chronicles",
+  "item.lycanthropy.flintlock_rifle": "Flintlock Rifle",
+  "item.lycanthropy.silver_axe": "Silver Axe",
+  "item.lycanthropy.silver_sword": "Silver Sword",
+  "item.lycanthropy.silver_chunk": "Silver Chunk",
+  "item.lycanthropy.silver_nugget": "Silver Nugget",
+  "item.lycanthropy.silver_ingot": "Silver Ingot",
+  "item.lycanthropy.wolf_pelt": "Wolf Pelt",
+  "item.lycanthropy.werewolf_tooth": "Werewolf Tooth",
+  "item.lycanthropy.wolf_pelt_head": "Wolfpelt Headpiece",
+  "item.lycanthropy.wolf_pelt_chest": "Wolfpelt Chestplate",
+  "item.lycanthropy.wolf_pelt_leggings": "Wolfpelt Breeches",
+  "item.lycanthropy.wolf_pelt_boots": "Wolfpelt Boots",
 
   "block.lycanthropy.bone_pile": "Bone Pile",
+  "block.lycanthropy.cage_block": "Cage Block",
+  "block.lycanthropy.deepslate_silver_ore": "Deepslate Silver Ore",
+  "block.lycanthropy.silver_block": "Silver Block",
+  "block.lycanthropy.silver_ore": "Silver Ore",
 
   "entity.lycanthropy.werewolf": "Werewolf",
 
-  "text.lycanthropy.hold_shift": "Hold [SHIFT] for more info",
+  "effect.lycanthropy.bleeding": "Bleeding",
 
-  "text.lycanthropy.guide_book.fail": "Install Patchouli",
+  "text.lycanthropy.hold_shift": "Hold [SHIFT] for more info",
+  "text.lycanthropy.guide_book.fail": "Patchouli is not installed",
 
   "text.lycanthropy.debug_item.tooltip": "Developer Item for Testing",
   "text.lycanthropy.debug_item.success_add": "Turned User into a Werewolf",
   "text.lycanthropy.debug_item.success_remove": "Removed Werewolf from User",
   "text.lycanthropy.debug_item.fail": "User is already a Werewolf",
+
+  "text.lycanthropy.werewolf_tooth.tooltip": "There is still DNA from a werewolf on it",
+  "text.lycanthropy.werewolf_tooth.fail1": "It's not a full moon",
+  "text.lycanthropy.werewolf_tooth.fail2": "It's not night time",
 
   "text.autoconfig.lycanthropy.title": "Lycanthropy",
   "text.autoconfig.lycanthropy.option.debugMode": "Debug Mode",

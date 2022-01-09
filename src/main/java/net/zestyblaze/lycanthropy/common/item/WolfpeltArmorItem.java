@@ -10,6 +10,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+@SuppressWarnings("ALL")
 public class WolfpeltArmorItem extends ArmorItem implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     public WolfpeltArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {

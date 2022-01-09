@@ -8,20 +8,16 @@ import squeek.appleskin.api.event.HUDOverlayEvent;
 public class AppleskinIntegration implements AppleSkinApi {
     @Override
     public void registerEvents() {
-        HUDOverlayEvent.Saturation.EVENT.register(saturation -> {
-            LycanthropyComponentInit.WEREWOLF.maybeGet(MinecraftClient.getInstance().player).ifPresent(lycanthropyPlayerComponent -> {
-                if(lycanthropyPlayerComponent.isWerewolf()){
-                    saturation.isCanceled = true;
-                }
-            });
+        HUDOverlayEvent.Saturation.EVENT.register(saturation -> LycanthropyComponentInit.WEREWOLF.maybeGet(MinecraftClient.getInstance().player).ifPresent(lycanthropyPlayerComponent -> {
+            if(lycanthropyPlayerComponent.isWerewolf()){
+                saturation.isCanceled = true;
+            }
+        }));
 
-        });
-        HUDOverlayEvent.Exhaustion.EVENT.register(exhaustion -> {
-            LycanthropyComponentInit.WEREWOLF.maybeGet(MinecraftClient.getInstance().player).ifPresent(lycanthropyPlayerComponent -> {
-                if(lycanthropyPlayerComponent.isWerewolf()){
-                    exhaustion.isCanceled = true;
-                }
-            });
-        });
+        HUDOverlayEvent.Exhaustion.EVENT.register(exhaustion -> LycanthropyComponentInit.WEREWOLF.maybeGet(MinecraftClient.getInstance().player).ifPresent(lycanthropyPlayerComponent -> {
+            if(lycanthropyPlayerComponent.isWerewolf()){
+                exhaustion.isCanceled = true;
+            }
+        }));
     }
 }

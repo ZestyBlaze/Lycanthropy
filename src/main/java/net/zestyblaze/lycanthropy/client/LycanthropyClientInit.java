@@ -2,25 +2,35 @@ package net.zestyblaze.lycanthropy.client;
 
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.entity.EntityRenderer;
+import net.minecraft.client.util.InputUtil;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 import net.zestyblaze.lycanthropy.Lycanthropy;
-import net.zestyblaze.lycanthropy.client.renderer.*;
-import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
-import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import net.zestyblaze.lycanthropy.api.event.RenderEvents;
+import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
+import net.zestyblaze.lycanthropy.client.renderer.*;
+import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import net.zestyblaze.lycanthropy.common.registry.*;
+import org.lwjgl.glfw.GLFW;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
+@SuppressWarnings("unchecked")
 public class LycanthropyClientInit {
+    public static KeyBinding screenKey;
+    private static boolean keyBoolean;
+
     public static void registerRenderer() {
         EntityRendererRegistry.register(LycanthropyEntityTypeInit.WEREWOLF, WerewolfEntityRenderer::new);
         if(LycanthropyModConfig.get().modelBook3D){
@@ -42,6 +52,8 @@ public class LycanthropyClientInit {
     }
 
     public static void registerClientEvents() {
+        screenKey = new KeyBinding("key.lycanthropy.openSkillTree", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_H, "category.lycanthropy.keybind");
+        KeyBindingHelper.registerKeyBinding(screenKey);
 
         /*
          * Using the RenderEvents to render the Werewolf model, a new one only if the player doesn't already have one.
@@ -96,8 +108,24 @@ public class LycanthropyClientInit {
             }
         });
 
-        ClientTickEvents.END_WORLD_TICK.register(world -> {
-            //TODO add keybinds here
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            if(screenKey.wasPressed()) {
+                if(!keyBoolean) {
+                    Lycanthropy.LOGGER.warn("Lycanthropy - Client: Key Pressed");
+                    LycanthropyComponentInit.WEREWOLF.maybeGet(client.player).ifPresent(werewolf -> {
+                        if(werewolf.isWerewolf()) {
+                            ///TODO: Set Screen Here
+                            Lycanthropy.LOGGER.warn("Lycanthropy - Client: Screen Triggered");
+                        } else {
+                            assert client.player != null;
+                            client.player.sendMessage(new TranslatableText("key.lycanthropy.openSkillTree.fail").formatted(Formatting.RED, Formatting.ITALIC), true);
+                        }
+                    });
+                }
+                keyBoolean = true;
+            } else if(keyBoolean) {
+                keyBoolean = false;
+            }
         });
     }
 }

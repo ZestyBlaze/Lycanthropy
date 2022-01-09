@@ -12,13 +12,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity {
-    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
+    public PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Inject(method = "canFoodHeal", at = @At("RETURN"), cancellable = true)
     private void canFoodHeal(CallbackInfoReturnable<Boolean> callbackInfo) {
-        if (callbackInfo.getReturnValue() && LycanthropyComponentInit.WEREWOLF.get(this).isWerewolf()) {
+        if(callbackInfo.getReturnValue() && LycanthropyComponentInit.WEREWOLF.get(this).isWerewolf()) {
             callbackInfo.setReturnValue(false);
         }
     }

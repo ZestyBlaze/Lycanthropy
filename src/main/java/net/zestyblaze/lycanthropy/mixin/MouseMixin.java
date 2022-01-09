@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Mouse.class)
 public class MouseMixin   {
     @Unique
-    private int timer = 0;
+    private final int timer = 0;
 
     @Shadow private double cursorDeltaX;
 
@@ -30,6 +30,7 @@ public class MouseMixin   {
     @Inject(method = "updateMouse", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/SmoothUtil;clear()V", ordinal = 3))
     private void recoilHead(CallbackInfo ci){
 
+        assert client.player != null;
         if(client.player.getMainHandStack().isOf(LycanthropyItemInit.FLINTLOCK_RIFLE)){
             ItemStack itemStack = client.player.getMainHandStack();
             if(itemStack.getItem() instanceof FlintlockItem flintlockItem){

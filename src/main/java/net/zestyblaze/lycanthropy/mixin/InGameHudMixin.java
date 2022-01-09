@@ -29,14 +29,10 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Unique
     private static final Identifier EMPTY_GUI_ICONS_TEXTURE = new Identifier(Lycanthropy.MODID, "textures/gui/icons_empty.png");
 
-
-
     @Shadow
     private int scaledHeight;
-
     @Shadow
     private int scaledWidth;
-
     @Shadow
     protected abstract PlayerEntity getCameraPlayer();
 
@@ -47,7 +43,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.AFTER, ordinal = 2, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
     private void renderPre(MatrixStack matrices, CallbackInfo callbackInfo) {
         PlayerEntity player = getCameraPlayer();
-        if (LycanthropyComponentInit.WEREWOLF.get(player).isWerewolf()) {
+        if(LycanthropyComponentInit.WEREWOLF.get(player).isWerewolf()) {
             RenderSystem.setShaderTexture(0, LYCANTHROPY_GUI_ICONS_TEXTURE);
             drawHunger(matrices, player, scaledWidth / 2 + 82, scaledHeight - 39, 20);
             RenderSystem.setShaderTexture(0, EMPTY_GUI_ICONS_TEXTURE);
@@ -68,17 +64,17 @@ public abstract class InGameHudMixin extends DrawableHelper {
             float hunger = (float)werewolfHunger.getHunger()/ werewolfHunger.getMaxHunger()*steaks;
             int full = (int) hunger;
             //Draw empty steak icons
-            for (int i = 0; i < steaks; i++) {
+            for(int i = 0; i < steaks; i++) {
                 drawTexture(matrices, i >= 10 ? (x - i * 8) + 80 : (x - i * 8), y, 0, 0, 9, 9);
             }
 
             //Draw full steak icons
-            for (int i = 0; i < full; i++) {
+            for(int i = 0; i < full; i++) {
                 drawTexture(matrices, i >= 10 ? (x - i * 8) + 80 : (x - i * 8), y, 9 + hunger_u, i >= 10 ? 9 : 0, 9, 9);
             }
 
             //draw half a steak icon
-            if (full < steaks) {
+            if(full < steaks) {
                 float remaining = hunger - full;
                 drawTexture(matrices, full >= 10 ? (x - full * 8) + 80 : (x - full * 8), y, remaining > 3 / 4f ? 9*2+hunger_u : remaining > 2 / 4f ? 9*3+hunger_u : remaining > 1 / 4f ? 9*4+hunger_u : 0, full >= 10 ? 9 : 0, 9, 9);
             }

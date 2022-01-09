@@ -38,6 +38,7 @@ public abstract class HeldItemRendererMixin {
     @Inject(method = "updateHeldItems", at = @At("TAIL"))
     private void lycanthropy$cancelAnimation(CallbackInfo ci) {
         ClientPlayerEntity clientPlayerEntity = this.client.player;
+        assert clientPlayerEntity != null;
         ItemStack itemStack = clientPlayerEntity.getMainHandStack();
         ItemStack itemStack2 = clientPlayerEntity.getOffHandStack();
         if ((this.mainHand.getItem() instanceof FlintlockItem) && (itemStack.getItem() instanceof FlintlockItem) && ItemStack.areItemsEqualIgnoreDamage(mainHand, itemStack)) {

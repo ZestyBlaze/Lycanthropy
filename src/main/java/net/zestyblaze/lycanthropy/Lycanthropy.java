@@ -26,7 +26,7 @@ public class Lycanthropy implements ModInitializer {
 		LycanthropyBlockEntityInit.registerBlockEntities();
 		LycanthropyEntityTypeInit.initEntityTypes();
 		LycanthropyEventInit.registerEvents();
-		LycanthropyStatusEffectsInit.registerStatusEffetcs();
+		LycanthropyStatusEffectsInit.registerStatusEffects();
 
 
 		if(LycanthropyModConfig.get().debugMode) {

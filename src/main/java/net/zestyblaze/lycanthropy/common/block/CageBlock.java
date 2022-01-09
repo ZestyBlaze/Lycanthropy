@@ -23,11 +23,11 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
 import net.zestyblaze.lycanthropy.common.block.blockentity.CageBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
+@SuppressWarnings("deprecation")
 public class CageBlock extends BlockWithEntity {
     public static final DirectionProperty FACING;
     public static final BooleanProperty OPEN;

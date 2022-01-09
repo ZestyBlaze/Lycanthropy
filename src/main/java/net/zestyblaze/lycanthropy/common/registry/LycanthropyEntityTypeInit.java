@@ -10,6 +10,7 @@ import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.zestyblaze.lycanthropy.Lycanthropy;
+import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
 import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 
 import java.util.LinkedHashMap;
@@ -28,5 +29,9 @@ public class LycanthropyEntityTypeInit {
 
     public static void initEntityTypes() {
         ENTITY_TYPES.keySet().forEach(entityType -> Registry.register(Registry.ENTITY_TYPE, ENTITY_TYPES.get(entityType), entityType));
+
+        if(LycanthropyModConfig.get().debugMode) {
+            Lycanthropy.LOGGER.info("Lycanthropy: Registry - Entities Registered");
+        }
     }
 }

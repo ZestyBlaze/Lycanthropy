@@ -38,7 +38,7 @@ public abstract class LivingEntityMixin extends Entity {
         }
     }
 
-    @ModifyVariable(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getHealth()F"), ordinal = 0)
+    @ModifyVariable(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getHealth()F"), ordinal = 0, argsOnly = true)
     private float modifyDamage(float amount, DamageSource source) {
         if (!world.isClient) {
             LivingEntity livingEntity = (LivingEntity) (Object) this;

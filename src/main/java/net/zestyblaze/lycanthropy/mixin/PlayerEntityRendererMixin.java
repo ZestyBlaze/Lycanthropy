@@ -57,7 +57,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
     @Environment(EnvType.CLIENT)
     private static void getArmPose(AbstractClientPlayerEntity abstractClientPlayerEntity, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
         ItemStack itemStack = abstractClientPlayerEntity.getStackInHand(hand);
-        if (itemStack.getItem() instanceof GuideBookDevItem) {
+        if(itemStack.getItem() instanceof GuideBookDevItem) {
             cir.setReturnValue(BipedEntityModel.ArmPose.BLOCK);
         }
         if (itemStack.getItem() instanceof FlintlockItem) {
