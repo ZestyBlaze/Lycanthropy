@@ -2,6 +2,7 @@ package net.zestyblaze.lycanthropy;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
@@ -30,6 +31,7 @@ public class Lycanthropy implements ModInitializer {
 		LycanthropyEntityTypeInit.initEntityTypes();
 		LycanthropyEventInit.registerEvents();
 		LycanthropyStatusEffectsInit.registerStatusEffects();
+		LycanthropyCommandInit.registerCommands();
 		ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
 			LycanthropyComponentInit.WEREWOLF.get(newPlayer).setIsWerewolf(false);
 		});

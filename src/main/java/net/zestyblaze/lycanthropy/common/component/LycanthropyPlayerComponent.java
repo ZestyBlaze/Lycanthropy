@@ -142,7 +142,7 @@ public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTi
         TransformationEvents.ON_TRANSFORMATION_EVENT.invoker().onTransformation(player);
     }
 
-    private void setWerewolfLevel(int level) {
+    public void setWerewolfLevel(int level) {
         this.werewolfLevel = level;
         LycanthropyComponentInit.WEREWOLF.sync(player, this, PlayerSyncPredicate.all());
     }
