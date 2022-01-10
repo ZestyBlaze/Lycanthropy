@@ -53,7 +53,8 @@
     "cardinal-components": [
       "lycanthropy:werewolf",
       "lycanthropy:werewolf_hunger",
-      "lycanthropy:werewolf_rage"
+      "lycanthropy:werewolf_rage",
+      "lycanthropy:werewolf_ability"
     ]
   },
   "accessWidener": "lycanthropy.accesswiderner"

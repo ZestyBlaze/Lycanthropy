@@ -1,3 +1,6 @@
 {
-  "parent": "lycanthropy:block/item/cage_block"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "lycanthropy:item/cage_block"
+  }
 }

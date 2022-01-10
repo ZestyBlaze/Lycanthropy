@@ -63,7 +63,7 @@ public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTi
             if(!player.world.isNight()){
                 //setIsWerewolf(false);
             }else if(player.world.isNight() && worldAccess.getDimension().getMoonPhase(worldAccess.getLunarTime()) == 0){
-                tryActivateWerewolfForm(true);
+                setIsWerewolf(true);
             }
         }
         if (!getIsWerewolf() && (stepHeight.hasModifier(WEREWOLF_STEP_HEIGHT_MODIFIER) || reach.hasModifier(WEREWOLF_REACH_MODIFIER) || movementSpeedAttribute.hasModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER))){
@@ -133,7 +133,7 @@ public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTi
         this.werewolfLevel = buf.getInt(2);
     }
 
-
+    @Deprecated
     @Override
     public void tryActivateWerewolfForm(boolean active){
         if(getCanBecomeWerewolf()){

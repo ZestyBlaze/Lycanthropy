@@ -7,6 +7,7 @@ import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
 import net.minecraft.util.Identifier;
 import net.zestyblaze.lycanthropy.Lycanthropy;
+import net.zestyblaze.lycanthropy.common.component.LycanthropyAbilityComponent;
 import net.zestyblaze.lycanthropy.common.component.LycanthropyPlayerComponent;
 import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
 import net.zestyblaze.lycanthropy.common.component.LycanthropyPlayerHungerComponent;
@@ -16,12 +17,14 @@ public class LycanthropyComponentInit implements EntityComponentInitializer {
     public static final ComponentKey<LycanthropyPlayerComponent> WEREWOLF = ComponentRegistry.getOrCreate(new Identifier(Lycanthropy.MODID, "werewolf"), LycanthropyPlayerComponent.class);
     public static final ComponentKey<LycanthropyPlayerHungerComponent> WEREWOLF_HUNGER = ComponentRegistry.getOrCreate(new Identifier(Lycanthropy.MODID, "werewolf_hunger"), LycanthropyPlayerHungerComponent.class);
     public static final ComponentKey<LycanthropyPlayerRageComponent> WEREWOLF_RAGE = ComponentRegistry.getOrCreate(new Identifier(Lycanthropy.MODID, "werewolf_rage"), LycanthropyPlayerRageComponent.class);
+    public static final ComponentKey<LycanthropyAbilityComponent> WEREWOLF_ABILITY = ComponentRegistry.getOrCreate(new Identifier(Lycanthropy.MODID, "werewolf_ability"), LycanthropyAbilityComponent.class);
 
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
         registry.registerForPlayers(WEREWOLF, LycanthropyPlayerComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(WEREWOLF_HUNGER, LycanthropyPlayerHungerComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(WEREWOLF_RAGE, LycanthropyPlayerRageComponent::new, RespawnCopyStrategy.NEVER_COPY);
+        registry.registerForPlayers(WEREWOLF_ABILITY, LycanthropyAbilityComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
 
         if(LycanthropyModConfig.get().debugMode) {
             Lycanthropy.LOGGER.info("Lycanthropy: Registry - Components Registered");
