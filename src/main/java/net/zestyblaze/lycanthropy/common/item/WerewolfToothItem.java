@@ -13,6 +13,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import net.zestyblaze.lycanthropy.common.registry.LycanthropyDamageSources;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -34,15 +35,21 @@ public class WerewolfToothItem extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        ItemStack stack = user.getStackInHand(hand);
         if(!world.isClient()) {
             if(world.isNight()) {
                 if (world.getDimension().getMoonPhase(world.getLunarTime()) == 0) {
                     ///TODO: Custom Potion Effect?
                     if(!user.hasStatusEffect(StatusEffects.STRENGTH) || Objects.requireNonNull(user.getStatusEffect(StatusEffects.STRENGTH)).getAmplifier() <= 0) {
-                        ///TODO: Add some bad stuff here for a failed conversion
-                        user.sendMessage(new LiteralText("No or Insufficient Strength"), false);
+                        if(!user.isCreative()) {
+                            stack.decrement(1);
+                            user.damage(LycanthropyDamageSources.FAILED_RITUAL, user.getHealth());
+                        }
                     } else {
                         ///TODO: Add a Werewolf Sequence here
+                        if(!user.isCreative()) {
+                            stack.decrement(1);
+                        }
                         user.sendMessage(new LiteralText("Werewolf Time"), false);
                     }
                 } else {
@@ -52,6 +59,6 @@ public class WerewolfToothItem extends Item {
                 user.sendMessage(new TranslatableText("text.lycanthropy.werewolf_tooth.fail2").formatted(Formatting.RED), true);
             }
         }
-        return TypedActionResult.fail(user.getStackInHand(hand));
+        return TypedActionResult.fail(stack);
     }
 }

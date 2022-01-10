@@ -10,9 +10,10 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.zestyblaze.lycanthropy.Lycanthropy;
-import net.zestyblaze.lycanthropy.common.block.BonePileBlock;
 import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
+import net.zestyblaze.lycanthropy.common.block.BonePileBlock;
 import net.zestyblaze.lycanthropy.common.block.CageBlock;
+import net.zestyblaze.lycanthropy.common.block.SilverBlock;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -23,15 +24,12 @@ public class LycanthropyBlockInit {
     public static final Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
     public static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
 
-
     public static final Block BONE_PILE = register("bone_pile", new BonePileBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.BONE)), true);
     public static final Block SILVER_ORE = register("silver_ore", new OreBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE)), true);
-    public static final Block DEEPSLATE_SILVER_ORE = register("deepslate_silver_ore", new OreBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE)), true);
-    public static final Block SILVER_BLOCK = register("silver_block", new Block(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE)), true);
+    public static final Block DEEPSLATE_SILVER_ORE = register("deepslate_silver_ore", new OreBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).strength(3, 6)), true);
+    public static final Block SILVER_BLOCK = register("silver_block", new SilverBlock(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.METAL).strength(5, 6)), true);
 
     public static final Block CAGE_BLOCK = register("cage_block", new CageBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.METAL)), true);
-
-
 
 
     /**

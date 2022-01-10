@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 public class Lycanthropy implements ModInitializer {
 	public static final String MODID = "lycanthropy";
 	public static final String MODNAME = "Lycanthropy";
-	public static final ItemGroup LYCANTHROPY_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, MODID), () -> new ItemStack(LycanthropyItemInit.DEBUG_ITEM));
+	public static final ItemGroup LYCANTHROPY_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, MODID), () -> new ItemStack(LycanthropyItemInit.WEREWOLF_TOOTH));
 
 	public static final Logger LOGGER = LogManager.getLogger(MODNAME);
 

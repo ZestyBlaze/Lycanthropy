@@ -31,6 +31,10 @@
 
   "effect.lycanthropy.bleeding": "Bleeding",
 
+  "death.attack.silver": "%1$s could not stand being on silver",
+  "death.attack.silver.player": "%1$s was pushed onto silver by %2$s",
+  "death.attack.failed_ritual": "%1$s was consumed by the beast within themselves",
+
   "text.lycanthropy.hold_shift": "Hold [SHIFT] for more info",
   "text.lycanthropy.guide_book.fail": "Patchouli is not installed",
 
