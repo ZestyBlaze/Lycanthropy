@@ -16,7 +16,7 @@ public class SilverBlock extends Block {
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
         LycanthropyComponentInit.WEREWOLF.maybeGet(entity).ifPresent(werewolf -> {
-            if(werewolf.isWerewolf()) {
+            if(werewolf.getIsWerewolf()) {
                 entity.damage(LycanthropyDamageSources.SILVER, 4.0f);
             }
         });

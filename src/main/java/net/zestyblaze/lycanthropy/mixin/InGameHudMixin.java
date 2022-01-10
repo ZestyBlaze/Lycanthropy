@@ -40,13 +40,39 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Final
     private MinecraftClient client;
 
-    @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.AFTER, ordinal = 2, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
-    private void renderPre(MatrixStack matrices, CallbackInfo callbackInfo) {
+    @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.AFTER, ordinal = 0, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
+    private void renderRage(MatrixStack matrices, CallbackInfo callbackInfo) {
         PlayerEntity player = getCameraPlayer();
-        if(LycanthropyComponentInit.WEREWOLF.get(player).isWerewolf()) {
+        if (Lycanthropy.isWerewolf(player)) {
+            RenderSystem.setShaderTexture(0, LYCANTHROPY_GUI_ICONS_TEXTURE);
+            drawRage(matrices, player, scaledWidth / 2 - 91, scaledHeight - 39, 10);
+            RenderSystem.setShaderTexture(0, EMPTY_GUI_ICONS_TEXTURE);
+        }
+    }
+
+
+    @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.AFTER, ordinal = 2, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
+    private void renderHunger(MatrixStack matrices, CallbackInfo callbackInfo) {
+        PlayerEntity player = getCameraPlayer();
+        if(Lycanthropy.isWerewolf(player)) {
             RenderSystem.setShaderTexture(0, LYCANTHROPY_GUI_ICONS_TEXTURE);
             drawHunger(matrices, player, scaledWidth / 2 + 82, scaledHeight - 39, 20);
             RenderSystem.setShaderTexture(0, EMPTY_GUI_ICONS_TEXTURE);
+        }
+    }
+
+    @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, ordinal = 3, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
+    private void renderPostRage(MatrixStack matrices, CallbackInfo callbackInfo) {
+        PlayerEntity player = getCameraPlayer();
+        if (Lycanthropy.isWerewolf(player)) {
+            RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
+        }
+    }
+    @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, ordinal = 1, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
+    private void renderPostHunger(MatrixStack matrices, CallbackInfo callbackInfo) {
+        PlayerEntity player = getCameraPlayer();
+        if (Lycanthropy.isWerewolf(player)) {
+            RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
         }
     }
 
@@ -77,6 +103,20 @@ public abstract class InGameHudMixin extends DrawableHelper {
             if(full < steaks) {
                 float remaining = hunger - full;
                 drawTexture(matrices, full >= 10 ? (x - full * 8) + 80 : (x - full * 8), y, remaining > 3 / 4f ? 9*2+hunger_u : remaining > 2 / 4f ? 9*3+hunger_u : remaining > 1 / 4f ? 9*4+hunger_u : 0, full >= 10 ? 9 : 0, 9, 9);
+            }
+        });
+    }
+    private void drawRage(MatrixStack matrices, LivingEntity entity, int x, int y, int icons) {
+        LycanthropyComponentInit.WEREWOLF_RAGE.maybeGet(entity).ifPresent(werewolf -> {
+            int rage = werewolf.getRage();
+            //Draw empty steak icons
+            for (int i = 0; i < icons; i++) {
+                drawTexture(matrices, (x - i * 8) + 71, y-10, 0, 18, 9, 9);
+            }
+
+            //Draw full steak icons
+            for (int i = 0; i < rage; i++) {
+                drawTexture(matrices,  (x - i * 8) + 71, y-10, 9, 18, 9, 9);
             }
         });
     }

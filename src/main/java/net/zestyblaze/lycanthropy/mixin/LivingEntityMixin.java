@@ -23,16 +23,16 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Inject(method = "handleFallDamage", at = @At("HEAD"), cancellable = true)
     private void handleFallDamage(float fallDistance, float damageMultiplier, DamageSource source, CallbackInfoReturnable<Boolean> callbackInfo) {
-        if ((Object) this instanceof PlayerEntity player && LycanthropyComponentInit.WEREWOLF.get(player).isWerewolf() && fallDistance <= 5) {
+        if ((Object) this instanceof PlayerEntity player && LycanthropyComponentInit.WEREWOLF.get(player).getIsWerewolf() && fallDistance <= 5) {
             callbackInfo.setReturnValue(false);
         }
     }
 
     @Inject(method = "getJumpVelocity", at = @At("RETURN"), cancellable = true)
     private void getJumpVelocity(CallbackInfoReturnable<Float> callbackInfo) {
-        if ((Object) this instanceof PlayerEntity player && LycanthropyComponentInit.WEREWOLF.get(player).isWerewolf()) {
+        if ((Object) this instanceof PlayerEntity player && LycanthropyComponentInit.WEREWOLF.get(player).getIsWerewolf()) {
             if(player.isSprinting()){
-                callbackInfo.setReturnValue(callbackInfo.getReturnValue() * 2f);
+                callbackInfo.setReturnValue(callbackInfo.getReturnValue() * 1.6f);
             }
             callbackInfo.setReturnValue(callbackInfo.getReturnValue() * 1.2f);
         }
@@ -47,5 +47,14 @@ public abstract class LivingEntityMixin extends Entity {
             }
         }
         return amount;
+    }
+
+    @Inject(method = "handleFallDamage", at = @At("HEAD"), cancellable = true)
+    private void canFallHurt(float fallDistance, float damageMultiplier, DamageSource damageSource, CallbackInfoReturnable<Boolean> cir){
+        LycanthropyComponentInit.WEREWOLF.maybeGet(this).ifPresent(lycanthropyPlayerComponent -> {
+            if(fallDistance <= 6){
+                cir.setReturnValue(false);
+            }
+        });
     }
 }

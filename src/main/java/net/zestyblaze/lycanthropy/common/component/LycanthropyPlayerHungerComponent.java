@@ -31,15 +31,15 @@ public class LycanthropyPlayerHungerComponent implements AutoSyncedComponent, Se
     }
 
     public void increaseHunger(int increaseAmount){
-        if (getHunger() + increaseAmount <= getMaxHunger()) {
-            setHunger(getHunger() + increaseAmount);
+        for(int buffer = increaseAmount; getHunger() < getMaxHunger() && buffer > 0; buffer--){
+            setHunger(getHunger() + 1);
             LycanthropyComponentInit.WEREWOLF_HUNGER.sync(player);
         }
     }
 
     public void decreaseHunger(int decreaseAmount){
-        if(getHunger() - decreaseAmount >= 0){
-            setHunger(getHunger() - decreaseAmount);
+        for(int buffer = decreaseAmount; getHunger() > 0 && buffer > 0; buffer--){
+            setHunger(getHunger() - 1);
             LycanthropyComponentInit.WEREWOLF_HUNGER.sync(player);
         }
     }
@@ -47,11 +47,13 @@ public class LycanthropyPlayerHungerComponent implements AutoSyncedComponent, Se
     @Override
     public void serverTick() {
         //updateHunger(); TODO: implement
-        if(player.isSneaking()){
-            decreaseHunger(2);
-        }else{
-            increaseHunger(2);
-        }
+        LycanthropyComponentInit.WEREWOLF.maybeGet(player).ifPresent(lycanthropyPlayerComponent -> {
+            if(player.isSneaking()){
+                decreaseHunger(2);
+            }else{
+                increaseHunger(2);
+            }
+        });
     }
 
     /**

@@ -33,12 +33,15 @@ public class DebugItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
+        //if(world.isClient)return TypedActionResult.pass(stack);
         LycanthropyComponentInit.WEREWOLF.maybeGet(user).ifPresent(werewolfComponent -> {
-            if(!werewolfComponent.isWerewolf()) {
-                werewolfComponent.tryActivateWerewolfForm(true, true);
+            if(!werewolfComponent.getIsWerewolf()) {
+                werewolfComponent.setCanBecomeWerewolf(true);
+                werewolfComponent.tryActivateWerewolfForm(true);
                 user.sendMessage(new TranslatableText("text.lycanthropy.debug_item.success_add"), true);
-            } else if(user.isSneaking() && werewolfComponent.isWerewolf()) {
-                werewolfComponent.tryActivateWerewolfForm(false, true);
+            } else if(user.isSneaking() && werewolfComponent.getIsWerewolf()) {
+                werewolfComponent.setCanBecomeWerewolf(false);
+                werewolfComponent.tryActivateWerewolfForm(false);
                 user.sendMessage(new TranslatableText("text.lycanthropy.debug_item.success_remove"), true);
             } else {
                 user.sendMessage(new TranslatableText("text.lycanthropy.debug_item.fail"), true);

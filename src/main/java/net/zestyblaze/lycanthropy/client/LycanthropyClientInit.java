@@ -61,7 +61,7 @@ public class LycanthropyClientInit {
          */
         RenderEvents.PLAYER.register((player, tickDelta, matrixStack, vertexConsumerProvider, light) -> {
             MinecraftClient minecraftClient = MinecraftClient.getInstance();
-            if(!LycanthropyComponentInit.WEREWOLF.get(player).isWerewolf())return;
+            if(!Lycanthropy.isWerewolf(player))return;
             if (LycanthropyComponentInit.WEREWOLF.get(player).getRenderedWerewolfEntity() == null){
                 WerewolfEntity werewolfEntity = LycanthropyEntityTypeInit.WEREWOLF.create(player.world);
                 LycanthropyComponentInit.WEREWOLF.get(player).setRenderedWerewolfEntity(werewolfEntity);
@@ -108,12 +108,13 @@ public class LycanthropyClientInit {
             }
         });
 
+
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if(screenKey.wasPressed()) {
                 if(!keyBoolean) {
                     Lycanthropy.LOGGER.warn("Lycanthropy - Client: Key Pressed");
                     LycanthropyComponentInit.WEREWOLF.maybeGet(client.player).ifPresent(werewolf -> {
-                        if(werewolf.isWerewolf()) {
+                        if(werewolf.getIsWerewolf()) {
                             ///TODO: Set Screen Here
                             Lycanthropy.LOGGER.warn("Lycanthropy - Client: Screen Triggered");
                         } else {

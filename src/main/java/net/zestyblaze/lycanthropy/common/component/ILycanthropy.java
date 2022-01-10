@@ -15,20 +15,21 @@ public interface ILycanthropy extends ComponentV3, ServerTickingComponent {
      * Checks if a player has the ability to become a werewolf
      * @return true if player can become a werewolf, else false
      */
-    boolean canBecomeWerewolf();
+    boolean getCanBecomeWerewolf();
 
     /**
      * Checks if the player is currently in ist werewolf form
      * @return true of the player currently is in werewolf form.
      */
-    boolean isWerewolf();
+    boolean getIsWerewolf();
+
+    void setIsWerewolf(boolean value);
 
     /**
      *
      * @param active if true will turn a player to an active werewolf if they can become a werewolf
-     * @param force forces the player to either be able to become a werewolf or force the player to not be able to become a werewolf
      */
-    void tryActivateWerewolfForm(boolean active, boolean force);
+    void tryActivateWerewolfForm(boolean active);
 
     /**
      * Checks if the player has a rendered werewolf entity
@@ -52,15 +53,11 @@ public interface ILycanthropy extends ComponentV3, ServerTickingComponent {
      */
     void decreaseWerewolfLevel();
 
-    /**
-     * set the level of the werewolf
-     * @param level level
-     */
-    //void setWerewolfLevel(int level);
 
     /**
      * get the level of the werewolf
      * @return level
      */
     int getWerewolfLevel();
+
 }

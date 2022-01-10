@@ -14,7 +14,7 @@ public abstract class HungerManagerMixin {
     //Effectively disable vanilla hunger system while werewolf form active
     @Inject(method = "update", at = @At("HEAD"), cancellable = true)
     private void disableUpdate(PlayerEntity player, CallbackInfo ci){
-        if(LycanthropyComponentInit.WEREWOLF.get(player).isWerewolf()){
+        if(LycanthropyComponentInit.WEREWOLF.get(player).getIsWerewolf()){
             ci.cancel();
         }
     }

@@ -9,13 +9,13 @@ public class AppleskinIntegration implements AppleSkinApi {
     @Override
     public void registerEvents() {
         HUDOverlayEvent.Saturation.EVENT.register(saturation -> LycanthropyComponentInit.WEREWOLF.maybeGet(MinecraftClient.getInstance().player).ifPresent(lycanthropyPlayerComponent -> {
-            if(lycanthropyPlayerComponent.isWerewolf()){
+            if(lycanthropyPlayerComponent.getIsWerewolf()){
                 saturation.isCanceled = true;
             }
         }));
 
         HUDOverlayEvent.Exhaustion.EVENT.register(exhaustion -> LycanthropyComponentInit.WEREWOLF.maybeGet(MinecraftClient.getInstance().player).ifPresent(lycanthropyPlayerComponent -> {
-            if(lycanthropyPlayerComponent.isWerewolf()){
+            if(lycanthropyPlayerComponent.getIsWerewolf()){
                 exhaustion.isCanceled = true;
             }
         }));

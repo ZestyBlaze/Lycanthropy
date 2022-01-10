@@ -2,10 +2,13 @@ package net.zestyblaze.lycanthropy;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
+import net.zestyblaze.lycanthropy.common.component.LycanthropyPlayerComponent;
 import net.zestyblaze.lycanthropy.common.registry.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,10 +30,18 @@ public class Lycanthropy implements ModInitializer {
 		LycanthropyEntityTypeInit.initEntityTypes();
 		LycanthropyEventInit.registerEvents();
 		LycanthropyStatusEffectsInit.registerStatusEffects();
+		ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
+			LycanthropyComponentInit.WEREWOLF.get(newPlayer).setIsWerewolf(false);
+		});
 
 
 		if(LycanthropyModConfig.get().debugMode) {
 			LOGGER.info("Lycanthropy: Registry - Mod Fully Loaded!");
 		}
+
+	}
+	public static boolean isWerewolf(PlayerEntity player){
+		LycanthropyPlayerComponent lycanthropyPlayerComponent = LycanthropyComponentInit.WEREWOLF.get(player);
+		return lycanthropyPlayerComponent.getIsWerewolf();
 	}
 }

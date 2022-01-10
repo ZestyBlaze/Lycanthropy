@@ -13,7 +13,8 @@
     "PlayerEntityRendererMixin",
     "InGameHudMixin",
     "MouseMixin",
-    "HeldItemRendererMixin"
+    "HeldItemRendererMixin",
+    "GameRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -15,7 +15,7 @@ public abstract class LycanthropyDamageSource {
     @Inject(at = @At("HEAD"), method = "damage", cancellable = true)
     private void lycanthropeBlockDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         LycanthropyComponentInit.WEREWOLF.maybeGet(this).ifPresent(werewolfComponent -> {
-            if(werewolfComponent.isWerewolf()) {
+            if(werewolfComponent.getIsWerewolf()) {
                 if(source != DamageSource.DROWN || source != DamageSource.OUT_OF_WORLD || source != DamageSource.CRAMMING || source != DamageSource.MAGIC || source != LycanthropyDamageSources.SILVER) {
                     //cir.setReturnValue(false); //TODO enable this, but add balance first
                 }

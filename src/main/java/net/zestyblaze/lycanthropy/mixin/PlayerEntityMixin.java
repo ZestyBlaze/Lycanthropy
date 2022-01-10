@@ -2,6 +2,7 @@ package net.zestyblaze.lycanthropy.mixin;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
@@ -18,8 +19,10 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
     @Inject(method = "canFoodHeal", at = @At("RETURN"), cancellable = true)
     private void canFoodHeal(CallbackInfoReturnable<Boolean> callbackInfo) {
-        if(callbackInfo.getReturnValue() && LycanthropyComponentInit.WEREWOLF.get(this).isWerewolf()) {
+        if(callbackInfo.getReturnValue() && LycanthropyComponentInit.WEREWOLF.get(this).getIsWerewolf()) {
             callbackInfo.setReturnValue(false);
         }
     }
+
+
 }

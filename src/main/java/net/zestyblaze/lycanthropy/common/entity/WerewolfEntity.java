@@ -46,7 +46,6 @@ public class WerewolfEntity extends WerewolfBaseEntity implements IAnimatable {
         //Create a builer to stack animations in.
         AnimationBuilder builder = new AnimationBuilder();
 
-        //Normal Speed
         WerewolfEntity entity = this;
         boolean isMovingHorizontal = Math.sqrt(Math.pow(motionCalc.x, 2) + Math.pow(motionCalc.z, 2)) > 0.005;
 
@@ -55,7 +54,7 @@ public class WerewolfEntity extends WerewolfBaseEntity implements IAnimatable {
         }else if (entity.getPose() == EntityPose.SWIMMING) {
             builder.addAnimation("animation.werewolf.swim", true);
         }else if (!entity.isOnGround() && motionCalc.getY() < 0) {
-            if ((entity.fallDistance <= 4) && !entity.isClimbing()) {
+            if (!entity.isClimbing()) {
                 builder.addAnimation("animation.werewolf.standing.fall", false);
             }
         }else if (entity.isSneaking()) {

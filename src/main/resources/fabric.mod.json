@@ -52,7 +52,8 @@
   "custom": {
     "cardinal-components": [
       "lycanthropy:werewolf",
-      "lycanthropy:werewolf_hunger"
+      "lycanthropy:werewolf_hunger",
+      "lycanthropy:werewolf_rage"
     ]
   },
   "accessWidener": "lycanthropy.accesswiderner"
