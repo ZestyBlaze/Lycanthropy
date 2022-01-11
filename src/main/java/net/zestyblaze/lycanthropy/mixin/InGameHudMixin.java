@@ -13,6 +13,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
+import net.zestyblaze.lycanthropy.common.utils.LycanthropyUtils;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -43,7 +44,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.AFTER, ordinal = 0, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
     private void renderRage(MatrixStack matrices, CallbackInfo callbackInfo) {
         PlayerEntity player = getCameraPlayer();
-        if (Lycanthropy.isWerewolf(player)) {//TODO add rage level requirement
+        if (LycanthropyUtils.isWerewolf(player)) {//TODO add rage level requirement
             RenderSystem.setShaderTexture(0, LYCANTHROPY_GUI_ICONS_TEXTURE);
             drawRage(matrices, player, scaledWidth / 2 - 91, scaledHeight - 39, 10);
             RenderSystem.setShaderTexture(0, EMPTY_GUI_ICONS_TEXTURE);
@@ -54,7 +55,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.AFTER, ordinal = 2, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
     private void renderHunger(MatrixStack matrices, CallbackInfo callbackInfo) {
         PlayerEntity player = getCameraPlayer();
-        if(Lycanthropy.isWerewolf(player)) {
+        if(LycanthropyUtils.isWerewolf(player)) {
             RenderSystem.setShaderTexture(0, LYCANTHROPY_GUI_ICONS_TEXTURE);
             drawHunger(matrices, player, scaledWidth / 2 + 82, scaledHeight - 39, 20);
             RenderSystem.setShaderTexture(0, EMPTY_GUI_ICONS_TEXTURE);
@@ -64,14 +65,14 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, ordinal = 3, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
     private void renderPostRage(MatrixStack matrices, CallbackInfo callbackInfo) {
         PlayerEntity player = getCameraPlayer();
-        if (Lycanthropy.isWerewolf(player)) {
+        if (LycanthropyUtils.isWerewolf(player)) {
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
         }
     }
     @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, ordinal = 1, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
     private void renderPostHunger(MatrixStack matrices, CallbackInfo callbackInfo) {
         PlayerEntity player = getCameraPlayer();
-        if (Lycanthropy.isWerewolf(player)) {
+        if (LycanthropyUtils.isWerewolf(player)) {
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
         }
     }

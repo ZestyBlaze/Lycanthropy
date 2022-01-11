@@ -1,0 +1,111 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.bear_trap.closed": {
+			"loop": true
+		},
+		"animation.bear_trap.opening": {
+			"loop": "hold_on_last_frame",
+			"bones": {
+				"leftClaw": {
+					"rotation": {
+						"vector": ["query.winder", 0, 0],
+						"easing": "easeInOutQuad"
+					}
+				},
+				"rightClaw": {
+					"rotation": {
+						"vector": ["-query.winder", 0, 0],
+						"easing": "easeInOutQuad"
+					}
+				},
+				"crank": {
+					"rotation": {
+						"vector": [0, 0, "-query.winder"],
+						"easing": "easeInOutQuad"
+					}
+				},
+				"plate": {
+					"position": {
+						"vector": [0, "query.winder/40", 0]
+					}
+				}
+			}
+		},
+		"animation.bear_trap.closing": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.16,
+			"bones": {
+				"leftClaw": {
+					"rotation": {
+						"0.0": {
+							"vector": [97.5, 0, 0]
+						},
+						"0.16": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"rightClaw": {
+					"rotation": {
+						"0.0": {
+							"vector": [-97.5, 0, 0]
+						},
+						"0.16": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"crank": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -70]
+						},
+						"0.16": {
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"plate": {
+					"position": {
+						"0.0": {
+							"vector": [0, 1, 0]
+						},
+						"0.16": {
+							"vector": [0, 0, 0]
+						}
+					}
+				}
+			}
+		},
+		"animation.bear_trap.open": {
+			"loop": "hold_on_last_frame",
+			"bones": {
+				"leftClaw": {
+					"rotation": {
+						"vector": [97.5, 0, 0]
+					}
+				},
+				"rightClaw": {
+					"rotation": {
+						"vector": [-97.5, 0, 0]
+					}
+				},
+				"crank": {
+					"rotation": {
+						"vector": [0, 0, -40]
+					}
+				},
+				"plate": {
+					"position": {
+						"vector": [0, 1, 0]
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

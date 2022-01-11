@@ -6,6 +6,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.zestyblaze.lycanthropy.Lycanthropy;
+import net.zestyblaze.lycanthropy.common.block.blockentity.BearTrapBlockEntity;
 import net.zestyblaze.lycanthropy.common.block.blockentity.CageBlockEntity;
 
 import java.util.LinkedHashMap;
@@ -16,6 +17,7 @@ public class LycanthropyBlockEntityInit {
 
 
     public static final BlockEntityType<CageBlockEntity> CAGE_BLOCK_ENTITY = register("cage_block_entity", FabricBlockEntityTypeBuilder.create(CageBlockEntity::new, LycanthropyBlockInit.CAGE_BLOCK).build(null));
+    public static final BlockEntityType<BearTrapBlockEntity> BEAR_TRAP_BLOCK_ENTITY = register("bear_trap_block_entity", FabricBlockEntityTypeBuilder.create(BearTrapBlockEntity::new, LycanthropyBlockInit.BEAR_TRAP_BLOCK, LycanthropyBlockInit.SILVER_BEAR_TRAP_BLOCK).build(null));
 
     /**
      *

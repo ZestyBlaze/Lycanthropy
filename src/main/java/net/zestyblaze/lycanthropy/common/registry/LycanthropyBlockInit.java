@@ -12,10 +12,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
-import net.zestyblaze.lycanthropy.common.block.BonePileBlock;
-import net.zestyblaze.lycanthropy.common.block.CageBlock;
-import net.zestyblaze.lycanthropy.common.block.SilverBlock;
-import net.zestyblaze.lycanthropy.common.block.SilverStairsBlock;
+import net.zestyblaze.lycanthropy.common.block.*;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -38,6 +35,8 @@ public class LycanthropyBlockInit {
     public static final Block SILVER_TILE_SLAB = register("silver_tile_slab", new SlabBlock(FabricBlockSettings.copyOf(SILVER_BLOCK)), true);
 
     public static final Block CAGE_BLOCK = register("cage_block", new CageBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.METAL)), true);
+    public static final Block BEAR_TRAP_BLOCK = register("bear_trap_block", new BearTrapBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.METAL)), true);
+    public static final Block SILVER_BEAR_TRAP_BLOCK = register("silver_bear_trap_block", new BearTrapBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.METAL)), true);
 
 
     /**

@@ -22,6 +22,7 @@ import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
 import net.zestyblaze.lycanthropy.client.renderer.*;
 import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import net.zestyblaze.lycanthropy.common.registry.*;
+import net.zestyblaze.lycanthropy.common.utils.LycanthropyUtils;
 import org.lwjgl.glfw.GLFW;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
@@ -44,6 +45,11 @@ public class LycanthropyClientInit {
         (BlockEntityRendererFactory.Context rendererDispatcherIn) -> new CageBlockRenderer());
         BlockRenderLayerMapImpl.INSTANCE.putBlock(LycanthropyBlockInit.CAGE_BLOCK, RenderLayer.getCutout());
 
+        BlockEntityRendererRegistry.register(LycanthropyBlockEntityInit.BEAR_TRAP_BLOCK_ENTITY,
+        (BlockEntityRendererFactory.Context rendererDispatcherIn) -> new BearTrapBlockRenderer());
+        BlockRenderLayerMapImpl.INSTANCE.putBlock(LycanthropyBlockInit.BEAR_TRAP_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMapImpl.INSTANCE.putBlock(LycanthropyBlockInit.SILVER_BEAR_TRAP_BLOCK, RenderLayer.getCutout());
+
 
 
         if(LycanthropyModConfig.get().debugMode) {
@@ -61,7 +67,7 @@ public class LycanthropyClientInit {
          */
         RenderEvents.PLAYER.register((player, tickDelta, matrixStack, vertexConsumerProvider, light) -> {
             MinecraftClient minecraftClient = MinecraftClient.getInstance();
-            if(!Lycanthropy.isWerewolf(player))return;
+            if(!LycanthropyUtils.isWerewolf(player))return;
             if (LycanthropyComponentInit.WEREWOLF.get(player).getRenderedWerewolfEntity() == null){
                 WerewolfEntity werewolfEntity = LycanthropyEntityTypeInit.WEREWOLF.create(player.world);
                 LycanthropyComponentInit.WEREWOLF.get(player).setRenderedWerewolfEntity(werewolfEntity);

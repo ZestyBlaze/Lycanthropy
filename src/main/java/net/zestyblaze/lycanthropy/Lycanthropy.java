@@ -41,8 +41,5 @@ public class Lycanthropy implements ModInitializer {
 		}
 
 	}
-	public static boolean isWerewolf(PlayerEntity player){
-		LycanthropyPlayerComponent lycanthropyPlayerComponent = LycanthropyComponentInit.WEREWOLF.get(player);
-		return lycanthropyPlayerComponent.getIsWerewolf();
-	}
+
 }
