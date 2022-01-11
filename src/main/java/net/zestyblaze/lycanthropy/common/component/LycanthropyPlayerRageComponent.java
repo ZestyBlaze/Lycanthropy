@@ -2,11 +2,8 @@ package net.zestyblaze.lycanthropy.common.component;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.GameRules;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
 
 public class LycanthropyPlayerRageComponent implements AutoSyncedComponent, ServerTickingComponent {

@@ -11,18 +11,25 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3f;
 import net.zestyblaze.lycanthropy.client.model.WerewolfEntityModel;
 import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.geo.render.built.GeoBone;
+import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
 public class WerewolfEntityRenderer extends GeoEntityRenderer<WerewolfEntity> {
     public WerewolfEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx, new WerewolfEntityModel());
+        this.addLayer(new WerewolfEyesFeatureRenderer(this, new WerewolfEyesFeatureRenderer.WerewolfEyesRenderer(ctx, new WerewolfEntityModel())));
+        this.shadowRadius = 2F;
     }
 
     @Override
-    public RenderLayer getRenderType(WerewolfEntity animatable, float partialTicks, MatrixStack stack, VertexConsumerProvider renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn, Identifier textureLocation) {
-        return RenderLayer.getEntityTranslucent(getTextureLocation(animatable));
+    public RenderLayer getRenderType(WerewolfEntity animatable, float partialTicks, MatrixStack stack, @Nullable VertexConsumerProvider renderTypeBuffer, @Nullable VertexConsumer vertexBuilder, int packedLightIn, Identifier textureLocation) {
+        return RenderLayer.getEntityTranslucent(this.getTextureLocation(animatable));
     }
+
+
+
 
     @Override
     public void renderRecursively(GeoBone bone, MatrixStack stack, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {

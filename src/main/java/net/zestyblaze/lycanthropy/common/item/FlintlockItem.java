@@ -1,9 +1,7 @@
 package net.zestyblaze.lycanthropy.common.item;
 
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,7 +14,6 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 import software.bernie.example.entity.RocketProjectile;
 import software.bernie.geckolib3.core.AnimationState;
@@ -32,7 +29,6 @@ import software.bernie.geckolib3.network.ISyncable;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import java.util.List;
-import java.util.Objects;
 
 public class FlintlockItem extends Item implements IAnimatable, ISyncable {
     public AnimationFactory factory = new AnimationFactory(this);

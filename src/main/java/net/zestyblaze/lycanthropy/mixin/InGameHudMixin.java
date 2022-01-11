@@ -43,7 +43,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.AFTER, ordinal = 0, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
     private void renderRage(MatrixStack matrices, CallbackInfo callbackInfo) {
         PlayerEntity player = getCameraPlayer();
-        if (Lycanthropy.isWerewolf(player)) {
+        if (Lycanthropy.isWerewolf(player)) {//TODO add rage level requirement
             RenderSystem.setShaderTexture(0, LYCANTHROPY_GUI_ICONS_TEXTURE);
             drawRage(matrices, player, scaledWidth / 2 - 91, scaledHeight - 39, 10);
             RenderSystem.setShaderTexture(0, EMPTY_GUI_ICONS_TEXTURE);

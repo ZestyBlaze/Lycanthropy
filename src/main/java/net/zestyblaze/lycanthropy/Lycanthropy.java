@@ -2,7 +2,6 @@ package net.zestyblaze.lycanthropy;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;

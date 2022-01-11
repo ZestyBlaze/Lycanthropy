@@ -5,7 +5,6 @@ import dev.emi.stepheightentityattribute.StepHeightEntityAttributeMain;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.sync.PlayerSyncPredicate;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
-import dev.onyxstudios.cca.api.v3.entity.PlayerComponent;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;

@@ -1,7 +1,6 @@
 package net.zestyblaze.lycanthropy.common.registry;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
-import net.minecraft.entity.player.PlayerEntity;
 import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
 

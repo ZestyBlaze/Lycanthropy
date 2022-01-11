@@ -8,12 +8,8 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.zestyblaze.lycanthropy.common.utils.LycanthropyAnimationController;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -59,8 +55,11 @@ public class WerewolfEntity extends WerewolfBaseEntity implements IAnimatable {
             }
         }else if (entity.isSneaking()) {
             if (isMovingHorizontal) {
-                builder.addAnimation("animation.werewolf.standing.sneakDev", true);
-
+                if(entity.forwardSpeed < 0){
+                    builder.addAnimation("animation.werewolf.standing.sneakDev_back", true);
+                }else{
+                    builder.addAnimation("animation.werewolf.standing.sneakDev", true);
+                }
             } else {
                 builder.addAnimation("animation.werewolf.standing.sneak_idle", true);
             }

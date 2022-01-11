@@ -1,9 +1,7 @@
 package net.zestyblaze.lycanthropy.common.block.blockentity;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.zestyblaze.lycanthropy.common.block.CageBlock;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyBlockEntityInit;

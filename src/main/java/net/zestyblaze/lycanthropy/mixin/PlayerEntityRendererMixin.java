@@ -16,7 +16,6 @@ import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.api.event.RenderEvents;
 import net.zestyblaze.lycanthropy.common.item.FlintlockItem;
 import net.zestyblaze.lycanthropy.common.item.GuideBookDevItem;
-import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "lycanthropy:block/silver_tile_block"
+  }
+}

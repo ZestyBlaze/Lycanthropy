@@ -5,7 +5,7 @@ import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 
-public class LycanthropyAbilityComponent implements AutoSyncedComponent, ServerTickingComponent {
+public class LycanthropyPlayerAbilityComponent implements AutoSyncedComponent, ServerTickingComponent {
     private final PlayerEntity player;
     //Some potential abilities
     private int bloodlustLevel = 0;
@@ -18,7 +18,7 @@ public class LycanthropyAbilityComponent implements AutoSyncedComponent, ServerT
 
 
 
-    public LycanthropyAbilityComponent(PlayerEntity player) {
+    public LycanthropyPlayerAbilityComponent(PlayerEntity player) {
         this.player = player;
     }
 
