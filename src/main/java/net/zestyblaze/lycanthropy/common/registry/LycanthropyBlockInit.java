@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.block.OreBlock;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.sound.BlockSoundGroup;
@@ -14,6 +15,7 @@ import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
 import net.zestyblaze.lycanthropy.common.block.BonePileBlock;
 import net.zestyblaze.lycanthropy.common.block.CageBlock;
 import net.zestyblaze.lycanthropy.common.block.SilverBlock;
+import net.zestyblaze.lycanthropy.common.block.SilverStairsBlock;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -29,7 +31,11 @@ public class LycanthropyBlockInit {
     public static final Block RAW_SILVER_BLOCK = register("raw_silver_block", new Block(FabricBlockSettings.of(Material.METAL)), true);
     public static final Block DEEPSLATE_SILVER_ORE = register("deepslate_silver_ore", new OreBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).strength(3, 6)), true);//TODO tweak values
     public static final Block SILVER_BLOCK = register("silver_block", new SilverBlock(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.METAL).strength(5, 6)), true);//TODO tweak values
-    public static final Block SILVER_TILE_BLOCK = register("silver_tile_block", new SilverBlock(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.METAL).strength(5, 6)), true);//TODO tweak values
+    public static final Block SILVER_SLAB = register("silver_slab", new SlabBlock(FabricBlockSettings.copyOf(SILVER_BLOCK)), true);
+    public static final Block SILVER_STAIRS = register("silver_stairs", new SilverStairsBlock(SILVER_BLOCK,FabricBlockSettings.copyOf(SILVER_BLOCK)), true);
+    public static final Block SILVER_TILE = register("silver_tile", new SilverBlock(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.METAL).strength(5, 6)), true);//TODO tweak values
+    public static final Block SILVER_TILE_STAIRS = register("silver_tile_stairs", new SilverStairsBlock(SILVER_BLOCK,FabricBlockSettings.copyOf(SILVER_BLOCK)), true);
+    public static final Block SILVER_TILE_SLAB = register("silver_tile_slab", new SlabBlock(FabricBlockSettings.copyOf(SILVER_BLOCK)), true);
 
     public static final Block CAGE_BLOCK = register("cage_block", new CageBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.METAL)), true);
 

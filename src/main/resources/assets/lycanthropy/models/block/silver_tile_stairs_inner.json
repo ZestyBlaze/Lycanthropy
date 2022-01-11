@@ -1,0 +1,8 @@
+{
+  "parent": "block/inner_stairs",
+  "textures": {
+    "bottom": "lycanthropy:block/silver_tile",
+    "top": "lycanthropy:block/silver_tile",
+    "side": "lycanthropy:block/silver_tile"
+  }
+}

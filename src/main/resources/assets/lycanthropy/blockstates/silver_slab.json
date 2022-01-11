@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "lycanthropy:block/silver_slab"
+    },
+    "type=double": {
+      "model": "lycanthropy:block/silver_block"
+    },
+    "type=top": {
+      "model": "lycanthropy:block/silver_slab_top"
+    }
+  }
+}
