@@ -37,7 +37,7 @@ public class WerewolfEntityRenderer extends GeoEntityRenderer<WerewolfEntity> {
             if(!MinecraftClient.getInstance().options.getPerspective().isFirstPerson()) {
                 stack.push();
                 stack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(-75));
-                stack.translate(0.3D, -0.2D, 1.1D);
+                stack.translate(0.4D, -0.2D, 0.9D);
                 stack.scale(1.0f, 1.0f, 1.0f);
                 MinecraftClient.getInstance().getItemRenderer().renderItem(mainHand, ModelTransformation.Mode.THIRD_PERSON_RIGHT_HAND, packedLightIn, packedOverlayIn, stack, rtb,0);
                 stack.pop();
@@ -46,8 +46,9 @@ public class WerewolfEntityRenderer extends GeoEntityRenderer<WerewolfEntity> {
         }else if (bone.getName().equals("leftItem") && !offHand.isEmpty()) {
             if (!MinecraftClient.getInstance().options.getPerspective().isFirstPerson()) {
                 stack.push();
-                stack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(-75));
-                stack.translate(-0.3D, -0.2D, 1.1D);
+                stack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(-165));
+                stack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
+                stack.translate(0.4D, -1.2D, -0.2D);
                 stack.scale(1.0f, 1.0f, 1.0f);
                 MinecraftClient.getInstance().getItemRenderer().renderItem(offHand, ModelTransformation.Mode.THIRD_PERSON_LEFT_HAND, packedLightIn, packedOverlayIn, stack, rtb, 0);
                 stack.pop();
