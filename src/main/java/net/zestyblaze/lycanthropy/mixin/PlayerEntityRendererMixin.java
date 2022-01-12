@@ -2,6 +2,7 @@ package net.zestyblaze.lycanthropy.mixin;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
@@ -12,7 +13,8 @@ import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
-import net.zestyblaze.lycanthropy.api.event.RenderEvents;
+import net.minecraft.util.math.Vec3d;
+import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import net.zestyblaze.lycanthropy.common.item.FlintlockItem;
 import net.zestyblaze.lycanthropy.common.item.GuideBookDevItem;
 import net.zestyblaze.lycanthropy.common.utils.LycanthropyUtils;
@@ -41,8 +43,35 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
      */
     @Inject(method = "render(Lnet/minecraft/client/network/AbstractClientPlayerEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("HEAD"), cancellable = true)
     private void render(AbstractClientPlayerEntity player, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, CallbackInfo callbackInfo) {
-        RenderEvents.PLAYER.invoker().onRender(player, tickDelta, matrixStack, vertexConsumerProvider, light);
-        if(LycanthropyUtils.isWerewolf(player)){
+        WerewolfEntity werewolfEntity = LycanthropyUtils.getWerewolf(player);
+        if(werewolfEntity!=null){
+            werewolfEntity.age = player.age;
+            werewolfEntity.hurtTime = player.hurtTime;
+            werewolfEntity.maxHurtTime = Integer.MAX_VALUE;
+            werewolfEntity.limbDistance = player.limbDistance;
+            werewolfEntity.lastLimbDistance = player.lastLimbDistance;
+            werewolfEntity.limbAngle = player.limbAngle;
+            werewolfEntity.headYaw = player.headYaw;
+            werewolfEntity.prevHeadYaw = player.prevHeadYaw;
+            werewolfEntity.bodyYaw = player.bodyYaw;
+            werewolfEntity.prevBodyYaw = player.prevBodyYaw;
+            werewolfEntity.handSwinging = player.handSwinging;
+            werewolfEntity.handSwingTicks = player.handSwingTicks;
+            werewolfEntity.handSwingProgress = player.handSwingProgress;
+            werewolfEntity.lastHandSwingProgress = player.lastHandSwingProgress;
+            werewolfEntity.setPitch(player.getPitch());
+            werewolfEntity.prevPitch = player.prevPitch;
+            werewolfEntity.preferredHand = player.preferredHand;
+            werewolfEntity.setStackInHand(Hand.MAIN_HAND, player.getMainHandStack());
+            werewolfEntity.setStackInHand(Hand.OFF_HAND, player.getOffHandStack());
+            werewolfEntity.setCurrentHand(player.getActiveHand() == null ? Hand.MAIN_HAND : player.getActiveHand());
+            werewolfEntity.setSneaking(player.isSneaking());
+            werewolfEntity.motionCalc = new Vec3d(player.getX()-player.prevX, player.getY()-player.prevY,player.getZ()-player.prevZ);
+            werewolfEntity.isSneaking();
+            werewolfEntity.forwardSpeed=player.forwardSpeed;
+            werewolfEntity.setPose(player.getPose());
+            werewolfEntity.setSprinting(player.isSprinting());
+            MinecraftClient.getInstance().getEntityRenderDispatcher().getRenderer(werewolfEntity).render(werewolfEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
             callbackInfo.cancel();
         }
     }
@@ -64,5 +93,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
             cir.setReturnValue(BipedEntityModel.ArmPose.BOW_AND_ARROW);
         }
     }
+
+
 
 }

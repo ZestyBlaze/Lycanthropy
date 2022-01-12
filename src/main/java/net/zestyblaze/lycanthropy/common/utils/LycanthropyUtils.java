@@ -4,11 +4,14 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Vector4f;
 import net.zestyblaze.lycanthropy.Lycanthropy;
+import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
+import net.zestyblaze.lycanthropy.common.registry.LycanthropyEntityTypeInit;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class LycanthropyUtils {
+    private static WerewolfEntity entity;
     /**
      * Streamline registration process with a standard settings
      * @return FabricItemSettings with Lycanthropy Item group
@@ -28,6 +31,17 @@ public class LycanthropyUtils {
             isWerewolf.set(lycanthropyPlayerComponent.getIsWerewolf());
         });
         return isWerewolf.get();
+    }
+
+    public static WerewolfEntity getWerewolf(PlayerEntity player) {
+        if (LycanthropyUtils.isWerewolf(player)) {
+            if(entity == null) {
+                entity = LycanthropyEntityTypeInit.WEREWOLF.create(player.world);
+                assert entity != null;
+            }
+            return entity;
+        }
+        return null;
     }
 
     /**

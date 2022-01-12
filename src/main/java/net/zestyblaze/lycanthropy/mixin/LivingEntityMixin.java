@@ -7,6 +7,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
+import net.zestyblaze.lycanthropy.common.registry.LycanthropyDamageSources;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyStatusEffectsInit;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,6 +22,18 @@ public abstract class LivingEntityMixin extends Entity {
         super(type, world);
     }
 
+    @Inject(at = @At("HEAD"), method = "damage", cancellable = true)
+    private void lycanthropeBlockDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        LycanthropyComponentInit.WEREWOLF.maybeGet(this).ifPresent(werewolfComponent -> {
+            if(werewolfComponent.getIsWerewolf()) {
+                if(source != DamageSource.DROWN || source != DamageSource.OUT_OF_WORLD || source != DamageSource.CRAMMING || source != DamageSource.MAGIC || source != LycanthropyDamageSources.SILVER) {
+                    cir.setReturnValue(false); //TODO enable this, but add balance first
+                }
+            }
+        });
+    }
+
+    //This wont be needed if lycanthropeBlockDamage covers this
     @Inject(method = "handleFallDamage", at = @At("HEAD"), cancellable = true)
     private void handleFallDamage(float fallDistance, float damageMultiplier, DamageSource source, CallbackInfoReturnable<Boolean> callbackInfo) {
         if ((Object) this instanceof PlayerEntity player && LycanthropyComponentInit.WEREWOLF.get(player).getIsWerewolf() && fallDistance <= 5) {

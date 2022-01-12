@@ -7,7 +7,6 @@
     "DefaultBiomeFeaturesMixin",
     "HungerManagerMixin",
     "LivingEntityMixin",
-    "LycanthropyDamageSource",
     "NoiseChunkGeneratorMixin",
     "PlayerEntityMixin",
     "ServerPlayerInteractionManagerMixin"
