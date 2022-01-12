@@ -101,7 +101,7 @@ public class BearTrapBlock extends BlockWithEntity {
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity user) {
             if(state.get(CLOSED)){
-                entity.slowMovement(state, new Vec3d(0.2D, 0.25D, 0.2D));//TODO make Snared status effect instead
+                entity.slowMovement(state, new Vec3d(0.01D, 0.02D, 0.01D));//TODO make Snared status effect instead
             }
             if (!world.isClient) {
                 if(!state.get(CLOSED)){
@@ -110,7 +110,7 @@ public class BearTrapBlock extends BlockWithEntity {
                     }else{
                         user.damage(DamageSource.CACTUS, 1.0F);
                     }
-                    world.createAndScheduleBlockTick(pos,this,60);
+                    world.createAndScheduleBlockTick(pos,this,80);
                     world.setBlockState(pos, state.with(CLOSED, true), 3);
                 }
 
@@ -143,8 +143,7 @@ public class BearTrapBlock extends BlockWithEntity {
         super.onBreak(world, pos, state, player);
         BearTrapBlockEntity blockEntity = (BearTrapBlockEntity) world.getBlockEntity(pos);
         for(int i = 0; i < 2; i++){
-            dropStack(world, pos, blockEntity.getStack(i));
-            blockEntity.setStack(i, ItemStack.EMPTY);
+            ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), blockEntity.getStack(i));
         }
     }
 

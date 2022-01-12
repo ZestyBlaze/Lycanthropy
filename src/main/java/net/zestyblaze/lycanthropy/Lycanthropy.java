@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
 import net.zestyblaze.lycanthropy.common.registry.*;
+import net.zestyblaze.lycanthropy.common.world.LycanthropyStructures;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,6 +29,9 @@ public class Lycanthropy implements ModInitializer {
 		LycanthropyEntityTypeInit.initEntityTypes();
 		LycanthropyEventInit.registerEvents();
 		LycanthropyStatusEffectsInit.registerStatusEffects();
+		//LycanthropyStructures.setupAndRegisterStructureFeatures(); //TODO add these when there is a structure nbt file present
+		//LycanthropyConfiguredStructuresInit.registerConfiguredStructures(); //TODO add these when there is a structure nbt file present
+		//LycanthropyConfiguredStructuresInit.addStructureSpawningToDimensionsAndBiomes(); //TODO add these when there is a structure nbt file present
 		LycanthropyCommandInit.registerCommands();
 		LycanthropySoundEvents.registerSoundEvents();
 		ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {

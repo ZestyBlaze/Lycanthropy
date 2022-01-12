@@ -31,7 +31,7 @@ public class LycanthropyUtils {
     }
 
     /**
-     * Comverts int to rgba value. For example biomecolors to rgb
+     * Converts int to rgba value. For example biomecolors to rgb
      * @param i biomecolor/foliage color
      * @return vec4 containing rgba
      */

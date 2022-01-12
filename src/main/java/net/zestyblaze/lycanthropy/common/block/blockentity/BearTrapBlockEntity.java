@@ -100,7 +100,6 @@ public class BearTrapBlockEntity extends BlockEntity implements IAnimatable, Inv
         }
         this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
         Inventories.readNbt(nbt, inventory);
-        //fromClientTag(nbt);
         markDirty();
     }
 
