@@ -13,7 +13,6 @@ import net.zestyblaze.lycanthropy.client.model.WerewolfEntityModel;
 import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.geo.render.built.GeoBone;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
 public class WerewolfEntityRenderer extends GeoEntityRenderer<WerewolfEntity> {

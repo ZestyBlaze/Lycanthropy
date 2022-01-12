@@ -2,6 +2,7 @@ package net.zestyblaze.lycanthropy.common.utils;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.Vector4f;
 import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
 
@@ -27,6 +28,20 @@ public class LycanthropyUtils {
             isWerewolf.set(lycanthropyPlayerComponent.getIsWerewolf());
         });
         return isWerewolf.get();
+    }
+
+    /**
+     * Comverts int to rgba value. For example biomecolors to rgb
+     * @param i biomecolor/foliage color
+     * @return vec4 containing rgba
+     */
+    public static Vector4f intToRGB(int i){
+        float r = ((i >> 16) & 0xff) / 255.0f;
+        float g = ((i >>  8) & 0xff) / 255.0f;
+        float b = ((i      ) & 0xff) / 255.0f;
+        float a = ((i >> 24) & 0xff) / 255.0f;
+
+        return new Vector4f(r,g,b,a);
     }
 
 

@@ -12,7 +12,6 @@ import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
-import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.api.event.RenderEvents;
 import net.zestyblaze.lycanthropy.common.item.FlintlockItem;
 import net.zestyblaze.lycanthropy.common.item.GuideBookDevItem;
