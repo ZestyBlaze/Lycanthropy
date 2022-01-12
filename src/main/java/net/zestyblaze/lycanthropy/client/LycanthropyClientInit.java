@@ -4,9 +4,12 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.color.world.BiomeColors;
+import net.minecraft.client.color.world.FoliageColors;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
@@ -49,8 +52,8 @@ public class LycanthropyClientInit {
         (BlockEntityRendererFactory.Context rendererDispatcherIn) -> new BearTrapBlockRenderer());
         BlockRenderLayerMapImpl.INSTANCE.putBlock(LycanthropyBlockInit.BEAR_TRAP_BLOCK, RenderLayer.getCutout());
         BlockRenderLayerMapImpl.INSTANCE.putBlock(LycanthropyBlockInit.SILVER_BEAR_TRAP_BLOCK, RenderLayer.getCutout());
-
-
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), LycanthropyBlockInit.WOLFSBANE);
+        ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> world != null && pos != null ? BiomeColors.getFoliageColor(world, pos) : FoliageColors.getDefaultColor(), LycanthropyBlockInit.WOLFSBANE);
 
         if(LycanthropyModConfig.get().debugMode) {
             Lycanthropy.LOGGER.info("Lycanthropy: Registry - Client Registered");

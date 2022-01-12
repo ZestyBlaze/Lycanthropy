@@ -1,0 +1,6 @@
+{
+  "parent": "lycanthropy:block/wolfsbane_parent",
+  "textures": {
+    "cross": "lycanthropy:block/wolfsbane_base"
+  }
+}

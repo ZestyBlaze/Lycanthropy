@@ -34,6 +34,8 @@ public class LycanthropyBlockInit {
     public static final Block SILVER_TILE_STAIRS = register("silver_tile_stairs", new SilverStairsBlock(SILVER_BLOCK,FabricBlockSettings.copyOf(SILVER_BLOCK)), true);
     public static final Block SILVER_TILE_SLAB = register("silver_tile_slab", new SlabBlock(FabricBlockSettings.copyOf(SILVER_BLOCK)), true);
 
+    public static final Block WOLFSBANE = register("wolfsbane_block", new LycanthropyPlantBlock(FabricBlockSettings.of(Material.PLANT).sounds(BlockSoundGroup.BAMBOO_SAPLING).strength(0.3F).nonOpaque().breakInstantly().dynamicBounds()), true);
+
     public static final Block CAGE_BLOCK = register("cage_block", new CageBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.METAL)), true);
     public static final Block BEAR_TRAP_BLOCK = register("bear_trap_block", new BearTrapBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.METAL)), true);
     public static final Block SILVER_BEAR_TRAP_BLOCK = register("silver_bear_trap_block", new BearTrapBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.METAL)), true);

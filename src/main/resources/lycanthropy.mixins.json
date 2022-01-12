@@ -4,6 +4,7 @@
   "package": "net.zestyblaze.lycanthropy.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "DefaultBiomeFeaturesMixin",
     "HungerManagerMixin",
     "LivingEntityMixin",
     "LycanthropyDamageSource",
