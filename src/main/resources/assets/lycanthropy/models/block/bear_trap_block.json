@@ -1,6 +1,9 @@
 {
   "credit": "Made with Blockbench",
   "parent": "builtin/entity",
+  "textures": {
+    "particle": "minecraft:block/chain"
+  },
   "display": {
     "thirdperson_righthand": {
       "translation": [
@@ -53,7 +56,7 @@
     "ground": {
       "translation": [
         0,
-        -2.5,
+        -1.5,
         0
       ],
       "scale": [

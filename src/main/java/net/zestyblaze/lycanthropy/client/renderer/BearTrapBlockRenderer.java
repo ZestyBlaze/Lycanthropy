@@ -31,16 +31,6 @@ public class BearTrapBlockRenderer extends GeoBlockRenderer<BearTrapBlockEntity>
     }
 
     @Override
-    public void renderEarly(BearTrapBlockEntity animatable, MatrixStack stackIn, float ticks, VertexConsumerProvider renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float partialTicks) {
-        super.renderEarly(animatable, stackIn, ticks, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn, red, green, blue, partialTicks);
-
-
-    }
-
-
-
-
-    @Override
     public void render(BlockEntity tile, float partialTicks, MatrixStack matrixStackIn, VertexConsumerProvider bufferIn, int combinedLightIn, int combinedOverlayIn) {
         super.render(tile, partialTicks, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
         if(tile instanceof BearTrapBlockEntity bearTrapBlockEntity){
@@ -57,7 +47,6 @@ public class BearTrapBlockRenderer extends GeoBlockRenderer<BearTrapBlockEntity>
             matrixStackIn.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
             matrixStackIn.scale(0.5F,0.5F,0.5F);
             MinecraftClient.getInstance().getItemRenderer().renderItem(bearTrapBlockEntity.getStack(1), ModelTransformation.Mode.FIXED, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn, 0);
-
             matrixStackIn.pop();
         }
     }

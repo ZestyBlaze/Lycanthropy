@@ -1,9 +1,10 @@
 {
 	"credit": "Made with Blockbench",
-	"parent": "block/block_display",
+	"parent": "block/block",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "lycanthropy:block/bear_trap_block"
+		"0": "lycanthropy:block/bear_trap_block",
+		"particle": "lycanthropy:block/bear_trap_block"
 	},
 	"elements": [
 		{

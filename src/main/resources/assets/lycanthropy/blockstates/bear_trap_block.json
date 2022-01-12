@@ -1,19 +1,7 @@
 {
   "variants": {
-    "facing=south": {
+    "": {
       "model": "lycanthropy:block/bear_trap_block"
-    },
-    "facing=west": {
-      "model": "lycanthropy:block/bear_trap_block",
-      "y": 90
-    },
-    "facing=north": {
-      "model": "lycanthropy:block/bear_trap_block",
-      "y": 180
-    },
-    "facing=east": {
-      "model": "lycanthropy:block/bear_trap_block",
-      "y": 270
     }
   }
 }

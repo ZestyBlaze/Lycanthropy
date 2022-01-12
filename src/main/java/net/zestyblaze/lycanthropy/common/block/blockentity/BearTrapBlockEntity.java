@@ -3,6 +3,7 @@ package net.zestyblaze.lycanthropy.common.block.blockentity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BrewingStandBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
@@ -27,12 +28,13 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import static net.zestyblaze.lycanthropy.common.block.BearTrapBlock.CLOSED;
 
 public class BearTrapBlockEntity extends BlockEntity implements IAnimatable, Inventory {
-    public final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(2, ItemStack.EMPTY);
+    private DefaultedList<ItemStack> inventory;
     AnimationFactory factory = new AnimationFactory(this);
     public int winder = 0;
 
     public BearTrapBlockEntity( BlockPos pos, BlockState state) {
         super(LycanthropyBlockEntityInit.BEAR_TRAP_BLOCK_ENTITY, pos, state);
+        this.inventory = DefaultedList.ofSize(2, ItemStack.EMPTY);
     }
 
 
@@ -96,7 +98,9 @@ public class BearTrapBlockEntity extends BlockEntity implements IAnimatable, Inv
         if (nbt.contains("Winder")) {
             setWinder(nbt.getInt("Winder"));
         }
+        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
         Inventories.readNbt(nbt, inventory);
+        //fromClientTag(nbt);
         markDirty();
     }
 

@@ -8,6 +8,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -28,6 +29,8 @@ import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyDamageSources;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyTags;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Random;
 
 public class BearTrapBlock extends BlockWithEntity {
     public static final BooleanProperty CLOSED;
@@ -55,17 +58,16 @@ public class BearTrapBlock extends BlockWithEntity {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
             if(world.getBlockEntity(pos) instanceof BearTrapBlockEntity bearTrapBlockEntity){
-                System.out.println(bearTrapBlockEntity.inventory);
                 if(player.getStackInHand(hand).isEmpty()){
                     if(!world.getBlockState(pos).get(CLOSED)){
                         if(player.isSneaking()){
                             if(!bearTrapBlockEntity.getStack(0).isEmpty()){
-                                ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), bearTrapBlockEntity.inventory.get(0));
-                                bearTrapBlockEntity.inventory.set(0, new ItemStack(Items.AIR));
+                                ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), bearTrapBlockEntity.getStack(0));
+                                bearTrapBlockEntity.setStack(0, new ItemStack(Items.AIR));
                                 bearTrapBlockEntity.sync();
-                            }else if(!bearTrapBlockEntity.inventory.get(1).isEmpty()){
-                                ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), bearTrapBlockEntity.inventory.get(1));
-                                bearTrapBlockEntity.inventory.set(1, new ItemStack(Items.AIR));
+                            }else if(!bearTrapBlockEntity.getStack(1).isEmpty()){
+                                ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), bearTrapBlockEntity.getStack(1));
+                                bearTrapBlockEntity.setStack(1, new ItemStack(Items.AIR));
                                 bearTrapBlockEntity.sync();
                             }
                         }
@@ -78,13 +80,13 @@ public class BearTrapBlock extends BlockWithEntity {
                             bearTrapBlockEntity.setWinder(0);
                         }
                     }
-                }else if(ItemTags.LEAVES.contains(player.getStackInHand(hand).getItem()) && bearTrapBlockEntity.inventory.get(0).isEmpty()){
+                }else if(ItemTags.LEAVES.contains(player.getStackInHand(hand).getItem()) && bearTrapBlockEntity.getStack(0).isEmpty()){
                     ItemStack stack = player.getStackInHand(hand);
-                    bearTrapBlockEntity.inventory.set(0, stack.split(1));
+                    bearTrapBlockEntity.setStack(0, stack.split(1));
                     bearTrapBlockEntity.sync();
-                }else if(LycanthropyTags.MEAT.contains(player.getStackInHand(hand).getItem()) && bearTrapBlockEntity.inventory.get(1).isEmpty()){
+                }else if(LycanthropyTags.MEAT.contains(player.getStackInHand(hand).getItem()) && bearTrapBlockEntity.getStack(1).isEmpty()){
                     ItemStack stack = player.getStackInHand(hand);
-                    bearTrapBlockEntity.inventory.set(1, stack.split(1));
+                    bearTrapBlockEntity.setStack(1, stack.split(1));
                     bearTrapBlockEntity.sync();
                 }
             }
@@ -98,19 +100,31 @@ public class BearTrapBlock extends BlockWithEntity {
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity user) {
+            if(state.get(CLOSED)){
+                entity.slowMovement(state, new Vec3d(0.2D, 0.25D, 0.2D));//TODO make Snared status effect instead
+            }
             if (!world.isClient) {
-                if(state.get(CLOSED)){
-                    entity.slowMovement(state, new Vec3d(0.800000011920929D, 0.75D, 0.800000011920929D));//TODO make Snared status effect instead
-                }else{
+                if(!state.get(CLOSED)){
                     if(this == LycanthropyBlockInit.SILVER_BEAR_TRAP_BLOCK){
                         user.damage(LycanthropyDamageSources.SILVER, LycanthropyComponentInit.WEREWOLF.get(user).getIsWerewolf() ? 5.0F : 1.0F);
                     }else{
                         user.damage(DamageSource.CACTUS, 1.0F);
                     }
+                    world.createAndScheduleBlockTick(pos,this,60);
                     world.setBlockState(pos, state.with(CLOSED, true), 3);
                 }
 
             }
+        }
+    }
+
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if (state.get(CLOSED)) {
+            if(world.getBlockEntity(pos) instanceof BearTrapBlockEntity bearTrapBlockEntity){
+                ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), bearTrapBlockEntity.getStack(0));
+                ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), bearTrapBlockEntity.getStack(1));
+            }
+            world.breakBlock(pos, true);
         }
     }
 
@@ -129,14 +143,14 @@ public class BearTrapBlock extends BlockWithEntity {
         super.onBreak(world, pos, state, player);
         BearTrapBlockEntity blockEntity = (BearTrapBlockEntity) world.getBlockEntity(pos);
         for(int i = 0; i < 2; i++){
-            dropStack(world, pos, blockEntity.inventory.get(i));
-            blockEntity.inventory.set(i, ItemStack.EMPTY);
+            dropStack(world, pos, blockEntity.getStack(i));
+            blockEntity.setStack(i, ItemStack.EMPTY);
         }
     }
 
     static {
         CLOSED = BooleanProperty.of("closed");
-        CLOSED_SHAPE = Block.createCuboidShape(2,0,2, 14, 3, 14);
-        OPEN_SHAPE = Block.createCuboidShape(2,0,2, 14, 3, 14);
+        CLOSED_SHAPE = Block.createCuboidShape(2,0,2, 14, 5, 14);
+        OPEN_SHAPE = Block.createCuboidShape(2,0,2, 14, 5, 14);
     }
 }

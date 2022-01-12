@@ -22,6 +22,7 @@ public class LycanthropyItemInit {
     public static final Item GUIDE_BOOK = register(LycanthropyModConfig.get().modelBook3D ? "guide_book_dev" : "guide_book", LycanthropyModConfig.get().modelBook3D ? new GuideBookDevItem(new FabricItemSettings().rarity(Rarity.EPIC).group(Lycanthropy.LYCANTHROPY_GROUP)) : new GuideBookItem(new FabricItemSettings().rarity(Rarity.EPIC).group(Lycanthropy.LYCANTHROPY_GROUP)));
 
     public static final Item WOLF_PELT = register("wolf_pelt", new Item(gen()));
+    public static final Item WOLFSBANE = register("wolfsbane", new Item(gen()));
     public static final Item WEREWOLF_TOOTH = register("werewolf_tooth", new WerewolfToothItem(gen()));
 
     public static final WolfpeltArmorItem WOLF_PELT_HEAD = register("wolf_pelt_head", new WolfpeltArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.HEAD, gen()));
