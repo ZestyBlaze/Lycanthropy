@@ -31,6 +31,7 @@ public class Lycanthropy implements ModInitializer {
 		LycanthropyEventInit.registerEvents();
 		LycanthropyStatusEffectsInit.registerStatusEffects();
 		LycanthropyCommandInit.registerCommands();
+		LycanthropySoundEvents.registerSoundEvents();
 		ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
 			LycanthropyComponentInit.WEREWOLF.get(newPlayer).setIsWerewolf(false);
 		});

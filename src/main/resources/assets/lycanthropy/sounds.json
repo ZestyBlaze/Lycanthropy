@@ -1,0 +1,28 @@
+{
+  "entity.werewolf.ambient": {
+    "sounds": [
+      "lycanthropy:mob/werewolf/idle1",
+      "lycanthropy:mob/werewolf/idle2"
+    ],
+    "subtitle": "lycanthropy.subtitles.entity.werewolf.ambient"
+  },
+  "entity.werewolf.hurt": {
+    "sounds": [
+      "lycanthropy:mob/werewolf/hurt1",
+      "lycanthropy:mob/werewolf/hurt2"
+    ],
+    "subtitle": "lycanthropy.subtitles.entity.werewolf.hurt"
+  },
+  "entity.werewolf.howl": {
+    "sounds": [
+      "lycanthropy:mob/werewolf/howl"
+    ],
+    "subtitle": "lycanthropy.subtitles.entity.werewolf.howl"
+  },
+  "entity.werewolf.death": {
+    "sounds": [
+      "lycanthropy:mob/werewolf/death"
+    ],
+    "subtitle": "lycanthropy.subtitles.entity.werewolf.death"
+  }
+}
