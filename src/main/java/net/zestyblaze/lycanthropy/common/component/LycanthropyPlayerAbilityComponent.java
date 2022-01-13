@@ -4,6 +4,7 @@ import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import org.jetbrains.annotations.NotNull;
 
 public class LycanthropyPlayerAbilityComponent implements AutoSyncedComponent, ServerTickingComponent {
     private final PlayerEntity player;
@@ -15,26 +16,19 @@ public class LycanthropyPlayerAbilityComponent implements AutoSyncedComponent, S
     private int movementSpeedLevel = 0;
     private int strengthLevel = 0;
 
-
-
-
     public LycanthropyPlayerAbilityComponent(PlayerEntity player) {
         this.player = player;
     }
 
-
     @Override
     public void serverTick() {
-
     }
 
     @Override
-    public void readFromNbt(NbtCompound tag) {
-
+    public void readFromNbt(@NotNull NbtCompound tag) {
     }
 
     @Override
-    public void writeToNbt(NbtCompound tag) {
-
+    public void writeToNbt(@NotNull NbtCompound tag) {
     }
 }

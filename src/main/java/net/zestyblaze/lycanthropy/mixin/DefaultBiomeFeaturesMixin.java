@@ -13,6 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class DefaultBiomeFeaturesMixin {
     @Inject(method = "addForestGrass", at = @At("TAIL"))
     private static void addHerbs(GenerationSettings.Builder builder, CallbackInfo ci) {
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, LycanthropyWorldInit.WOLFSBANE_FATURE);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, LycanthropyWorldInit.WOLFSBANE_FEATURE);
     }
 }

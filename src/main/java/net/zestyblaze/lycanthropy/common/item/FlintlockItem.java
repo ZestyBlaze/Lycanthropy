@@ -56,14 +56,13 @@ public class FlintlockItem extends Item implements IAnimatable, ISyncable {
 
     @Override
     public void onStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int remainingUseTicks) {
-        if (entityLiving instanceof PlayerEntity) {
-            PlayerEntity playerentity = (PlayerEntity) entityLiving;
+        if (entityLiving instanceof PlayerEntity playerentity) {
             if (stack.getDamage() < (stack.getMaxDamage() - 1)) {
                 playerentity.getItemCooldownManager().set(this, 5);
                 if (!worldIn.isClient) {
-                    RocketProjectile abstractarrowentity = createArrow(worldIn, stack, playerentity);
+                    RocketProjectile abstractarrowentity = createArrow(worldIn, playerentity);
                     abstractarrowentity.setVelocity(playerentity, playerentity.getPitch(), playerentity.getYaw(), 0.0F,
-                    1.0F * 3.0F, 1.0F);
+                            3.0F, 1.0F);
 
                     abstractarrowentity.setDamage(2.5);
                     abstractarrowentity.age = 35;
@@ -84,9 +83,8 @@ public class FlintlockItem extends Item implements IAnimatable, ISyncable {
         }
     }
 
-    public RocketProjectile createArrow(World worldIn, ItemStack stack, LivingEntity shooter) {
-        RocketProjectile arrowentity = new RocketProjectile(worldIn, shooter);
-        return arrowentity;
+    public RocketProjectile createArrow(World worldIn, LivingEntity shooter) {
+        return new RocketProjectile(worldIn, shooter);
     }
 
 

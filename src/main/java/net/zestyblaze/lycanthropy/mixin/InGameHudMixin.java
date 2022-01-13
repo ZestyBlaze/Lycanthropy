@@ -46,7 +46,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
         PlayerEntity player = getCameraPlayer();
         if (LycanthropyUtils.isWerewolf(player)) {//TODO add rage level requirement
             RenderSystem.setShaderTexture(0, LYCANTHROPY_GUI_ICONS_TEXTURE);
-            drawRage(matrices, player, scaledWidth / 2 - 91, scaledHeight - 39, 10);
+            drawRage(matrices, player, scaledWidth / 2 - 91, scaledHeight - 39);
             RenderSystem.setShaderTexture(0, EMPTY_GUI_ICONS_TEXTURE);
         }
     }
@@ -57,7 +57,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
         PlayerEntity player = getCameraPlayer();
         if(LycanthropyUtils.isWerewolf(player)) {
             RenderSystem.setShaderTexture(0, LYCANTHROPY_GUI_ICONS_TEXTURE);
-            drawHunger(matrices, player, scaledWidth / 2 + 82, scaledHeight - 39, 20);
+            drawHunger(matrices, player, scaledWidth / 2 + 82, scaledHeight - 39);
             RenderSystem.setShaderTexture(0, EMPTY_GUI_ICONS_TEXTURE);
         }
     }
@@ -78,20 +78,18 @@ public abstract class InGameHudMixin extends DrawableHelper {
     }
 
     /**
-     *
-     * @param matrices same stack as the rest of the HUD
+     *  @param matrices same stack as the rest of the HUD
      * @param entity the entity in
      * @param x screenspace x coord, increases in right direction
      * @param y screenspace y coord, increases in down direction
-     * @param steaks number of stakes to render
      */
-    private void drawHunger(MatrixStack matrices, LivingEntity entity, int x, int y, int steaks) {
+    private void drawHunger(MatrixStack matrices, LivingEntity entity, int x, int y) {
         LycanthropyComponentInit.WEREWOLF_HUNGER.maybeGet(entity).ifPresent(werewolfHunger -> {
             int hunger_u = entity.hasStatusEffect(StatusEffects.HUNGER) ? 9*4 : 0;
-            float hunger = (float)werewolfHunger.getHunger()/ werewolfHunger.getMaxHunger()*steaks;
+            float hunger = (float)werewolfHunger.getHunger()/ werewolfHunger.getMaxHunger()* 20;
             int full = (int) hunger;
             //Draw empty steak icons
-            for(int i = 0; i < steaks; i++) {
+            for(int i = 0; i < 20; i++) {
                 drawTexture(matrices, i >= 10 ? (x - i * 8) + 80 : (x - i * 8), y, 0, 0, 9, 9);
             }
 
@@ -101,17 +99,17 @@ public abstract class InGameHudMixin extends DrawableHelper {
             }
 
             //draw half a steak icon
-            if(full < steaks) {
+            if(full < 20) {
                 float remaining = hunger - full;
                 drawTexture(matrices, full >= 10 ? (x - full * 8) + 80 : (x - full * 8), y, remaining > 3 / 4f ? 9*2+hunger_u : remaining > 2 / 4f ? 9*3+hunger_u : remaining > 1 / 4f ? 9*4+hunger_u : 0, full >= 10 ? 9 : 0, 9, 9);
             }
         });
     }
-    private void drawRage(MatrixStack matrices, LivingEntity entity, int x, int y, int icons) {
+    private void drawRage(MatrixStack matrices, LivingEntity entity, int x, int y) {
         LycanthropyComponentInit.WEREWOLF_RAGE.maybeGet(entity).ifPresent(werewolf -> {
             int rage = werewolf.getRage();
             //Draw empty steak icons
-            for (int i = 0; i < icons; i++) {
+            for (int i = 0; i < 10; i++) {
                 drawTexture(matrices, (x - i * 8) + 71, y-10, 0, 18, 9, 9);
             }
 

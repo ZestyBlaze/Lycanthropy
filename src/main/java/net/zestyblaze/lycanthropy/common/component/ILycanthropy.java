@@ -2,7 +2,6 @@ package net.zestyblaze.lycanthropy.common.component;
 
 import dev.onyxstudios.cca.api.v3.component.ComponentV3;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
-import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 
 public interface ILycanthropy extends ComponentV3, ServerTickingComponent {
     /**

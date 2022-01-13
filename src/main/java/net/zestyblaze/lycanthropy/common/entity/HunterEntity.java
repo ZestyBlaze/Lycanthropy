@@ -1,16 +1,10 @@
 package net.zestyblaze.lycanthropy.common.entity;
 
-import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.*;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.TimeHelper;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
@@ -26,6 +20,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.UUID;
 
+@SuppressWarnings("ALL")
 public class HunterEntity extends HostileEntity implements IAnimatable, Angerable {
     AnimationFactory factory = new AnimationFactory(this);
     private static final UniformIntProvider ANGER_TIME_RANGE = TimeHelper.betweenSeconds(20, 39);
@@ -45,7 +40,7 @@ public class HunterEntity extends HostileEntity implements IAnimatable, Angerabl
     }
     private <E extends IAnimatable> PlayState devMovement(AnimationEvent<E> animationEvent) {
         final AnimationController animationController = animationEvent.getController();
-        //Create a builer to stack animations in.
+        //Create a builder to stack animations in.
         AnimationBuilder builder = new AnimationBuilder();
         if(animationEvent.isMoving()){
             builder.addAnimation("animation.hunter.walking", true);

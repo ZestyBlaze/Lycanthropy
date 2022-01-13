@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 import net.zestyblaze.lycanthropy.common.block.blockentity.BearTrapBlockEntity;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyBlockInit;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
-import net.zestyblaze.lycanthropy.common.registry.LycanthropyTags;
+import net.zestyblaze.lycanthropy.common.registry.LycanthropyTagsInit;
 import net.zestyblaze.lycanthropy.common.utils.LycanthropyDamageSources;
 import org.jetbrains.annotations.Nullable;
 
@@ -85,7 +85,7 @@ public class BearTrapBlock extends BlockWithEntity {
                     ItemStack stack = player.getStackInHand(hand);
                     bearTrapBlockEntity.setStack(0, stack.split(1));
                     bearTrapBlockEntity.sync();
-                }else if(LycanthropyTags.MEAT.contains(player.getStackInHand(hand).getItem()) && bearTrapBlockEntity.getStack(1).isEmpty()){
+                }else if(LycanthropyTagsInit.MEAT.contains(player.getStackInHand(hand).getItem()) && bearTrapBlockEntity.getStack(1).isEmpty()){
                     ItemStack stack = player.getStackInHand(hand);
                     bearTrapBlockEntity.setStack(1, stack.split(1));
                     bearTrapBlockEntity.sync();

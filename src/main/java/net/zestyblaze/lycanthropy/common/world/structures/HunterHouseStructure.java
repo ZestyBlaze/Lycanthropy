@@ -2,7 +2,6 @@ package net.zestyblaze.lycanthropy.common.world.structures;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityType;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.PostPlacementProcessor;
 import net.minecraft.structure.StructureGeneratorFactory;
@@ -45,7 +44,7 @@ public class HunterHouseStructure extends StructureFeature<StructurePoolFeatureC
         // the chunk generator will place for that dimension.
         VerticalBlockSample columnOfBlocks = context.chunkGenerator().getColumnSample(spawnXZPosition.getX(), spawnXZPosition.getZ(), context.world());
 
-        // Combine the column of blocks with land height and you get the top block itself which you can test.
+        // Combine the column of blocks with land height, and you get the top block itself which you can test.
         BlockState topBlock = columnOfBlocks.getState(landHeight);
 
         // Now we test to make sure our structure is not spawning on water or other fluids.
