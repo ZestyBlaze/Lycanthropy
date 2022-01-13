@@ -17,6 +17,7 @@ import net.zestyblaze.lycanthropy.api.event.TransformationEvents;
 import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTickingComponent, ILycanthropy{
@@ -27,7 +28,7 @@ public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTi
 
 
     private final PlayerEntity player;
-    private WerewolfEntity werewolfEntity = null;
+    private final WerewolfEntity werewolfEntity = null;
     private boolean isWerewolf = false;
     private boolean canBecomeWerewolf = false;
     private int werewolfLevel = 0;
@@ -47,16 +48,23 @@ public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTi
         if(getCanBecomeWerewolf()){
             if(getIsWerewolf()){
 
+                assert stepHeight != null;
                 if(!stepHeight.hasModifier(WEREWOLF_STEP_HEIGHT_MODIFIER)){
                    stepHeight.addPersistentModifier(WEREWOLF_STEP_HEIGHT_MODIFIER);
                 }
+                assert reach != null;
                 if(!reach.hasModifier(WEREWOLF_REACH_MODIFIER)){
                     reach.addPersistentModifier(WEREWOLF_REACH_MODIFIER);
                 }
-                if(player.isSprinting() && !movementSpeedAttribute.hasModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER)){
+                if(player.isSprinting() && !Objects.requireNonNull(movementSpeedAttribute).hasModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER)){
                     movementSpeedAttribute.addPersistentModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER);
-                }else if(!player.isSprinting() && movementSpeedAttribute.hasModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER)){
-                    movementSpeedAttribute.removeModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER);
+                }else {
+                    if(!player.isSprinting()) {
+                        assert movementSpeedAttribute != null;
+                        if (movementSpeedAttribute.hasModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER)) {
+                            movementSpeedAttribute.removeModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER);
+                        }
+                    }
                 }
             }
             if(!player.world.isNight()){
@@ -65,10 +73,15 @@ public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTi
                 setIsWerewolf(true);
             }
         }
-        if (!getIsWerewolf() && (stepHeight.hasModifier(WEREWOLF_STEP_HEIGHT_MODIFIER) || reach.hasModifier(WEREWOLF_REACH_MODIFIER) || movementSpeedAttribute.hasModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER))){
-            movementSpeedAttribute.removeModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER);
-            stepHeight.removeModifier(WEREWOLF_STEP_HEIGHT_MODIFIER);
-            reach.removeModifier(WEREWOLF_REACH_MODIFIER);
+        if (!getIsWerewolf()) {
+            assert stepHeight != null;
+            if (stepHeight.hasModifier(WEREWOLF_STEP_HEIGHT_MODIFIER) || Objects.requireNonNull(reach).hasModifier(WEREWOLF_REACH_MODIFIER) || Objects.requireNonNull(movementSpeedAttribute).hasModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER)) {
+                assert movementSpeedAttribute != null;
+                movementSpeedAttribute.removeModifier(WEREWOLF_MOVEMENT_SPEED_MODIFIER);
+                stepHeight.removeModifier(WEREWOLF_STEP_HEIGHT_MODIFIER);
+                assert reach != null;
+                reach.removeModifier(WEREWOLF_REACH_MODIFIER);
+            }
         }
     }
 

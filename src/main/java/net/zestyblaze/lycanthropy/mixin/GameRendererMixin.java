@@ -21,6 +21,7 @@ public abstract class GameRendererMixin {
     private void cancelBob(MatrixStack matrices, float f, CallbackInfo ci){
         PlayerEntity playerEntity = (PlayerEntity)this.client.getCameraEntity();
         LycanthropyComponentInit.WEREWOLF.maybeGet(playerEntity).ifPresent(lycanthropyPlayerComponent -> {
+            assert playerEntity != null;
             if(playerEntity.isSprinting()){
                 ci.cancel();
             }

@@ -15,6 +15,7 @@ import net.zestyblaze.lycanthropy.common.registry.LycanthropyBlockInit;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
 import net.zestyblaze.lycanthropy.common.utils.LycanthropyDamageSources;
 
+@SuppressWarnings("deprecation")
 public class LycanthropyPlantBlock extends PlantBlock {
     public LycanthropyPlantBlock(Settings settings) {
         super(settings.noCollision());

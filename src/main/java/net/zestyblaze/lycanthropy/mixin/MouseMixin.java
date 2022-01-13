@@ -33,7 +33,7 @@ public class MouseMixin   {
         assert client.player != null;
         if(client.player.getMainHandStack().isOf(LycanthropyItemInit.FLINTLOCK_RIFLE)){
             ItemStack itemStack = client.player.getMainHandStack();
-            if(itemStack.getItem() instanceof FlintlockItem flintlockItem){
+            if(itemStack.getItem() instanceof FlintlockItem){
                 if((itemStack.getNbt() != null && itemStack.getNbt().getBoolean("Fired"))){
                     //this.cursorDeltaY -=10;
                 }

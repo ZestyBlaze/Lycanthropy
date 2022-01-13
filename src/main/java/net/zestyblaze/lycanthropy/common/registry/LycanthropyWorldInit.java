@@ -18,19 +18,16 @@ import net.zestyblaze.lycanthropy.common.world.LycanthropyStructures;
 
 
 public class LycanthropyWorldInit {
-
     public static final ConfiguredStructureFeature<?, ?> CONFIGURED_HUNTERS_HOUSE = LycanthropyStructures.HUNTER_HOUSE.configure(new StructurePoolFeatureConfig(() -> PlainsVillageData.STRUCTURE_POOLS, 0));
-
 
     public static final ConfiguredFeature<?,?> CONFIGURED_WOLFSBANE = Feature.FLOWER.configure(new RandomPatchFeatureConfig(
     64, //Chance, higher = more
     6, //spread XZ
     2, //Spread Y
-    () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(LycanthropyBlockInit.WOLFSBANE))).withInAirFilter()));
+    () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(LycanthropyBlockInit.WOLFSBANE))).withInAirFilter())
+    );
 
-    public static final PlacedFeature WOLFSBANE_FATURE = PlacedFeatures.register("wolfsbane_feature", CONFIGURED_WOLFSBANE.withPlacement(RarityFilterPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-
-
+    public static final PlacedFeature WOLFSBANE_FEATURE = PlacedFeatures.register("wolfsbane_feature", CONFIGURED_WOLFSBANE.withPlacement(RarityFilterPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
 
     public static void registerConfiguredStructures() {
         //Registry<ConfiguredStructureFeature<?, ?>> registry = BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE; //TODO add this when nbt is present
