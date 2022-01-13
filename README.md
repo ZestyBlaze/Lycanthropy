@@ -23,7 +23,7 @@ If you're interested in contributing you can check out our [CONTRIBUTING](CONTRI
 ## Licence
 
 * Code
-    - (c) 2021-2022, [ZestyBlaze], [MrSterner]
+    - (c) 2021-2022, [MrSterner], [ZestyBlaze]
     - [![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](https://opensource.org/licenses/MIT)
 
 * Textures and Models
