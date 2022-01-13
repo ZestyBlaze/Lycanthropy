@@ -17,6 +17,7 @@ public class LycanthropyStatusEffectsInit {
 
     public static final StatusEffect BLEEDING = register("bleeding", new LycanthropyStatusEffect(StatusEffectCategory.HARMFUL, 0xF50033));
     public static final StatusEffect BEAST_SENSE = register("beast_sense", new BeastSenseEffect(StatusEffectCategory.BENEFICIAL, 0x807c50));
+    public static final StatusEffect WEREWOLF_VISION = register("werewolf_vision", new LycanthropyStatusEffect(StatusEffectCategory.BENEFICIAL, 0x807c50));
     public static final StatusEffect SNARED = register("snared", new LycanthropyStatusEffect(StatusEffectCategory.HARMFUL, 0x515151));
 
     private static <T extends StatusEffect> T register(String name, T effect) {
