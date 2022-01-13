@@ -101,6 +101,23 @@ public class CageBlock extends BlockWithEntity {
 
     }
 
+    @Override
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        if (!world.isClient && player.isCreative()) {
+            DoubleBlockHalf doubleBlockHalf = state.get(HALF);
+            if (doubleBlockHalf == DoubleBlockHalf.UPPER) {
+                BlockPos blockPos = pos.down();
+                BlockState blockState = world.getBlockState(blockPos);
+                if (blockState.isOf(state.getBlock()) && blockState.get(HALF) == DoubleBlockHalf.LOWER) {
+                    BlockState blockState2 = Blocks.AIR.getDefaultState();
+                    world.setBlockState(blockPos, blockState2, 35);
+                    world.syncWorldEvent(player, 2001, blockPos, Block.getRawIdFromState(blockState));
+                }
+            }
+        }
+
+        super.onBreak(world, pos, state, player);
+    }
 
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
         world.setBlockState(pos.up(), state.with(HALF, DoubleBlockHalf.UPPER), Block.NOTIFY_ALL);

@@ -2,12 +2,21 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "lycanthropy:cage_block"
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "lycanthropy:cage_block",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
+          "name": "lycanthropy:cage"
         }
       ],
       "conditions": [

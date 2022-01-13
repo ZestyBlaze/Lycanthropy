@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "lycanthropy:block/cage_block"
+    "all": "lycanthropy:block/cage_block",
+    "particle": "lycanthropy:block/cage"
   }
 }

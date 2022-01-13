@@ -5,6 +5,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -26,6 +27,7 @@ import net.minecraft.world.World;
 import net.zestyblaze.lycanthropy.common.block.blockentity.BearTrapBlockEntity;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyBlockInit;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
+import net.zestyblaze.lycanthropy.common.registry.LycanthropyStatusEffectsInit;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyTagsInit;
 import net.zestyblaze.lycanthropy.common.utils.LycanthropyDamageSources;
 import org.jetbrains.annotations.Nullable;
@@ -35,12 +37,13 @@ import java.util.Random;
 @SuppressWarnings("deprecation")
 public class BearTrapBlock extends BlockWithEntity {
     public static final BooleanProperty CLOSED;
+    public static final BooleanProperty SHUT;
     protected static final VoxelShape OPEN_SHAPE;
     protected static final VoxelShape CLOSED_SHAPE;
 
     public BearTrapBlock(Settings settings) {
         super(settings.nonOpaque().noCollision());
-        this.setDefaultState((this.stateManager.getDefaultState()).with(CLOSED, true));
+        this.setDefaultState(((this.stateManager.getDefaultState()).with(CLOSED, true)).with(SHUT, false));
     }
 
     @Override
@@ -59,38 +62,35 @@ public class BearTrapBlock extends BlockWithEntity {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
             if(world.getBlockEntity(pos) instanceof BearTrapBlockEntity bearTrapBlockEntity){
-                if(player.getStackInHand(hand).isEmpty()){
-                    if(!world.getBlockState(pos).get(CLOSED)){
-                        if(player.isSneaking()){
-                            if(!bearTrapBlockEntity.getStack(0).isEmpty()){
-                                ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), bearTrapBlockEntity.getStack(0));
-                                bearTrapBlockEntity.setStack(0, new ItemStack(Items.AIR));
-                            }else if(!bearTrapBlockEntity.getStack(1).isEmpty()){
-                                ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), bearTrapBlockEntity.getStack(1));
-                                bearTrapBlockEntity.setStack(1, new ItemStack(Items.AIR));
-                            }
-                        }else{
-                            if(ItemTags.LEAVES.contains(player.getStackInHand(hand).getItem()) && bearTrapBlockEntity.getStack(0).isEmpty()){
-                                ItemStack stack = player.getStackInHand(hand);
-                                bearTrapBlockEntity.setStack(0, stack.split(1));
-                            }else if(LycanthropyTagsInit.MEAT.contains(player.getStackInHand(hand).getItem()) && bearTrapBlockEntity.getStack(1).isEmpty()){
-                                ItemStack stack = player.getStackInHand(hand);
-                                bearTrapBlockEntity.setStack(1, stack.split(1));
-                            }
+                if(!world.getBlockState(pos).get(CLOSED)){
+                    if(player.isSneaking()){
+                        if(!bearTrapBlockEntity.getStack(0).isEmpty()){
+                            ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), bearTrapBlockEntity.getStack(0));
+                            bearTrapBlockEntity.setStack(0, new ItemStack(Items.AIR));
+                        }else if(!bearTrapBlockEntity.getStack(1).isEmpty()){
+                            ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), bearTrapBlockEntity.getStack(1));
+                            bearTrapBlockEntity.setStack(1, new ItemStack(Items.AIR));
                         }
-                        bearTrapBlockEntity.sync();
-                    }else {
-                        bearTrapBlockEntity.increaseWinder(1);
-                        bearTrapBlockEntity.sync();
-                        world.playSound(null, pos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.7F,1.5F);
-                        if(bearTrapBlockEntity.winder >= 40) {
-                            world.setBlockState(pos, state.with(CLOSED, false), Block.NOTIFY_LISTENERS | Block.REDRAW_ON_MAIN_THREAD);
-                            bearTrapBlockEntity.setWinder(0);
+                    }else{
+                        if(ItemTags.LEAVES.contains(player.getStackInHand(hand).getItem()) && bearTrapBlockEntity.getStack(0).isEmpty()){
+                            ItemStack stack = player.getStackInHand(hand);
+                            bearTrapBlockEntity.setStack(0, stack.split(1));
+                        }else if(LycanthropyTagsInit.MEAT.contains(player.getStackInHand(hand).getItem()) && bearTrapBlockEntity.getStack(1).isEmpty()){
+                            ItemStack stack = player.getStackInHand(hand);
+                            bearTrapBlockEntity.setStack(1, stack.split(1));
                         }
+                    }
+                    bearTrapBlockEntity.sync();
+                }else{
+                    bearTrapBlockEntity.increaseWinder(1);
+                    bearTrapBlockEntity.sync();
+                    world.playSound(null, pos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.7F,1.5F);
+                    if(bearTrapBlockEntity.winder >= 40) {
+                        world.setBlockState(pos, state.with(CLOSED, false), Block.NOTIFY_LISTENERS | Block.REDRAW_ON_MAIN_THREAD);
+                        bearTrapBlockEntity.setWinder(0);
                     }
                 }
             }
-
         }
         return ActionResult.success(world.isClient);
     }
@@ -99,20 +99,19 @@ public class BearTrapBlock extends BlockWithEntity {
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity user) {
-            if(state.get(CLOSED)){
-                entity.slowMovement(state, new Vec3d(0.01D, 0.02D, 0.01D));//TODO make Snared status effect instead
+            if(state.get(CLOSED) && state.get(SHUT)){
+                user.addStatusEffect(new StatusEffectInstance(LycanthropyStatusEffectsInit.SNARED, 1*20,1));
             }
             if (!world.isClient) {
                 if(!state.get(CLOSED)){
                     if(this == LycanthropyBlockInit.SILVER_BEAR_TRAP_BLOCK){
                         user.damage(LycanthropyDamageSources.SILVER, LycanthropyComponentInit.WEREWOLF.get(user).getIsWerewolf() ? 5.0F : 1.0F);
                     } else {
-                        user.damage(DamageSource.CACTUS, 1.0F);
+                        user.damage(DamageSource.CACTUS, 4.0F);
                     }
                     world.createAndScheduleBlockTick(pos,this,80);
-                    world.setBlockState(pos, state.with(CLOSED, true), 3);
+                    world.setBlockState(pos, state.with(CLOSED, true).with(SHUT, true), 3);
                 }
-
             }
         }
     }
@@ -129,7 +128,7 @@ public class BearTrapBlock extends BlockWithEntity {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(CLOSED);
+        builder.add(CLOSED).add(SHUT);
     }
 
     @Override
@@ -149,6 +148,7 @@ public class BearTrapBlock extends BlockWithEntity {
 
     static {
         CLOSED = BooleanProperty.of("closed");
+        SHUT = BooleanProperty.of("shut");
         CLOSED_SHAPE = Block.createCuboidShape(2,0,2, 14, 5, 14);
         OPEN_SHAPE = Block.createCuboidShape(2,0,2, 14, 5, 14);
     }
