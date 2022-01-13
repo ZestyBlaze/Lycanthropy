@@ -41,7 +41,7 @@ public class LycanthropyClientInit {
         BlockEntityRendererRegistry.register(LycanthropyBlockEntityInit.CAGE_BLOCK_ENTITY,
         (BlockEntityRendererFactory.Context rendererDispatcherIn) -> new CageBlockRenderer());
         BlockRenderLayerMapImpl.INSTANCE.putBlock(LycanthropyBlockInit.CAGE_BLOCK, RenderLayer.getCutout());
-
+        EntityRendererRegistry.register(LycanthropyEntityTypeInit.BULLETS, (ctx) -> new BulletRenderer(ctx));
         BlockEntityRendererRegistry.register(LycanthropyBlockEntityInit.BEAR_TRAP_BLOCK_ENTITY,
         (BlockEntityRendererFactory.Context rendererDispatcherIn) -> new BearTrapBlockRenderer());
         BlockRenderLayerMapImpl.INSTANCE.putBlock(LycanthropyBlockInit.BEAR_TRAP_BLOCK, RenderLayer.getCutout());

@@ -13,7 +13,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import net.zestyblaze.lycanthropy.common.registry.LycanthropyDamageSources;
+import net.zestyblaze.lycanthropy.common.utils.LycanthropyDamageSources;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;

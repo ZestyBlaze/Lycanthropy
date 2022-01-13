@@ -186,6 +186,25 @@
 					]
 				},
 				{
+					"name": "item",
+					"parent": "glove2",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{
+							"origin": [-6, 13, -2],
+							"size": [1, 1, 1],
+							"uv": {
+								"north": {"uv": [0, 0], "uv_size": [1, 1]},
+								"east": {"uv": [0, 0], "uv_size": [1, 1]},
+								"south": {"uv": [0, 0], "uv_size": [1, 1]},
+								"west": {"uv": [0, 0], "uv_size": [1, 1]},
+								"up": {"uv": [1, 1], "uv_size": [-1, -1]},
+								"down": {"uv": [1, 1], "uv_size": [-1, -1]}
+							}
+						}
+					]
+				},
+				{
 					"name": "rightLeg",
 					"parent": "body",
 					"pivot": [-2, 12, 0],
@@ -327,7 +346,7 @@
 							}
 						},
 						{
-							"origin": [-6, 31.105, -7],
+							"origin": [-6, 31.11, -7],
 							"size": [12, 2, 14],
 							"inflate": 0.5,
 							"uv": {

@@ -1,0 +1,16 @@
+{
+  "category": "lycanthropy:creatures",
+  "name": "Werewolf",
+  "icon": "lycanthropy:werewolf_tooth",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Werewolves etc"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "lycanthropy:werewolf",
+      "offset": 0.1
+    }
+  ]
+}

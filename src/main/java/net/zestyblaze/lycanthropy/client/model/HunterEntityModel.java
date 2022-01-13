@@ -3,7 +3,6 @@ package net.zestyblaze.lycanthropy.client.model;
 import net.minecraft.util.Identifier;
 import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.common.entity.HunterEntity;
-import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.model.AnimatedGeoModel;

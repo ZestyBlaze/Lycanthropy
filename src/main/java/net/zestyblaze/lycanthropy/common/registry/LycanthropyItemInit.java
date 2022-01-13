@@ -8,6 +8,7 @@ import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
+import net.zestyblaze.lycanthropy.common.item.SilverBulletItem;
 import net.zestyblaze.lycanthropy.common.item.*;
 import net.zestyblaze.lycanthropy.common.item.tool.LycanthropyAxeItem;
 import net.zestyblaze.lycanthropy.common.item.tool.LycanthropyHoeItem;
@@ -25,6 +26,8 @@ public class LycanthropyItemInit {
     public static final Item WOLF_PELT = register("wolf_pelt", new Item(gen()));
     public static final Item WOLFSBANE = register("wolfsbane", new Item(gen()));
     public static final Item WEREWOLF_TOOTH = register("werewolf_tooth", new WerewolfToothItem(gen()));
+
+    public static final SilverBulletItem BULLETS = register("bullets",new SilverBulletItem(1.5F));
 
     public static final WolfpeltArmorItem WOLF_PELT_HEAD = register("wolf_pelt_head", new WolfpeltArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.HEAD, gen()));
     public static final WolfpeltArmorItem WOLF_PELT_CHEST = register("wolf_pelt_chest", new WolfpeltArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.CHEST, gen()));

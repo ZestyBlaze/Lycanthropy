@@ -15,7 +15,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import software.bernie.example.entity.RocketProjectile;
+import net.zestyblaze.lycanthropy.common.entity.SilverBulletEntity;
 import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -56,21 +56,22 @@ public class FlintlockItem extends Item implements IAnimatable, ISyncable {
 
     @Override
     public void onStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int remainingUseTicks) {
-        if (entityLiving instanceof PlayerEntity) {
-            PlayerEntity playerentity = (PlayerEntity) entityLiving;
+        if (entityLiving instanceof PlayerEntity playerentity) {
             if (stack.getDamage() < (stack.getMaxDamage() - 1)) {
                 playerentity.getItemCooldownManager().set(this, 5);
                 if (!worldIn.isClient) {
-                    RocketProjectile abstractarrowentity = createArrow(worldIn, stack, playerentity);
-                    abstractarrowentity.setVelocity(playerentity, playerentity.getPitch(), playerentity.getYaw(), 0.0F,
-                    1.0F * 3.0F, 1.0F);
+                    SilverBulletEntity abstractbulletentity = createArrow(worldIn, stack, playerentity);
+                    abstractbulletentity.setVelocity(playerentity, playerentity.getPitch(), playerentity.getYaw(),
+                    0.0F,
+                    3.0F,
+                    1.0F);
 
-                    abstractarrowentity.setDamage(2.5);
-                    abstractarrowentity.age = 35;
-                    abstractarrowentity.hasNoGravity();
+                    abstractbulletentity.setDamage(2.5);
+                    abstractbulletentity.age = 35;
+                    abstractbulletentity.hasNoGravity();
 
                     stack.damage(1, entityLiving, p -> p.sendToolBreakStatus(entityLiving.getActiveHand()));
-                    worldIn.spawnEntity(abstractarrowentity);
+                    worldIn.spawnEntity(abstractbulletentity);
                     stack.getOrCreateNbt().putBoolean("Fired", true);
                 }
                 if (!worldIn.isClient) {
@@ -84,9 +85,9 @@ public class FlintlockItem extends Item implements IAnimatable, ISyncable {
         }
     }
 
-    public RocketProjectile createArrow(World worldIn, ItemStack stack, LivingEntity shooter) {
-        RocketProjectile arrowentity = new RocketProjectile(worldIn, shooter);
-        return arrowentity;
+    public SilverBulletEntity createArrow(World worldIn, ItemStack stack, LivingEntity shooter) {
+        SilverBulletEntity silverBulletEntity = new SilverBulletEntity(worldIn, shooter, 6F);
+        return silverBulletEntity;
     }
 
 
@@ -125,7 +126,9 @@ public class FlintlockItem extends Item implements IAnimatable, ISyncable {
     }
 
 
-    @Override
+
+
+        @Override
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(new TranslatableText(
         "Ammo: " + (stack.getMaxDamage() - stack.getDamage() - 1) + " / " + (stack.getMaxDamage() - 1))

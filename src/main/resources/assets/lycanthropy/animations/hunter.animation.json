@@ -84,6 +84,77 @@
 					}
 				}
 			}
+		},
+		"animation.hunter.attacking": {
+			"loop": true,
+			"bones": {
+				"leftArm": {
+					"rotation": {
+						"vector": [-47.62074, 32.79775, 32.73241]
+					}
+				},
+				"rightArm": {
+					"rotation": {
+						"vector": [-74.9453, -4.82922, -1.29717]
+					}
+				},
+				"head": {
+					"rotation": {
+						"vector": [2.5, 0, -7.5]
+					}
+				}
+			}
+		},
+		"animation.hunter.attackwalking": {
+			"loop": true,
+			"animation_length": 1.04,
+			"bones": {
+				"leftArm": {
+					"rotation": {
+						"vector": [-47.62074, 32.79775, 32.73241]
+					}
+				},
+				"rightArm": {
+					"rotation": {
+						"vector": [-74.9453, -4.82922, -1.29717]
+					}
+				},
+				"rightLeg": {
+					"rotation": {
+						"0.0": {
+							"vector": [12.5, 0, 0]
+						},
+						"0.52": {
+							"vector": [-12.5, 0, 0],
+							"easing": "easeInOutQuad"
+						},
+						"1.04": {
+							"vector": [12.5, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"leftLeg": {
+					"rotation": {
+						"0.0": {
+							"vector": [-12.5, 0, 0]
+						},
+						"0.52": {
+							"vector": [12.5, 0, 0],
+							"easing": "easeInOutQuad"
+						},
+						"1.04": {
+							"vector": [-12.5, 0, 0],
+							"easing": "easeInOutQuad"
+						}
+					}
+				},
+				"head": {
+					"rotation": {
+						"vector": [2.5, 0, -7.5]
+					}
+				}
+			}
 		}
 	},
 	"geckolib_format_version": 2
