@@ -22,7 +22,7 @@ import static net.zestyblaze.lycanthropy.common.utils.LycanthropyUtils.gen;
 
 public class LycanthropyItemInit {
     private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
-    public static final Item GUIDE_BOOK = register(LycanthropyModConfig.get().modelBook3D ? "guide_book_dev" : "guide_book", LycanthropyModConfig.get().modelBook3D ? new GuideBookDevItem(new FabricItemSettings().rarity(Rarity.EPIC).group(Lycanthropy.LYCANTHROPY_GROUP)) : new GuideBookItem(new FabricItemSettings().rarity(Rarity.EPIC).group(Lycanthropy.LYCANTHROPY_GROUP)));
+    public static final Item GUIDE_BOOK = register("guide_book", new GuideBookItem(new FabricItemSettings().rarity(Rarity.EPIC).group(Lycanthropy.LYCANTHROPY_GROUP)));
 
     public static final Item WOLF_PELT = register("wolf_pelt", new Item(gen()));
     public static final Item WOLFSBANE = register("wolfsbane", new WolfsbaneItem(gen()));

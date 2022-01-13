@@ -7,10 +7,11 @@
 
   "item.lycanthropy.debug_item": "Debug Item",
   "item.lycanthropy.guide_book": "Moonlight Chronicles",
-  "item.lycanthropy.guide_book_dev": "Moonlight Chronicles",
   "item.lycanthropy.flintlock_rifle": "Flintlock Rifle",
   "item.lycanthropy.silver_axe": "Silver Axe",
   "item.lycanthropy.silver_sword": "Silver Sword",
+  "item.lycanthropy.silver_shovel": "Silver Shovel",
+  "item.lycanthropy.silver_hoe": "Silver Hoe",
   "item.lycanthropy.silver_chunk": "Silver Chunk",
   "item.lycanthropy.silver_nugget": "Silver Nugget",
   "item.lycanthropy.silver_ingot": "Silver Ingot",
@@ -20,22 +21,35 @@
   "item.lycanthropy.wolf_pelt_chest": "Wolfpelt Chestplate",
   "item.lycanthropy.wolf_pelt_leggings": "Wolfpelt Breeches",
   "item.lycanthropy.wolf_pelt_boots": "Wolfpelt Boots",
+  "item.lycanthropy.wolfsbane": "Wolfsbane",
 
   "block.lycanthropy.bone_pile": "Bone Pile",
   "block.lycanthropy.cage_block": "Cage Block",
   "block.lycanthropy.deepslate_silver_ore": "Deepslate Silver Ore",
   "block.lycanthropy.silver_block": "Silver Block",
   "block.lycanthropy.silver_ore": "Silver Ore",
+  "block.lycanthropy.raw_silver_block": "Raw Silver Block",
+  "block.lycanthropy.silver_slab": "Silver Slab",
+  "block.lycanthropy.silver_stairs": "Silver Stairs",
+  "block.lycanthropy.silver_tile": "Silver Tile",
+  "block.lycanthropy.silver_tile_stairs": "Silver Tile Stairs",
+  "block.lycanthropy.silver_tile_slab": "Silver Tile Slab",
+  "block.lycanthropy.wolfsbane_block": "Wolfsbane Block",
 
   "entity.lycanthropy.werewolf": "Werewolf",
+  "entity.lycanthropy.hunter_villager": "Hunter Villager",
 
   "effect.lycanthropy.bleeding": "Bleeding",
+  "effect.lycanthropy.beast_sense": "Beast Sense",
 
   "death.attack.silver": "%1$s could not stand being on silver",
   "death.attack.silver.player": "%1$s was pushed onto silver by %2$s",
   "death.attack.failed_ritual": "%1$s was consumed by the beast within themselves",
+  "death.attack.bear_trap": "%1$s was caught in a bear trap",
 
   "text.lycanthropy.guide_book.fail": "Patchouli is not installed",
+
+  "text.lycanthropy.ritual.success": "As the rays of the Full Moon shine on you, it causes the DNA of the Werewolf to merge with your enhanced body, making you one. The beast within has awoken...",
 
   "text.autoconfig.lycanthropy.title": "Lycanthropy",
   "text.autoconfig.lycanthropy.option.debugMode": "Debug Mode",

@@ -16,7 +16,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import net.zestyblaze.lycanthropy.common.item.FlintlockItem;
-import net.zestyblaze.lycanthropy.common.item.GuideBookDevItem;
+import net.zestyblaze.lycanthropy.common.item.GuideBookItem;
 import net.zestyblaze.lycanthropy.common.utils.LycanthropyUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -86,7 +86,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
     @Environment(EnvType.CLIENT)
     private static void getArmPose(AbstractClientPlayerEntity abstractClientPlayerEntity, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
         ItemStack itemStack = abstractClientPlayerEntity.getStackInHand(hand);
-        if(itemStack.getItem() instanceof GuideBookDevItem) {
+        if(itemStack.getItem() instanceof GuideBookItem) {
             cir.setReturnValue(BipedEntityModel.ArmPose.BLOCK);
         }
         if (itemStack.getItem() instanceof FlintlockItem) {

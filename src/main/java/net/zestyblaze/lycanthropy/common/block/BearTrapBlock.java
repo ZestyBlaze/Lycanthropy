@@ -4,7 +4,6 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -20,7 +19,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -100,14 +98,14 @@ public class BearTrapBlock extends BlockWithEntity {
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity user) {
             if(state.get(CLOSED) && state.get(SHUT)){
-                user.addStatusEffect(new StatusEffectInstance(LycanthropyStatusEffectsInit.SNARED, 1*20,1));
+                user.addStatusEffect(new StatusEffectInstance(LycanthropyStatusEffectsInit.SNARED, 20,1));
             }
             if (!world.isClient) {
                 if(!state.get(CLOSED)){
                     if(this == LycanthropyBlockInit.SILVER_BEAR_TRAP_BLOCK){
-                        user.damage(LycanthropyDamageSources.SILVER, LycanthropyComponentInit.WEREWOLF.get(user).getIsWerewolf() ? 5.0F : 1.0F);
+                        user.damage(LycanthropyDamageSources.BEAR_TRAP, LycanthropyComponentInit.WEREWOLF.get(user).getIsWerewolf() ? 5.0F : 1.0F);
                     } else {
-                        user.damage(DamageSource.CACTUS, 4.0F);
+                        user.damage(LycanthropyDamageSources.BEAR_TRAP, 4.0F);
                     }
                     world.createAndScheduleBlockTick(pos,this,80);
                     world.setBlockState(pos, state.with(CLOSED, true).with(SHUT, true), 3);

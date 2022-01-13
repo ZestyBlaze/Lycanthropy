@@ -1,5 +1,7 @@
 package net.zestyblaze.lycanthropy.common.item;
 
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -35,6 +37,8 @@ public class WerewolfToothItem extends Item {
                             stack.decrement(1);
                         }
                         LycanthropyComponentInit.WEREWOLF.maybeGet(user).ifPresent(werewolfComponent -> werewolfComponent.setIsWerewolf(true));
+                        user.setStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 100, 9, false, false), null);
+                        user.setStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 160, 0, false, false), null);
                     }   user.sendMessage(new TranslatableText("text.lycanthropy.ritual.success").formatted(Formatting.GRAY, Formatting.ITALIC), false);
                 } else {
                     return TypedActionResult.fail(stack);
