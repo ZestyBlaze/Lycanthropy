@@ -22,8 +22,8 @@ public class Lycanthropy implements ModInitializer {
 	public void onInitialize() {
 		LOGGER.info(MODNAME + " is installed correctly, loading now! Thanks for installing! <3");
 		LycanthropyConfigInit.registerConfig();
-		LycanthropyItemInit.registerItems();
 		LycanthropyBlockInit.registerBlocks();
+		LycanthropyItemInit.registerItems();
 		LycanthropyBlockEntityInit.registerBlockEntities();
 		LycanthropyEntityTypeInit.initEntityTypes();
 		LycanthropyEventInit.registerEvents();

@@ -6,7 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
-import net.zestyblaze.lycanthropy.common.registry.LycanthropyDamageSources;
+import net.zestyblaze.lycanthropy.common.utils.LycanthropyDamageSources;
 
 public class SilverBlock extends Block {
     public SilverBlock(Settings settings) {

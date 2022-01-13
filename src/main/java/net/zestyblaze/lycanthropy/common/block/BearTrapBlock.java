@@ -26,12 +26,13 @@ import net.minecraft.world.World;
 import net.zestyblaze.lycanthropy.common.block.blockentity.BearTrapBlockEntity;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyBlockInit;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
-import net.zestyblaze.lycanthropy.common.registry.LycanthropyDamageSources;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyTags;
+import net.zestyblaze.lycanthropy.common.utils.LycanthropyDamageSources;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
+@SuppressWarnings("deprecation")
 public class BearTrapBlock extends BlockWithEntity {
     public static final BooleanProperty CLOSED;
     protected static final VoxelShape OPEN_SHAPE;
@@ -107,7 +108,7 @@ public class BearTrapBlock extends BlockWithEntity {
                 if(!state.get(CLOSED)){
                     if(this == LycanthropyBlockInit.SILVER_BEAR_TRAP_BLOCK){
                         user.damage(LycanthropyDamageSources.SILVER, LycanthropyComponentInit.WEREWOLF.get(user).getIsWerewolf() ? 5.0F : 1.0F);
-                    }else{
+                    } else {
                         user.damage(DamageSource.CACTUS, 1.0F);
                     }
                     world.createAndScheduleBlockTick(pos,this,80);
@@ -143,6 +144,7 @@ public class BearTrapBlock extends BlockWithEntity {
         super.onBreak(world, pos, state, player);
         BearTrapBlockEntity blockEntity = (BearTrapBlockEntity) world.getBlockEntity(pos);
         for(int i = 0; i < 2; i++){
+            assert blockEntity != null;
             ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), blockEntity.getStack(i));
         }
     }

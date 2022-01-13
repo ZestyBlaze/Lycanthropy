@@ -35,17 +35,7 @@
   "death.attack.silver.player": "%1$s was pushed onto silver by %2$s",
   "death.attack.failed_ritual": "%1$s was consumed by the beast within themselves",
 
-  "text.lycanthropy.hold_shift": "Hold [SHIFT] for more info",
   "text.lycanthropy.guide_book.fail": "Patchouli is not installed",
-
-  "text.lycanthropy.debug_item.tooltip": "Developer Item for Testing",
-  "text.lycanthropy.debug_item.success_add": "Turned User into a Werewolf",
-  "text.lycanthropy.debug_item.success_remove": "Removed Werewolf from User",
-  "text.lycanthropy.debug_item.fail": "User is already a Werewolf",
-
-  "text.lycanthropy.werewolf_tooth.tooltip": "There is still DNA from a werewolf on it",
-  "text.lycanthropy.werewolf_tooth.fail1": "It's not a full moon",
-  "text.lycanthropy.werewolf_tooth.fail2": "It's not night time",
 
   "text.autoconfig.lycanthropy.title": "Lycanthropy",
   "text.autoconfig.lycanthropy.option.debugMode": "Debug Mode",

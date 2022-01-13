@@ -50,7 +50,7 @@ public class LycanthropyClientInit {
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> world != null && pos != null ? BiomeColors.getFoliageColor(world, pos) : FoliageColors.getDefaultColor(), LycanthropyBlockInit.WOLFSBANE);
 
         if(LycanthropyModConfig.get().debugMode) {
-            Lycanthropy.LOGGER.info("Lycanthropy: Registry - Client Registered");
+            Lycanthropy.LOGGER.info("Lycanthropy: Registry - Client Render Registered");
         }
     }
 
@@ -61,11 +61,10 @@ public class LycanthropyClientInit {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if(screenKey.wasPressed()) {
                 if(!keyBoolean) {
-                    Lycanthropy.LOGGER.warn("Lycanthropy - Client: Key Pressed");
                     LycanthropyComponentInit.WEREWOLF.maybeGet(client.player).ifPresent(werewolf -> {
                         if(werewolf.getIsWerewolf()) {
                             ///TODO: Set Screen Here
-                            Lycanthropy.LOGGER.warn("Lycanthropy - Client: Screen Triggered");
+                            Lycanthropy.LOGGER.info("Lycanthropy - Client: Screen Triggered");
                         } else {
                             assert client.player != null;
                             client.player.sendMessage(new TranslatableText("key.lycanthropy.openSkillTree.fail").formatted(Formatting.RED, Formatting.ITALIC), true);

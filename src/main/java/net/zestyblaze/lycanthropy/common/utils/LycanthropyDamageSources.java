@@ -1,4 +1,4 @@
-package net.zestyblaze.lycanthropy.common.registry;
+package net.zestyblaze.lycanthropy.common.utils;
 
 import net.minecraft.entity.damage.DamageSource;
 

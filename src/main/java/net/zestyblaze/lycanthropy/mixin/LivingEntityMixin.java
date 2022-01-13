@@ -7,8 +7,8 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
-import net.zestyblaze.lycanthropy.common.registry.LycanthropyDamageSources;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyStatusEffectsInit;
+import net.zestyblaze.lycanthropy.common.utils.LycanthropyDamageSources;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -33,7 +33,7 @@ public abstract class LivingEntityMixin extends Entity {
         });
     }
 
-    //This wont be needed if lycanthropeBlockDamage covers this
+    //This won't be needed if lycanthropeBlockDamage covers this
     @Inject(method = "handleFallDamage", at = @At("HEAD"), cancellable = true)
     private void handleFallDamage(float fallDistance, float damageMultiplier, DamageSource source, CallbackInfoReturnable<Boolean> callbackInfo) {
         if ((Object) this instanceof PlayerEntity player && LycanthropyComponentInit.WEREWOLF.get(player).getIsWerewolf() && fallDistance <= 5) {
