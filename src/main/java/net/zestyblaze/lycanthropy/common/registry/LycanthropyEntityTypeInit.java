@@ -15,6 +15,7 @@ import net.zestyblaze.lycanthropy.common.entity.WerewolfEntity;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@SuppressWarnings("ALL")
 public class LycanthropyEntityTypeInit {
     private static final Map<EntityType<?>, Identifier> ENTITY_TYPES = new LinkedHashMap<>();
 
@@ -28,7 +29,7 @@ public class LycanthropyEntityTypeInit {
         return type;
     }
 
-    private static <T extends Entity> EntityType<T> register( String id, EntityType.EntityFactory<T> factory) {
+    private static <T extends Entity> EntityType<T> register(String id, EntityType.EntityFactory<T> factory) {
         EntityType<T> type = FabricEntityTypeBuilder.create(SpawnGroup.MISC, factory).dimensions(new EntityDimensions(0.8F, 0.8F, true)).disableSummon().spawnableFarFromPlayer().trackRangeBlocks(90).trackedUpdateRate(50).build();
         ENTITY_TYPES.put(type, new Identifier(Lycanthropy.MODID, id));
         return type;

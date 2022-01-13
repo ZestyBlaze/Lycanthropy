@@ -34,7 +34,6 @@ public class Lycanthropy implements ModInitializer {
 		LycanthropyWorldInit.generateOres();
 		LycanthropyCommandInit.registerCommands();
 		LycanthropySoundEvents.registerSoundEvents();
-		ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> LycanthropyComponentInit.WEREWOLF.get(newPlayer).setIsWerewolf(false));
 
 		if(LycanthropyModConfig.get().debugMode) {
 			LOGGER.info("Lycanthropy: Registry - Mod Fully Loaded!");
