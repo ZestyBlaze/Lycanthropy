@@ -73,7 +73,7 @@ public class HunterEntity extends MerchantEntity implements IAnimatable, Angerab
     }
     private <E extends IAnimatable> PlayState devMovement(AnimationEvent<E> animationEvent) {
         final AnimationController animationController = animationEvent.getController();
-        //Create a builer to stack animations in.
+        //Create a builder to stack animations in.
         AnimationBuilder builder = new AnimationBuilder();
         if(animationEvent.isMoving()){
             if(this.isAttacking() && !(this.dead || this.getHealth() < 0.01 || this.isDead())){

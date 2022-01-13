@@ -40,7 +40,7 @@ public class WerewolfEntity extends WerewolfBaseEntity implements IAnimatable {
 
     private <E extends IAnimatable> PlayState devMovement(AnimationEvent<E> animationEvent) {
         final AnimationController animationController = animationEvent.getController();
-        //Create a builer to stack animations in.
+        //Create a builder to stack animations in.
         AnimationBuilder builder = new AnimationBuilder();
 
         WerewolfEntity entity = this;

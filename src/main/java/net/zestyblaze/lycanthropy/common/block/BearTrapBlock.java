@@ -65,13 +65,20 @@ public class BearTrapBlock extends BlockWithEntity {
                             if(!bearTrapBlockEntity.getStack(0).isEmpty()){
                                 ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), bearTrapBlockEntity.getStack(0));
                                 bearTrapBlockEntity.setStack(0, new ItemStack(Items.AIR));
-                                bearTrapBlockEntity.sync();
                             }else if(!bearTrapBlockEntity.getStack(1).isEmpty()){
                                 ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), bearTrapBlockEntity.getStack(1));
                                 bearTrapBlockEntity.setStack(1, new ItemStack(Items.AIR));
-                                bearTrapBlockEntity.sync();
+                            }
+                        }else{
+                            if(ItemTags.LEAVES.contains(player.getStackInHand(hand).getItem()) && bearTrapBlockEntity.getStack(0).isEmpty()){
+                                ItemStack stack = player.getStackInHand(hand);
+                                bearTrapBlockEntity.setStack(0, stack.split(1));
+                            }else if(LycanthropyTagsInit.MEAT.contains(player.getStackInHand(hand).getItem()) && bearTrapBlockEntity.getStack(1).isEmpty()){
+                                ItemStack stack = player.getStackInHand(hand);
+                                bearTrapBlockEntity.setStack(1, stack.split(1));
                             }
                         }
+                        bearTrapBlockEntity.sync();
                     }else {
                         bearTrapBlockEntity.increaseWinder(1);
                         bearTrapBlockEntity.sync();
@@ -81,14 +88,6 @@ public class BearTrapBlock extends BlockWithEntity {
                             bearTrapBlockEntity.setWinder(0);
                         }
                     }
-                }else if(ItemTags.LEAVES.contains(player.getStackInHand(hand).getItem()) && bearTrapBlockEntity.getStack(0).isEmpty()){
-                    ItemStack stack = player.getStackInHand(hand);
-                    bearTrapBlockEntity.setStack(0, stack.split(1));
-                    bearTrapBlockEntity.sync();
-                }else if(LycanthropyTagsInit.MEAT.contains(player.getStackInHand(hand).getItem()) && bearTrapBlockEntity.getStack(1).isEmpty()){
-                    ItemStack stack = player.getStackInHand(hand);
-                    bearTrapBlockEntity.setStack(1, stack.split(1));
-                    bearTrapBlockEntity.sync();
                 }
             }
 
