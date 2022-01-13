@@ -6,6 +6,7 @@ public class LycanthropyDamageSources {
     public static final DamageSource SILVER = new LycanthropyDamageSource("silver");
     public static final DamageSource FAILED_RITUAL = new LycanthropyDamageSource("failed_ritual").setBypassesArmor();
     public static final DamageSource BEAR_TRAP = new LycanthropyDamageSource("bear_trap");
+    public static final DamageSource WOLFSBANE = new LycanthropyDamageSource("wolfsbane").setBypassesArmor();
 
     private static class LycanthropyDamageSource extends DamageSource {
         public LycanthropyDamageSource(String name) {
