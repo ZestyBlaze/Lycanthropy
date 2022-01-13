@@ -35,6 +35,8 @@
   "block.lycanthropy.silver_tile_stairs": "Silver Tile Stairs",
   "block.lycanthropy.silver_tile_slab": "Silver Tile Slab",
   "block.lycanthropy.wolfsbane_block": "Wolfsbane Block",
+  "block.lycanthropy.bear_trap_block": "Bear Trap",
+  "block.lycanthropy.silver_bear_trap_block": "Silver Tipped Bear Trap",
 
   "entity.lycanthropy.werewolf": "Werewolf",
   "entity.lycanthropy.hunter_villager": "Hunter Villager",
@@ -46,6 +48,23 @@
   "death.attack.silver.player": "%1$s was pushed onto silver by %2$s",
   "death.attack.failed_ritual": "%1$s was consumed by the beast within themselves",
   "death.attack.bear_trap": "%1$s was caught in a bear trap",
+
+  "commands.lycanthropy.settrue": "%s werewolf set to true",
+  "commands.lycanthropy.setfalse": "%s werewolf set to false",
+  "commands.lycanthropy.gettrue": "%s is a Werewolf",
+  "commands.lycanthropy.getfalse": "%s is not a Werewolf",
+  "commands.lycanthropy.level": "Set %s level to %s",
+  "commands.lycanthropy.level.get0": "%s is Werewolf Level 0",
+  "commands.lycanthropy.level.get1": "%s is Werewolf Level 1",
+  "commands.lycanthropy.level.get2": "%s is Werewolf Level 2",
+  "commands.lycanthropy.level.get3": "%s is Werewolf Level 3",
+  "commands.lycanthropy.level.get4": "%s is Werewolf Level 4",
+  "commands.lycanthropy.level.get5": "%s is Werewolf Level 5",
+  "commands.lycanthropy.level.get6": "%s is Werewolf Level 6",
+  "commands.lycanthropy.level.get7": "%s is Werewolf Level 7",
+  "commands.lycanthropy.level.get8": "%s is Werewolf Level 8",
+  "commands.lycanthropy.level.get9": "%s is Werewolf Level 9",
+  "commands.lycanthropy.level.get10": "%s is Werewolf Level 10",
 
   "text.lycanthropy.guide_book.fail": "Patchouli is not installed",
 
