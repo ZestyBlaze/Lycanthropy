@@ -39,7 +39,8 @@ public class WerewolfToothItem extends Item {
                         LycanthropyComponentInit.WEREWOLF.maybeGet(user).ifPresent(werewolfComponent -> werewolfComponent.setIsWerewolf(true));
                         user.setStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 100, 9, false, false), null);
                         user.setStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 160, 0, false, false), null);
-                    }   user.sendMessage(new TranslatableText("text.lycanthropy.ritual.success").formatted(Formatting.GRAY, Formatting.ITALIC), false);
+                        user.sendMessage(new TranslatableText("text.lycanthropy.ritual.success").formatted(Formatting.GRAY, Formatting.ITALIC), false);
+                    }
                 } else {
                     return TypedActionResult.fail(stack);
                 }
