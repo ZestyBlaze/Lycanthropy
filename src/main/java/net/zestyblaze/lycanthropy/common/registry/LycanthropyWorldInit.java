@@ -8,12 +8,14 @@ import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.BiomePlacementModifier;
 import net.minecraft.world.gen.decorator.RarityFilterPlacementModifier;
 import net.minecraft.world.gen.decorator.SquarePlacementModifier;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.zestyblaze.lycanthropy.Lycanthropy;
+import net.zestyblaze.lycanthropy.common.world.LycanthropyOres;
 import net.zestyblaze.lycanthropy.common.world.LycanthropyStructures;
 
 
@@ -33,6 +35,12 @@ public class LycanthropyWorldInit {
         //Registry<ConfiguredStructureFeature<?, ?>> registry = BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE; //TODO add this when nbt is present
         //Registry.register(registry, new Identifier(Lycanthropy.MODID, "configured_hunter_house"), CONFIGURED_HUNTERS_HOUSE);//TODO add this when nbt is present
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(Lycanthropy.MODID, "wolfsbane_feature"), CONFIGURED_WOLFSBANE);
+    }
+
+    public static void generateOres() {
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(Lycanthropy.MODID, "silver_ore"), LycanthropyOres.SILVER_ORE);
+        Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier(Lycanthropy.MODID, "silver_ore"), LycanthropyOres.SILVER_ORE_PLACE);
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(Lycanthropy.MODID, "silver_ore")));
     }
 
     public static void addStructureSpawningToDimensionsAndBiomes() {

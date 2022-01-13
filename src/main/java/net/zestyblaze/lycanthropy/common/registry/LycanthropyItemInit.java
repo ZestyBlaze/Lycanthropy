@@ -13,6 +13,7 @@ import net.zestyblaze.lycanthropy.common.item.*;
 import net.zestyblaze.lycanthropy.common.item.tool.LycanthropyAxeItem;
 import net.zestyblaze.lycanthropy.common.item.tool.LycanthropyHoeItem;
 import net.zestyblaze.lycanthropy.common.item.tool.LycanthropyPickaxeItem;
+import net.zestyblaze.lycanthropy.common.item.tool.material.SilverToolMaterial;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class LycanthropyItemInit {
     public static final Item GUIDE_BOOK = register(LycanthropyModConfig.get().modelBook3D ? "guide_book_dev" : "guide_book", LycanthropyModConfig.get().modelBook3D ? new GuideBookDevItem(new FabricItemSettings().rarity(Rarity.EPIC).group(Lycanthropy.LYCANTHROPY_GROUP)) : new GuideBookItem(new FabricItemSettings().rarity(Rarity.EPIC).group(Lycanthropy.LYCANTHROPY_GROUP)));
 
     public static final Item WOLF_PELT = register("wolf_pelt", new Item(gen()));
-    public static final Item WOLFSBANE = register("wolfsbane", new Item(gen()));
+    public static final Item WOLFSBANE = register("wolfsbane", new WolfsbaneItem(gen()));
     public static final Item WEREWOLF_TOOTH = register("werewolf_tooth", new WerewolfToothItem(gen()));
 
     public static final SilverBulletItem BULLETS = register("bullets",new SilverBulletItem(1.5F));
@@ -34,16 +35,17 @@ public class LycanthropyItemInit {
     public static final WolfpeltArmorItem WOLF_PELT_LEGGINGS = register("wolf_pelt_leggings", new WolfpeltArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.LEGS, gen()));
     public static final WolfpeltArmorItem WOLF_PELT_BOOTS = register("wolf_pelt_boots", new WolfpeltArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.FEET, gen()));
 
-    public static final Item SILVER_INGOT = register("silver_ingot", new Item(gen()));
     public static final Item SILVER_CHUNK = register("silver_chunk", new Item(gen()));
-    public static final Item SILVER_NUGGET = register("silver_nugget", new Item(gen()));
+    public static final Item SILVER_INGOT = register("silver_ingot", new Item(gen()));
 
     //TODO change all tool stats
-    public static final ToolItem SILVER_SWORD = register("silver_sword", new SwordItem(ToolMaterials.IRON, 2, 2, gen()));
-    public static final ToolItem SILVER_SHOVEL = register("silver_shovel", new ShovelItem(ToolMaterials.IRON, 2, 2, gen()));
-    public static final ToolItem SILVER_PICKAXE = register("silver_pickaxe", new LycanthropyPickaxeItem(ToolMaterials.IRON, 2, 2, gen()));
-    public static final ToolItem SILVER_AXE = register("silver_axe", new LycanthropyAxeItem(ToolMaterials.IRON, 2, 2, gen()));
-    public static final ToolItem SILVER_HOE = register("silver_hoe", new LycanthropyHoeItem(ToolMaterials.IRON, 2, 2, gen()));
+    public static final ToolItem SILVER_SWORD = register("silver_sword", new SwordItem(SilverToolMaterial.INSTANCE, 2, 2, gen()));
+    public static final ToolItem SILVER_SHOVEL = register("silver_shovel", new ShovelItem(SilverToolMaterial.INSTANCE, 2, 2, gen()));
+    public static final ToolItem SILVER_PICKAXE = register("silver_pickaxe", new LycanthropyPickaxeItem(SilverToolMaterial.INSTANCE, 2, 2, gen()));
+    public static final ToolItem SILVER_AXE = register("silver_axe", new LycanthropyAxeItem(SilverToolMaterial.INSTANCE, 2, 2, gen()));
+    public static final ToolItem SILVER_HOE = register("silver_hoe", new LycanthropyHoeItem(SilverToolMaterial.INSTANCE, 2, 2, gen()));
+
+    public static final Item SILVER_NUGGET = register("silver_nugget", new Item(gen()));
 
     public static final FlintlockItem FLINTLOCK_RIFLE = register("flintlock_rifle", new FlintlockItem(gen()));
 

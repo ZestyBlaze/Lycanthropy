@@ -20,7 +20,7 @@ public class Lycanthropy implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info(MODNAME + " is installed correctly, loading now! Thanks for installing! <3");
+		LOGGER.info(MODNAME + " is successfully installed! Thanks for installing! <3");
 		LycanthropyConfigInit.registerConfig();
 		LycanthropyBlockInit.registerBlocks();
 		LycanthropyItemInit.registerItems();
@@ -31,12 +31,10 @@ public class Lycanthropy implements ModInitializer {
 		//LycanthropyStructures.setupAndRegisterStructureFeatures();
 		LycanthropyWorldInit.registerConfiguredStructures();
 		//LycanthropyWorldInit.addStructureSpawningToDimensionsAndBiomes();
+		LycanthropyWorldInit.generateOres();
 		LycanthropyCommandInit.registerCommands();
 		LycanthropySoundEvents.registerSoundEvents();
-		ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
-			LycanthropyComponentInit.WEREWOLF.get(newPlayer).setIsWerewolf(false);
-		});
-
+		ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> LycanthropyComponentInit.WEREWOLF.get(newPlayer).setIsWerewolf(false));
 
 		if(LycanthropyModConfig.get().debugMode) {
 			LOGGER.info("Lycanthropy: Registry - Mod Fully Loaded!");
