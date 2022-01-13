@@ -97,7 +97,6 @@ public class BearTrapBlock extends BlockWithEntity {
     }
 
 
-
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity user) {
