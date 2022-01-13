@@ -72,21 +72,6 @@ public class LycanthropyPlayerComponent implements AutoSyncedComponent, ServerTi
         }
     }
 
-
-
-
-    @Override
-    public WerewolfEntity getRenderedWerewolfEntity(){
-        return werewolfEntity;
-    }
-
-    @Override
-    public void setRenderedWerewolfEntity(WerewolfEntity werewolf){
-        this.werewolfEntity = werewolf;
-        LycanthropyComponentInit.WEREWOLF.sync(this.player);
-    }
-
-
     @Override
     public void setCanBecomeWerewolf(boolean canBecomeWerewolf) {
         if(!TransformationEvents.CANCEL_TRANSFORMATION_EVENT.invoker().shouldCancel(player)){

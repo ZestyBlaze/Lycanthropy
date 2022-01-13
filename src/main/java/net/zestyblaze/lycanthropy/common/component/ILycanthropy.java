@@ -31,17 +31,6 @@ public interface ILycanthropy extends ComponentV3, ServerTickingComponent {
      */
     void tryActivateWerewolfForm(boolean active);
 
-    /**
-     * Checks if the player has a rendered werewolf entity
-     * @return the werewolf entity
-     */
-    WerewolfEntity getRenderedWerewolfEntity();
-
-    /**
-     * Assigns a werewolfEntity to a player
-     * @param werewolf the created entity
-     */
-    void setRenderedWerewolfEntity(WerewolfEntity werewolf);
 
     /**
      * increases the level of the Werewolf as long as its below max level

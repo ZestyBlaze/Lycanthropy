@@ -30,6 +30,7 @@ public class LycanthropyClientInit {
 
     public static void registerRenderer() {
         EntityRendererRegistry.register(LycanthropyEntityTypeInit.WEREWOLF, WerewolfEntityRenderer::new);
+        EntityRendererRegistry.register(LycanthropyEntityTypeInit.HUNTER_VILLAGER, HunterEntityRenderer::new);
         if(LycanthropyModConfig.get().modelBook3D){
             GeoItemRenderer.registerItemRenderer(LycanthropyItemInit.GUIDE_BOOK, new GuideBookItemRenderer());
         }
