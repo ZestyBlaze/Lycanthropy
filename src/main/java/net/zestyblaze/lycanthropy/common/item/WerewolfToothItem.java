@@ -1,12 +1,9 @@
 package net.zestyblaze.lycanthropy.common.item;
 
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -16,10 +13,6 @@ import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropySoundEvents;
-import net.zestyblaze.lycanthropy.common.registry.LycanthropyStatusEffectsInit;
-import net.zestyblaze.lycanthropy.common.utils.LycanthropyDamageSources;
-
-import java.util.Objects;
 
 public class WerewolfToothItem extends Item {
     private static final int MAX_USE_TIME = 60;

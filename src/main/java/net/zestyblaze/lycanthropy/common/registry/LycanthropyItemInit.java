@@ -8,7 +8,6 @@ import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.client.config.LycanthropyModConfig;
-import net.zestyblaze.lycanthropy.common.item.SilverBulletItem;
 import net.zestyblaze.lycanthropy.common.item.*;
 import net.zestyblaze.lycanthropy.common.item.tool.LycanthropyAxeItem;
 import net.zestyblaze.lycanthropy.common.item.tool.LycanthropyHoeItem;
