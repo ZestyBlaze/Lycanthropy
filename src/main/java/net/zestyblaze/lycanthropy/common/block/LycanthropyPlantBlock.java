@@ -26,7 +26,7 @@ public class LycanthropyPlantBlock extends PlantBlock {
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         super.onEntityCollision(state, world, pos, entity);
         if(this == LycanthropyBlockInit.WOLFSBANE && entity instanceof PlayerEntity player && LycanthropyComponentInit.WEREWOLF.get(player).getIsWerewolf()){
-            player.damage(LycanthropyDamageSources.SILVER,  5.0F);
+            player.damage(LycanthropyDamageSources.WOLFSBANE,  5.0F);
         }
     }
 

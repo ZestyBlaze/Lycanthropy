@@ -48,6 +48,7 @@
   "death.attack.silver.player": "%1$s was pushed onto silver by %2$s",
   "death.attack.failed_ritual": "%1$s was consumed by the beast within themselves",
   "death.attack.bear_trap": "%1$s was caught in a bear trap",
+  "death.attack.wolfsbane": "%1$s succumbed to the touch of Wolfsbane",
 
   "commands.lycanthropy.settrue": "%s werewolf set to true",
   "commands.lycanthropy.setfalse": "%s werewolf set to false",
