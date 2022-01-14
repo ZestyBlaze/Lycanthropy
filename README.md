@@ -1,5 +1,7 @@
 <div align="center">
 
+<img alt="Lycanthropy Icon" src="src/main/resources/assets/lycanthropy/icon.png" width="128">
+
 ## **Lycanthropy**
 
 <!-- todo: replace 494721 with your CurseForge project id -->

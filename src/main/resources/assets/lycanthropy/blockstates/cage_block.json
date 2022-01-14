@@ -1,17 +1,62 @@
 {
   "variants": {
-    "facing=south": {
+    "facing=south,half=upper,open=true": {
       "model": "lycanthropy:block/cage_block"
     },
-    "facing=west": {
+    "facing=west,half=upper,open=true": {
       "model": "lycanthropy:block/cage_block",
       "y": 90
     },
-    "facing=north": {
+    "facing=north,half=upper,open=true": {
       "model": "lycanthropy:block/cage_block",
       "y": 180
     },
-    "facing=east": {
+    "facing=east,half=upper,open=true": {
+      "model": "lycanthropy:block/cage_block",
+      "y": 270
+    },
+    "facing=south,half=lower,open=true": {
+      "model": "lycanthropy:block/cage_block"
+    },
+    "facing=west,half=lower,open=true": {
+      "model": "lycanthropy:block/cage_block",
+      "y": 90
+    },
+    "facing=north,half=lower,open=true": {
+      "model": "lycanthropy:block/cage_block",
+      "y": 180
+    },
+    "facing=east,half=lower,open=true": {
+      "model": "lycanthropy:block/cage_block",
+      "y": 270
+    },
+    "facing=south,half=upper,open=false": {
+      "model": "lycanthropy:block/cage_block"
+    },
+    "facing=west,half=upper,open=false": {
+      "model": "lycanthropy:block/cage_block",
+      "y": 90
+    },
+    "facing=north,half=upper,open=false": {
+      "model": "lycanthropy:block/cage_block",
+      "y": 180
+    },
+    "facing=east,half=upper,open=false": {
+      "model": "lycanthropy:block/cage_block",
+      "y": 270
+    },
+    "facing=south,half=lower,open=false": {
+      "model": "lycanthropy:block/cage_block"
+    },
+    "facing=west,half=lower,open=false": {
+      "model": "lycanthropy:block/cage_block",
+      "y": 90
+    },
+    "facing=north,half=lower,open=false": {
+      "model": "lycanthropy:block/cage_block",
+      "y": 180
+    },
+    "facing=east,half=lower,open=false": {
       "model": "lycanthropy:block/cage_block",
       "y": 270
     }

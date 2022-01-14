@@ -1,6 +1,9 @@
 {
   "credit": "Made with Blockbench",
   "parent": "builtin/entity",
+  "textures": {
+    "particle": "lycanthropy:block/cage"
+  },
   "texture_size": [
     128,
     128

@@ -1,53 +1,64 @@
 package net.zestyblaze.lycanthropy.common.item;
 
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
+import net.zestyblaze.lycanthropy.common.registry.LycanthropySoundEvents;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyStatusEffectsInit;
 import net.zestyblaze.lycanthropy.common.utils.LycanthropyDamageSources;
 
 import java.util.Objects;
 
 public class WerewolfToothItem extends Item {
+    private static final int MAX_USE_TIME = 60;
     public WerewolfToothItem(Settings settings) {
-        super(settings);
+        super(settings.maxCount(1));
+    }
+
+    @Override
+    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        if(!world.isClient){
+            if(world.isNight()){
+                if(world.getDimension().getMoonPhase(world.getLunarTime()) == 0){
+                    if(user instanceof PlayerEntity player && !player.isCreative()){
+                        LycanthropyComponentInit.WEREWOLF.get(player).setCanBecomeWerewolf(true);
+                        world.playSound(null, player.getBlockPos(), SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.PLAYERS,1,1);
+                        world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_WITHER_SPAWN, SoundCategory.PLAYERS,0.5F,1.5F);
+                        world.playSound(null, player.getBlockPos(), LycanthropySoundEvents.ENTITY_WEREWOLF_HOWL, SoundCategory.PLAYERS,0.5F,1);
+                        player.sendMessage(new TranslatableText("text.lycanthropy.ritual.success").formatted(Formatting.GRAY, Formatting.ITALIC), false);
+                        stack.damage(1, user, p -> p.sendToolBreakStatus(user.getActiveHand()));
+                        return stack;
+                    }
+                }
+            }
+        }
+        return super.finishUsing(stack, world, user);
+    }
+
+    @Override
+    public int getMaxUseTime(ItemStack stack) {
+        return MAX_USE_TIME;
+    }
+
+    @Override
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.BOW;
     }
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack stack = user.getStackInHand(hand);
-        if(!world.isClient()) {
-            if(world.isNight()) {
-                if (world.getDimension().getMoonPhase(world.getLunarTime()) == 0) {
-                    if(!user.hasStatusEffect(LycanthropyStatusEffectsInit.BEAST_SENSE) || Objects.requireNonNull(user.getStatusEffect(LycanthropyStatusEffectsInit.BEAST_SENSE)).getAmplifier() <= 0) {
-                        if(!user.isCreative()) {
-                            stack.decrement(1);
-                            user.damage(LycanthropyDamageSources.FAILED_RITUAL, user.getHealth() + user.getAbsorptionAmount());
-                        }
-                    } else {
-                        if(!user.isCreative()) {
-                            stack.decrement(1);
-                        }
-                        LycanthropyComponentInit.WEREWOLF.maybeGet(user).ifPresent(werewolfComponent -> werewolfComponent.setIsWerewolf(true));
-                        user.setStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 100, 9, false, false), null);
-                        user.setStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 160, 0, false, false), null);
-                        user.sendMessage(new TranslatableText("text.lycanthropy.ritual.success").formatted(Formatting.GRAY, Formatting.ITALIC), false);
-                    }
-                } else {
-                    return TypedActionResult.fail(stack);
-                }
-            } else {
-                return TypedActionResult.fail(stack);
-            }
-        }
-        return TypedActionResult.fail(stack);
+        return ItemUsage.consumeHeldItem(world, user, hand);
     }
 }
