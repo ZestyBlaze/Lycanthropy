@@ -28,7 +28,7 @@ public class WerewolfToothItem extends Item {
                     if(user instanceof PlayerEntity player && !player.isCreative()){
                         LycanthropyComponentInit.WEREWOLF.get(player).setCanBecomeWerewolf(true);
                         world.playSound(null, player.getBlockPos(), SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.PLAYERS,1,1);
-                        world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_WITHER_SPAWN, SoundCategory.PLAYERS,0.5F,1.5F);
+                        world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_WITHER_SPAWN, SoundCategory.PLAYERS,0.5F,0.5F);
                         world.playSound(null, player.getBlockPos(), LycanthropySoundEvents.ENTITY_WEREWOLF_HOWL, SoundCategory.PLAYERS,0.5F,1);
                         player.sendMessage(new TranslatableText("text.lycanthropy.ritual.success").formatted(Formatting.GRAY, Formatting.ITALIC), false);
                         stack.damage(1, user, p -> p.sendToolBreakStatus(user.getActiveHand()));

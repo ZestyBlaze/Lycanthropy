@@ -28,6 +28,7 @@ public class LycanthropyClientInit {
     public static KeyBinding screenKey;
     private static boolean keyBoolean;
 
+
     public static void registerRenderer() {
         EntityRendererRegistry.register(LycanthropyEntityTypeInit.WEREWOLF, WerewolfEntityRenderer::new);
         EntityRendererRegistry.register(LycanthropyEntityTypeInit.HUNTER_VILLAGER, HunterEntityRenderer::new);
@@ -38,12 +39,10 @@ public class LycanthropyClientInit {
         GeoArmorRenderer.registerArmorRenderer(new WolfpeltArmorRenderer(), LycanthropyItemInit.WOLF_PELT_HEAD,
         LycanthropyItemInit.WOLF_PELT_CHEST, LycanthropyItemInit.WOLF_PELT_LEGGINGS, LycanthropyItemInit.WOLF_PELT_BOOTS);
         GeoItemRenderer.registerItemRenderer(LycanthropyItemInit.FLINTLOCK_RIFLE, new FlintlockItemRenderer());
-        BlockEntityRendererRegistry.register(LycanthropyBlockEntityInit.CAGE_BLOCK_ENTITY,
-        (BlockEntityRendererFactory.Context rendererDispatcherIn) -> new CageBlockRenderer());
+        BlockEntityRendererRegistry.register(LycanthropyBlockEntityInit.CAGE_BLOCK_ENTITY, (BlockEntityRendererFactory.Context rendererDispatcherIn) -> new CageBlockRenderer());
         BlockRenderLayerMapImpl.INSTANCE.putBlock(LycanthropyBlockInit.CAGE_BLOCK, RenderLayer.getCutout());
         EntityRendererRegistry.register(LycanthropyEntityTypeInit.BULLETS, (ctx) -> new BulletRenderer(ctx));
-        BlockEntityRendererRegistry.register(LycanthropyBlockEntityInit.BEAR_TRAP_BLOCK_ENTITY,
-        (BlockEntityRendererFactory.Context rendererDispatcherIn) -> new BearTrapBlockRenderer());
+        BlockEntityRendererRegistry.register(LycanthropyBlockEntityInit.BEAR_TRAP_BLOCK_ENTITY, (BlockEntityRendererFactory.Context rendererDispatcherIn) -> new BearTrapBlockRenderer());
         BlockRenderLayerMapImpl.INSTANCE.putBlock(LycanthropyBlockInit.BEAR_TRAP_BLOCK, RenderLayer.getCutout());
         BlockRenderLayerMapImpl.INSTANCE.putBlock(LycanthropyBlockInit.SILVER_BEAR_TRAP_BLOCK, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), LycanthropyBlockInit.WOLFSBANE);
@@ -52,6 +51,8 @@ public class LycanthropyClientInit {
         if(LycanthropyModConfig.get().debugMode) {
             Lycanthropy.LOGGER.info("Lycanthropy: Registry - Client Render Registered");
         }
+
+
     }
 
     public static void registerClientEvents() {

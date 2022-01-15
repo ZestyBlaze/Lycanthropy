@@ -17,6 +17,8 @@ public class LycanthropyModConfig implements ConfigData {
 
     public boolean werewolfStart = false;
 
+    public int werewolfVisionDistance = 64;
+
     public static LycanthropyModConfig get() {
         return AutoConfig.getConfigHolder(LycanthropyModConfig.class).getConfig();
     }

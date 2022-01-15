@@ -6,13 +6,16 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.hud.InGameHud;
+import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.zestyblaze.lycanthropy.Lycanthropy;
 import net.zestyblaze.lycanthropy.common.registry.LycanthropyComponentInit;
+import net.zestyblaze.lycanthropy.common.statuseffect.LycanthropyStatusEffect;
 import net.zestyblaze.lycanthropy.common.utils.LycanthropyUtils;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,6 +23,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Environment(EnvType.CLIENT)
@@ -29,6 +33,14 @@ public abstract class InGameHudMixin extends DrawableHelper {
     private static final Identifier LYCANTHROPY_GUI_ICONS_TEXTURE = new Identifier(Lycanthropy.MODID, "textures/gui/icons.png");
     @Unique
     private static final Identifier EMPTY_GUI_ICONS_TEXTURE = new Identifier(Lycanthropy.MODID, "textures/gui/icons_empty.png");
+    @Unique
+    private static final Identifier LYCANTHROPY_BACKGROUND_TEXTURE = new Identifier(Lycanthropy.MODID, "textures/gui/inventory.png");
+
+    @Unique
+    private boolean boundSpecialBackground;
+
+    @Unique
+    private StatusEffectInstance renderedEffect;
 
     @Shadow
     private int scaledHeight;
@@ -40,6 +52,25 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Shadow
     @Final
     private MinecraftClient client;
+
+    @ModifyVariable(method = "renderStatusEffectOverlay", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;drawTexture(Lnet/minecraft/client/util/math/MatrixStack;IIIIII)V"))
+    private StatusEffectInstance customizeDrawnBackground(StatusEffectInstance effect) {
+        if (effect.getEffectType() instanceof LycanthropyStatusEffect) {
+            assert this.client != null;
+            RenderSystem.setShaderTexture(0, LYCANTHROPY_BACKGROUND_TEXTURE);
+            boundSpecialBackground = true;
+        }
+        renderedEffect = effect;
+        return effect;
+    }
+
+    @Inject(method = "renderStatusEffectOverlay", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;drawTexture(Lnet/minecraft/client/util/math/MatrixStack;IIIIII)V", shift = At.Shift.AFTER))
+    private void restoreDrawnBackground(CallbackInfo ci) {
+        if (boundSpecialBackground) {
+            RenderSystem.setShaderTexture(0, HandledScreen.BACKGROUND_TEXTURE);
+            boundSpecialBackground = false;
+        }
+    }
 
     @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.AFTER, ordinal = 0, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
     private void renderRage(MatrixStack matrices, CallbackInfo callbackInfo) {
@@ -119,4 +150,5 @@ public abstract class InGameHudMixin extends DrawableHelper {
             }
         });
     }
+
 }

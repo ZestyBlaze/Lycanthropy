@@ -9,14 +9,17 @@
     "LivingEntityMixin",
     "NoiseChunkGeneratorMixin",
     "PlayerEntityMixin",
-    "ServerPlayerInteractionManagerMixin"
+    "ServerPlayerInteractionManagerMixin",
+    "AbstractInventoryScreenMixin"
   ],
   "client": [
     "GameRendererMixin",
     "HeldItemRendererMixin",
     "InGameHudMixin",
     "MouseMixin",
-    "PlayerEntityRendererMixin"
+    "PlayerEntityRendererMixin",
+    "LivingEntityRendererMixin",
+    "RenderLayerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
